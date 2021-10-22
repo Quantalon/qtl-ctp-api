@@ -24,7 +24,7 @@ template <class T>
 using CtpUniquePtr = std::unique_ptr<T, CtpApiDeleter>;
 
 inline std::string gb2312_to_utf8(const std::string& gb2312) {
-    static const std::locale loc("zh_CN.GB18030");
+    static const std::locale loc("zh_CN.GBK");
 
     std::vector<wchar_t> wstr(gb2312.size());
     wchar_t* wstr_end = nullptr;

@@ -1,11 +1,16 @@
 # qtl-ctp-api
 
+** Only for Linux. **
 
-## tips
+## prepare
 
 ```
-sudo locale-gen zh_CN.GB18030
+sudo locale-gen zh_CN.GBK
 ```
+
+## install
+
+
 
 ## dev
 
