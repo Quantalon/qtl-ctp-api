@@ -10,14 +10,10 @@ sudo locale-gen zh_CN.GBK
 
 ## install
 
-
-
-## dev
-
 ```
-pip install -r requirements-dev.txt
+pip install qtl-ctp-api
 ```
 
-## versions 
+## version
 
 - CTP: v6.6.1_P1
