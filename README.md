@@ -1,6 +1,6 @@
 # qtl-ctp-api
 
-** Only for Linux. **
+**Only for Linux.**
 
 ## prepare
 
