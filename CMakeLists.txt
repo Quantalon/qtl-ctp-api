@@ -7,6 +7,14 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message('CMAKE_BUILD_TYPE ===> debug')
+endif()
+
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
+    message('CMAKE_BUILD_TYPE ===> Release')
+endif()
+
 execute_process(
   COMMAND
     "python" -c
