@@ -194,21 +194,21 @@ int TdApi::ReqQryInstrument(const py::dict &data, int request_id) {
 }
 
 void TdApi::OnFrontConnected() {
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         PyOnFrontConnected();
     });
 }
 
 void TdApi::OnFrontDisconnected(int reason) {
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         PyOnFrontDisconnected(reason);
     });
 }
 
 void TdApi::OnHeartBeatWarning(int time_lapse) {
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         PyOnHeartBeatWarning(time_lapse);
     });
@@ -227,7 +227,7 @@ void TdApi::OnRspAuthenticate(CThostFtdcRspAuthenticateField *data, CThostFtdcRs
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -259,7 +259,7 @@ void TdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -299,7 +299,7 @@ void TdApi::OnRspUserLogout(CThostFtdcUserLogoutField *data, CThostFtdcRspInfoFi
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -328,7 +328,7 @@ void TdApi::OnRspOrderInsert(CThostFtdcInputOrderField *data, CThostFtdcRspInfoF
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -385,7 +385,7 @@ void TdApi::OnRspOrderAction(CThostFtdcInputOrderActionField *data, CThostFtdcRs
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -429,7 +429,7 @@ void TdApi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *dat
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -463,7 +463,7 @@ void TdApi::OnRspQryOrder(CThostFtdcOrderField *data, CThostFtdcRspInfoField *er
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -553,7 +553,7 @@ void TdApi::OnRspQryTrade(CThostFtdcTradeField *data, CThostFtdcRspInfoField *er
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -611,7 +611,7 @@ void TdApi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *data, CTho
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -687,7 +687,7 @@ void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *data, CThostFt
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -815,7 +815,7 @@ void TdApi::OnRspError(CThostFtdcRspInfoField *error, int request_id, bool is_la
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_error;
         if (has_error) {
@@ -833,7 +833,7 @@ void TdApi::OnRtnOrder(CThostFtdcOrderField *data) {
         rsp_data = *data;
         has_data = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -912,7 +912,7 @@ void TdApi::OnRtnTrade(CThostFtdcTradeField *data) {
         rsp_data = *data;
         has_data = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {

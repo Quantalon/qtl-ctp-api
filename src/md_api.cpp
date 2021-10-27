@@ -64,21 +64,21 @@ int MdApi::ReqUserLogout(const py::dict &data, int request_id) {
 }
 
 void MdApi::OnFrontConnected() {
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         PyOnFrontConnected();
     });
 }
 
 void MdApi::OnFrontDisconnected(int reason) {
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         PyOnFrontDisconnected(reason);
     });
 }
 
 void MdApi::OnHeartBeatWarning(int time_lapse) {
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         PyOnHeartBeatWarning(time_lapse);
     });
@@ -97,7 +97,7 @@ void MdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -137,7 +137,7 @@ void MdApi::OnRspUserLogout(CThostFtdcUserLogoutField *data, CThostFtdcRspInfoFi
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -160,7 +160,7 @@ void MdApi::OnRspError(CThostFtdcRspInfoField *error, int request_id, bool is_la
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_error;
         if (has_error) {
@@ -184,7 +184,7 @@ void MdApi::OnRspSubMarketData(CThostFtdcSpecificInstrumentField *data, CThostFt
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -212,7 +212,7 @@ void MdApi::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *data, CThost
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
@@ -234,7 +234,7 @@ void MdApi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *data) {
         rsp_data = *data;
         has_data = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {

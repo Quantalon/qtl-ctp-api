@@ -68,7 +68,7 @@ void TdApi::{{ on_method['name'] }}(
         has_error = true;
     }
     {%- endif %}{% endfor %}
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         {%- for p in on_method['parameters'] %}{% if p['type'].endswith('*') and p['py_name'] == 'data' %}
         py::dict py_data;
