@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.15)
 project(qtl-ctp-api)
 
 set(CMAKE_INSTALL_RPATH $ORIGIN)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 execute_process(
   COMMAND
