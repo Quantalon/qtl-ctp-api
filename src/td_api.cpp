@@ -763,7 +763,7 @@ void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *data, CThostFtdcRspInf
         rsp_error = *error;
         has_error = true;
     }
-    queue_->dispatch([&]() {
+    queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
