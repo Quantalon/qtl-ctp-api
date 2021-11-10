@@ -231,16 +231,16 @@ void TdApi::OnRspAuthenticate(CThostFtdcRspAuthenticateField *data, CThostFtdcRs
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
-            py_data["UserProductInfo"] = gb2312_to_utf8(rsp_data.UserProductInfo);
-            py_data["AppID"] = gb2312_to_utf8(rsp_data.AppID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
+            py_data["UserProductInfo"] = gbk_to_utf8(rsp_data.UserProductInfo);
+            py_data["AppID"] = gbk_to_utf8(rsp_data.AppID);
             py_data["AppType"] = rsp_data.AppType;
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspAuthenticate(py_data, py_error, request_id, is_last);
     });
@@ -263,24 +263,24 @@ void TdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["TradingDay"] = gb2312_to_utf8(rsp_data.TradingDay);
-            py_data["LoginTime"] = gb2312_to_utf8(rsp_data.LoginTime);
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
-            py_data["SystemName"] = gb2312_to_utf8(rsp_data.SystemName);
+            py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
+            py_data["LoginTime"] = gbk_to_utf8(rsp_data.LoginTime);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
+            py_data["SystemName"] = gbk_to_utf8(rsp_data.SystemName);
             py_data["FrontID"] = rsp_data.FrontID;
             py_data["SessionID"] = rsp_data.SessionID;
-            py_data["MaxOrderRef"] = gb2312_to_utf8(rsp_data.MaxOrderRef);
-            py_data["SHFETime"] = gb2312_to_utf8(rsp_data.SHFETime);
-            py_data["DCETime"] = gb2312_to_utf8(rsp_data.DCETime);
-            py_data["CZCETime"] = gb2312_to_utf8(rsp_data.CZCETime);
-            py_data["FFEXTime"] = gb2312_to_utf8(rsp_data.FFEXTime);
-            py_data["INETime"] = gb2312_to_utf8(rsp_data.INETime);
+            py_data["MaxOrderRef"] = gbk_to_utf8(rsp_data.MaxOrderRef);
+            py_data["SHFETime"] = gbk_to_utf8(rsp_data.SHFETime);
+            py_data["DCETime"] = gbk_to_utf8(rsp_data.DCETime);
+            py_data["CZCETime"] = gbk_to_utf8(rsp_data.CZCETime);
+            py_data["FFEXTime"] = gbk_to_utf8(rsp_data.FFEXTime);
+            py_data["INETime"] = gbk_to_utf8(rsp_data.INETime);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspUserLogin(py_data, py_error, request_id, is_last);
     });
@@ -303,13 +303,13 @@ void TdApi::OnRspUserLogout(CThostFtdcUserLogoutField *data, CThostFtdcRspInfoFi
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspUserLogout(py_data, py_error, request_id, is_last);
     });
@@ -332,41 +332,41 @@ void TdApi::OnRspOrderInsert(CThostFtdcInputOrderField *data, CThostFtdcRspInfoF
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["InvestorID"] = gb2312_to_utf8(rsp_data.InvestorID);
-            py_data["OrderRef"] = gb2312_to_utf8(rsp_data.OrderRef);
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["OrderRef"] = gbk_to_utf8(rsp_data.OrderRef);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
             py_data["OrderPriceType"] = rsp_data.OrderPriceType;
             py_data["Direction"] = rsp_data.Direction;
-            py_data["CombOffsetFlag"] = gb2312_to_utf8(rsp_data.CombOffsetFlag);
-            py_data["CombHedgeFlag"] = gb2312_to_utf8(rsp_data.CombHedgeFlag);
+            py_data["CombOffsetFlag"] = gbk_to_utf8(rsp_data.CombOffsetFlag);
+            py_data["CombHedgeFlag"] = gbk_to_utf8(rsp_data.CombHedgeFlag);
             py_data["LimitPrice"] = rsp_data.LimitPrice;
             py_data["VolumeTotalOriginal"] = rsp_data.VolumeTotalOriginal;
             py_data["TimeCondition"] = rsp_data.TimeCondition;
-            py_data["GTDDate"] = gb2312_to_utf8(rsp_data.GTDDate);
+            py_data["GTDDate"] = gbk_to_utf8(rsp_data.GTDDate);
             py_data["VolumeCondition"] = rsp_data.VolumeCondition;
             py_data["MinVolume"] = rsp_data.MinVolume;
             py_data["ContingentCondition"] = rsp_data.ContingentCondition;
             py_data["StopPrice"] = rsp_data.StopPrice;
             py_data["ForceCloseReason"] = rsp_data.ForceCloseReason;
             py_data["IsAutoSuspend"] = rsp_data.IsAutoSuspend;
-            py_data["BusinessUnit"] = gb2312_to_utf8(rsp_data.BusinessUnit);
+            py_data["BusinessUnit"] = gbk_to_utf8(rsp_data.BusinessUnit);
             py_data["RequestID"] = rsp_data.RequestID;
             py_data["UserForceClose"] = rsp_data.UserForceClose;
             py_data["IsSwapOrder"] = rsp_data.IsSwapOrder;
-            py_data["ExchangeID"] = gb2312_to_utf8(rsp_data.ExchangeID);
-            py_data["InvestUnitID"] = gb2312_to_utf8(rsp_data.InvestUnitID);
-            py_data["AccountID"] = gb2312_to_utf8(rsp_data.AccountID);
-            py_data["CurrencyID"] = gb2312_to_utf8(rsp_data.CurrencyID);
-            py_data["ClientID"] = gb2312_to_utf8(rsp_data.ClientID);
-            py_data["MacAddress"] = gb2312_to_utf8(rsp_data.MacAddress);
-            py_data["InstrumentID"] = gb2312_to_utf8(rsp_data.InstrumentID);
-            py_data["IPAddress"] = gb2312_to_utf8(rsp_data.IPAddress);
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
+            py_data["AccountID"] = gbk_to_utf8(rsp_data.AccountID);
+            py_data["CurrencyID"] = gbk_to_utf8(rsp_data.CurrencyID);
+            py_data["ClientID"] = gbk_to_utf8(rsp_data.ClientID);
+            py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspOrderInsert(py_data, py_error, request_id, is_last);
     });
@@ -389,28 +389,28 @@ void TdApi::OnRspOrderAction(CThostFtdcInputOrderActionField *data, CThostFtdcRs
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["InvestorID"] = gb2312_to_utf8(rsp_data.InvestorID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
             py_data["OrderActionRef"] = rsp_data.OrderActionRef;
-            py_data["OrderRef"] = gb2312_to_utf8(rsp_data.OrderRef);
+            py_data["OrderRef"] = gbk_to_utf8(rsp_data.OrderRef);
             py_data["RequestID"] = rsp_data.RequestID;
             py_data["FrontID"] = rsp_data.FrontID;
             py_data["SessionID"] = rsp_data.SessionID;
-            py_data["ExchangeID"] = gb2312_to_utf8(rsp_data.ExchangeID);
-            py_data["OrderSysID"] = gb2312_to_utf8(rsp_data.OrderSysID);
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["OrderSysID"] = gbk_to_utf8(rsp_data.OrderSysID);
             py_data["ActionFlag"] = rsp_data.ActionFlag;
             py_data["LimitPrice"] = rsp_data.LimitPrice;
             py_data["VolumeChange"] = rsp_data.VolumeChange;
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
-            py_data["InvestUnitID"] = gb2312_to_utf8(rsp_data.InvestUnitID);
-            py_data["MacAddress"] = gb2312_to_utf8(rsp_data.MacAddress);
-            py_data["InstrumentID"] = gb2312_to_utf8(rsp_data.InstrumentID);
-            py_data["IPAddress"] = gb2312_to_utf8(rsp_data.IPAddress);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
+            py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspOrderAction(py_data, py_error, request_id, is_last);
     });
@@ -433,18 +433,18 @@ void TdApi::OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *dat
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["InvestorID"] = gb2312_to_utf8(rsp_data.InvestorID);
-            py_data["ConfirmDate"] = gb2312_to_utf8(rsp_data.ConfirmDate);
-            py_data["ConfirmTime"] = gb2312_to_utf8(rsp_data.ConfirmTime);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["ConfirmDate"] = gbk_to_utf8(rsp_data.ConfirmDate);
+            py_data["ConfirmTime"] = gbk_to_utf8(rsp_data.ConfirmTime);
             py_data["SettlementID"] = rsp_data.SettlementID;
-            py_data["AccountID"] = gb2312_to_utf8(rsp_data.AccountID);
-            py_data["CurrencyID"] = gb2312_to_utf8(rsp_data.CurrencyID);
+            py_data["AccountID"] = gbk_to_utf8(rsp_data.AccountID);
+            py_data["CurrencyID"] = gbk_to_utf8(rsp_data.CurrencyID);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspSettlementInfoConfirm(py_data, py_error, request_id, is_last);
     });
@@ -467,74 +467,74 @@ void TdApi::OnRspQryOrder(CThostFtdcOrderField *data, CThostFtdcRspInfoField *er
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["InvestorID"] = gb2312_to_utf8(rsp_data.InvestorID);
-            py_data["OrderRef"] = gb2312_to_utf8(rsp_data.OrderRef);
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["OrderRef"] = gbk_to_utf8(rsp_data.OrderRef);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
             py_data["OrderPriceType"] = rsp_data.OrderPriceType;
             py_data["Direction"] = rsp_data.Direction;
-            py_data["CombOffsetFlag"] = gb2312_to_utf8(rsp_data.CombOffsetFlag);
-            py_data["CombHedgeFlag"] = gb2312_to_utf8(rsp_data.CombHedgeFlag);
+            py_data["CombOffsetFlag"] = gbk_to_utf8(rsp_data.CombOffsetFlag);
+            py_data["CombHedgeFlag"] = gbk_to_utf8(rsp_data.CombHedgeFlag);
             py_data["LimitPrice"] = rsp_data.LimitPrice;
             py_data["VolumeTotalOriginal"] = rsp_data.VolumeTotalOriginal;
             py_data["TimeCondition"] = rsp_data.TimeCondition;
-            py_data["GTDDate"] = gb2312_to_utf8(rsp_data.GTDDate);
+            py_data["GTDDate"] = gbk_to_utf8(rsp_data.GTDDate);
             py_data["VolumeCondition"] = rsp_data.VolumeCondition;
             py_data["MinVolume"] = rsp_data.MinVolume;
             py_data["ContingentCondition"] = rsp_data.ContingentCondition;
             py_data["StopPrice"] = rsp_data.StopPrice;
             py_data["ForceCloseReason"] = rsp_data.ForceCloseReason;
             py_data["IsAutoSuspend"] = rsp_data.IsAutoSuspend;
-            py_data["BusinessUnit"] = gb2312_to_utf8(rsp_data.BusinessUnit);
+            py_data["BusinessUnit"] = gbk_to_utf8(rsp_data.BusinessUnit);
             py_data["RequestID"] = rsp_data.RequestID;
-            py_data["OrderLocalID"] = gb2312_to_utf8(rsp_data.OrderLocalID);
-            py_data["ExchangeID"] = gb2312_to_utf8(rsp_data.ExchangeID);
-            py_data["ParticipantID"] = gb2312_to_utf8(rsp_data.ParticipantID);
-            py_data["ClientID"] = gb2312_to_utf8(rsp_data.ClientID);
-            py_data["TraderID"] = gb2312_to_utf8(rsp_data.TraderID);
+            py_data["OrderLocalID"] = gbk_to_utf8(rsp_data.OrderLocalID);
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["ParticipantID"] = gbk_to_utf8(rsp_data.ParticipantID);
+            py_data["ClientID"] = gbk_to_utf8(rsp_data.ClientID);
+            py_data["TraderID"] = gbk_to_utf8(rsp_data.TraderID);
             py_data["InstallID"] = rsp_data.InstallID;
             py_data["OrderSubmitStatus"] = rsp_data.OrderSubmitStatus;
             py_data["NotifySequence"] = rsp_data.NotifySequence;
-            py_data["TradingDay"] = gb2312_to_utf8(rsp_data.TradingDay);
+            py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
             py_data["SettlementID"] = rsp_data.SettlementID;
-            py_data["OrderSysID"] = gb2312_to_utf8(rsp_data.OrderSysID);
+            py_data["OrderSysID"] = gbk_to_utf8(rsp_data.OrderSysID);
             py_data["OrderSource"] = rsp_data.OrderSource;
             py_data["OrderStatus"] = rsp_data.OrderStatus;
             py_data["OrderType"] = rsp_data.OrderType;
             py_data["VolumeTraded"] = rsp_data.VolumeTraded;
             py_data["VolumeTotal"] = rsp_data.VolumeTotal;
-            py_data["InsertDate"] = gb2312_to_utf8(rsp_data.InsertDate);
-            py_data["InsertTime"] = gb2312_to_utf8(rsp_data.InsertTime);
-            py_data["ActiveTime"] = gb2312_to_utf8(rsp_data.ActiveTime);
-            py_data["SuspendTime"] = gb2312_to_utf8(rsp_data.SuspendTime);
-            py_data["UpdateTime"] = gb2312_to_utf8(rsp_data.UpdateTime);
-            py_data["CancelTime"] = gb2312_to_utf8(rsp_data.CancelTime);
-            py_data["ActiveTraderID"] = gb2312_to_utf8(rsp_data.ActiveTraderID);
-            py_data["ClearingPartID"] = gb2312_to_utf8(rsp_data.ClearingPartID);
+            py_data["InsertDate"] = gbk_to_utf8(rsp_data.InsertDate);
+            py_data["InsertTime"] = gbk_to_utf8(rsp_data.InsertTime);
+            py_data["ActiveTime"] = gbk_to_utf8(rsp_data.ActiveTime);
+            py_data["SuspendTime"] = gbk_to_utf8(rsp_data.SuspendTime);
+            py_data["UpdateTime"] = gbk_to_utf8(rsp_data.UpdateTime);
+            py_data["CancelTime"] = gbk_to_utf8(rsp_data.CancelTime);
+            py_data["ActiveTraderID"] = gbk_to_utf8(rsp_data.ActiveTraderID);
+            py_data["ClearingPartID"] = gbk_to_utf8(rsp_data.ClearingPartID);
             py_data["SequenceNo"] = rsp_data.SequenceNo;
             py_data["FrontID"] = rsp_data.FrontID;
             py_data["SessionID"] = rsp_data.SessionID;
-            py_data["UserProductInfo"] = gb2312_to_utf8(rsp_data.UserProductInfo);
-            py_data["StatusMsg"] = gb2312_to_utf8(rsp_data.StatusMsg);
+            py_data["UserProductInfo"] = gbk_to_utf8(rsp_data.UserProductInfo);
+            py_data["StatusMsg"] = gbk_to_utf8(rsp_data.StatusMsg);
             py_data["UserForceClose"] = rsp_data.UserForceClose;
-            py_data["ActiveUserID"] = gb2312_to_utf8(rsp_data.ActiveUserID);
+            py_data["ActiveUserID"] = gbk_to_utf8(rsp_data.ActiveUserID);
             py_data["BrokerOrderSeq"] = rsp_data.BrokerOrderSeq;
-            py_data["RelativeOrderSysID"] = gb2312_to_utf8(rsp_data.RelativeOrderSysID);
+            py_data["RelativeOrderSysID"] = gbk_to_utf8(rsp_data.RelativeOrderSysID);
             py_data["ZCETotalTradedVolume"] = rsp_data.ZCETotalTradedVolume;
             py_data["IsSwapOrder"] = rsp_data.IsSwapOrder;
-            py_data["BranchID"] = gb2312_to_utf8(rsp_data.BranchID);
-            py_data["InvestUnitID"] = gb2312_to_utf8(rsp_data.InvestUnitID);
-            py_data["AccountID"] = gb2312_to_utf8(rsp_data.AccountID);
-            py_data["CurrencyID"] = gb2312_to_utf8(rsp_data.CurrencyID);
-            py_data["MacAddress"] = gb2312_to_utf8(rsp_data.MacAddress);
-            py_data["InstrumentID"] = gb2312_to_utf8(rsp_data.InstrumentID);
-            py_data["ExchangeInstID"] = gb2312_to_utf8(rsp_data.ExchangeInstID);
-            py_data["IPAddress"] = gb2312_to_utf8(rsp_data.IPAddress);
+            py_data["BranchID"] = gbk_to_utf8(rsp_data.BranchID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
+            py_data["AccountID"] = gbk_to_utf8(rsp_data.AccountID);
+            py_data["CurrencyID"] = gbk_to_utf8(rsp_data.CurrencyID);
+            py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["ExchangeInstID"] = gbk_to_utf8(rsp_data.ExchangeInstID);
+            py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspQryOrder(py_data, py_error, request_id, is_last);
     });
@@ -557,42 +557,42 @@ void TdApi::OnRspQryTrade(CThostFtdcTradeField *data, CThostFtdcRspInfoField *er
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["InvestorID"] = gb2312_to_utf8(rsp_data.InvestorID);
-            py_data["OrderRef"] = gb2312_to_utf8(rsp_data.OrderRef);
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
-            py_data["ExchangeID"] = gb2312_to_utf8(rsp_data.ExchangeID);
-            py_data["TradeID"] = gb2312_to_utf8(rsp_data.TradeID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["OrderRef"] = gbk_to_utf8(rsp_data.OrderRef);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["TradeID"] = gbk_to_utf8(rsp_data.TradeID);
             py_data["Direction"] = rsp_data.Direction;
-            py_data["OrderSysID"] = gb2312_to_utf8(rsp_data.OrderSysID);
-            py_data["ParticipantID"] = gb2312_to_utf8(rsp_data.ParticipantID);
-            py_data["ClientID"] = gb2312_to_utf8(rsp_data.ClientID);
+            py_data["OrderSysID"] = gbk_to_utf8(rsp_data.OrderSysID);
+            py_data["ParticipantID"] = gbk_to_utf8(rsp_data.ParticipantID);
+            py_data["ClientID"] = gbk_to_utf8(rsp_data.ClientID);
             py_data["TradingRole"] = rsp_data.TradingRole;
             py_data["OffsetFlag"] = rsp_data.OffsetFlag;
             py_data["HedgeFlag"] = rsp_data.HedgeFlag;
             py_data["Price"] = rsp_data.Price;
             py_data["Volume"] = rsp_data.Volume;
-            py_data["TradeDate"] = gb2312_to_utf8(rsp_data.TradeDate);
-            py_data["TradeTime"] = gb2312_to_utf8(rsp_data.TradeTime);
+            py_data["TradeDate"] = gbk_to_utf8(rsp_data.TradeDate);
+            py_data["TradeTime"] = gbk_to_utf8(rsp_data.TradeTime);
             py_data["TradeType"] = rsp_data.TradeType;
             py_data["PriceSource"] = rsp_data.PriceSource;
-            py_data["TraderID"] = gb2312_to_utf8(rsp_data.TraderID);
-            py_data["OrderLocalID"] = gb2312_to_utf8(rsp_data.OrderLocalID);
-            py_data["ClearingPartID"] = gb2312_to_utf8(rsp_data.ClearingPartID);
-            py_data["BusinessUnit"] = gb2312_to_utf8(rsp_data.BusinessUnit);
+            py_data["TraderID"] = gbk_to_utf8(rsp_data.TraderID);
+            py_data["OrderLocalID"] = gbk_to_utf8(rsp_data.OrderLocalID);
+            py_data["ClearingPartID"] = gbk_to_utf8(rsp_data.ClearingPartID);
+            py_data["BusinessUnit"] = gbk_to_utf8(rsp_data.BusinessUnit);
             py_data["SequenceNo"] = rsp_data.SequenceNo;
-            py_data["TradingDay"] = gb2312_to_utf8(rsp_data.TradingDay);
+            py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
             py_data["SettlementID"] = rsp_data.SettlementID;
             py_data["BrokerOrderSeq"] = rsp_data.BrokerOrderSeq;
             py_data["TradeSource"] = rsp_data.TradeSource;
-            py_data["InvestUnitID"] = gb2312_to_utf8(rsp_data.InvestUnitID);
-            py_data["InstrumentID"] = gb2312_to_utf8(rsp_data.InstrumentID);
-            py_data["ExchangeInstID"] = gb2312_to_utf8(rsp_data.ExchangeInstID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["ExchangeInstID"] = gbk_to_utf8(rsp_data.ExchangeInstID);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspQryTrade(py_data, py_error, request_id, is_last);
     });
@@ -615,8 +615,8 @@ void TdApi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *data, CTho
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["InvestorID"] = gb2312_to_utf8(rsp_data.InvestorID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
             py_data["PosiDirection"] = rsp_data.PosiDirection;
             py_data["HedgeFlag"] = rsp_data.HedgeFlag;
             py_data["PositionDate"] = rsp_data.PositionDate;
@@ -642,7 +642,7 @@ void TdApi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *data, CTho
             py_data["PositionProfit"] = rsp_data.PositionProfit;
             py_data["PreSettlementPrice"] = rsp_data.PreSettlementPrice;
             py_data["SettlementPrice"] = rsp_data.SettlementPrice;
-            py_data["TradingDay"] = gb2312_to_utf8(rsp_data.TradingDay);
+            py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
             py_data["SettlementID"] = rsp_data.SettlementID;
             py_data["OpenCost"] = rsp_data.OpenCost;
             py_data["ExchangeMargin"] = rsp_data.ExchangeMargin;
@@ -657,18 +657,18 @@ void TdApi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *data, CTho
             py_data["StrikeFrozen"] = rsp_data.StrikeFrozen;
             py_data["StrikeFrozenAmount"] = rsp_data.StrikeFrozenAmount;
             py_data["AbandonFrozen"] = rsp_data.AbandonFrozen;
-            py_data["ExchangeID"] = gb2312_to_utf8(rsp_data.ExchangeID);
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
             py_data["YdStrikeFrozen"] = rsp_data.YdStrikeFrozen;
-            py_data["InvestUnitID"] = gb2312_to_utf8(rsp_data.InvestUnitID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
             py_data["PositionCostOffset"] = rsp_data.PositionCostOffset;
             py_data["TasPosition"] = rsp_data.TasPosition;
             py_data["TasPositionCost"] = rsp_data.TasPositionCost;
-            py_data["InstrumentID"] = gb2312_to_utf8(rsp_data.InstrumentID);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspQryInvestorPosition(py_data, py_error, request_id, is_last);
     });
@@ -691,8 +691,8 @@ void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *data, CThostFt
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["AccountID"] = gb2312_to_utf8(rsp_data.AccountID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["AccountID"] = gbk_to_utf8(rsp_data.AccountID);
             py_data["PreMortgage"] = rsp_data.PreMortgage;
             py_data["PreCredit"] = rsp_data.PreCredit;
             py_data["PreDeposit"] = rsp_data.PreDeposit;
@@ -714,7 +714,7 @@ void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *data, CThostFt
             py_data["Available"] = rsp_data.Available;
             py_data["WithdrawQuota"] = rsp_data.WithdrawQuota;
             py_data["Reserve"] = rsp_data.Reserve;
-            py_data["TradingDay"] = gb2312_to_utf8(rsp_data.TradingDay);
+            py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
             py_data["SettlementID"] = rsp_data.SettlementID;
             py_data["Credit"] = rsp_data.Credit;
             py_data["Mortgage"] = rsp_data.Mortgage;
@@ -722,7 +722,7 @@ void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *data, CThostFt
             py_data["DeliveryMargin"] = rsp_data.DeliveryMargin;
             py_data["ExchangeDeliveryMargin"] = rsp_data.ExchangeDeliveryMargin;
             py_data["ReserveBalance"] = rsp_data.ReserveBalance;
-            py_data["CurrencyID"] = gb2312_to_utf8(rsp_data.CurrencyID);
+            py_data["CurrencyID"] = gbk_to_utf8(rsp_data.CurrencyID);
             py_data["PreFundMortgageIn"] = rsp_data.PreFundMortgageIn;
             py_data["PreFundMortgageOut"] = rsp_data.PreFundMortgageOut;
             py_data["FundMortgageIn"] = rsp_data.FundMortgageIn;
@@ -744,7 +744,7 @@ void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *data, CThostFt
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspQryTradingAccount(py_data, py_error, request_id, is_last);
     });
@@ -767,8 +767,8 @@ void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *data, CThostFtdcRspInf
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["ExchangeID"] = gb2312_to_utf8(rsp_data.ExchangeID);
-            py_data["InstrumentName"] = gb2312_to_utf8(rsp_data.InstrumentName);
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["InstrumentName"] = gbk_to_utf8(rsp_data.InstrumentName);
             py_data["ProductClass"] = rsp_data.ProductClass;
             py_data["DeliveryYear"] = rsp_data.DeliveryYear;
             py_data["DeliveryMonth"] = rsp_data.DeliveryMonth;
@@ -778,11 +778,11 @@ void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *data, CThostFtdcRspInf
             py_data["MinLimitOrderVolume"] = rsp_data.MinLimitOrderVolume;
             py_data["VolumeMultiple"] = rsp_data.VolumeMultiple;
             py_data["PriceTick"] = rsp_data.PriceTick;
-            py_data["CreateDate"] = gb2312_to_utf8(rsp_data.CreateDate);
-            py_data["OpenDate"] = gb2312_to_utf8(rsp_data.OpenDate);
-            py_data["ExpireDate"] = gb2312_to_utf8(rsp_data.ExpireDate);
-            py_data["StartDelivDate"] = gb2312_to_utf8(rsp_data.StartDelivDate);
-            py_data["EndDelivDate"] = gb2312_to_utf8(rsp_data.EndDelivDate);
+            py_data["CreateDate"] = gbk_to_utf8(rsp_data.CreateDate);
+            py_data["OpenDate"] = gbk_to_utf8(rsp_data.OpenDate);
+            py_data["ExpireDate"] = gbk_to_utf8(rsp_data.ExpireDate);
+            py_data["StartDelivDate"] = gbk_to_utf8(rsp_data.StartDelivDate);
+            py_data["EndDelivDate"] = gbk_to_utf8(rsp_data.EndDelivDate);
             py_data["InstLifePhase"] = rsp_data.InstLifePhase;
             py_data["IsTrading"] = rsp_data.IsTrading;
             py_data["PositionType"] = rsp_data.PositionType;
@@ -794,15 +794,15 @@ void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *data, CThostFtdcRspInf
             py_data["OptionsType"] = rsp_data.OptionsType;
             py_data["UnderlyingMultiple"] = rsp_data.UnderlyingMultiple;
             py_data["CombinationType"] = rsp_data.CombinationType;
-            py_data["InstrumentID"] = gb2312_to_utf8(rsp_data.InstrumentID);
-            py_data["ExchangeInstID"] = gb2312_to_utf8(rsp_data.ExchangeInstID);
-            py_data["ProductID"] = gb2312_to_utf8(rsp_data.ProductID);
-            py_data["UnderlyingInstrID"] = gb2312_to_utf8(rsp_data.UnderlyingInstrID);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["ExchangeInstID"] = gbk_to_utf8(rsp_data.ExchangeInstID);
+            py_data["ProductID"] = gbk_to_utf8(rsp_data.ProductID);
+            py_data["UnderlyingInstrID"] = gbk_to_utf8(rsp_data.UnderlyingInstrID);
         }
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspQryInstrument(py_data, py_error, request_id, is_last);
     });
@@ -820,7 +820,7 @@ void TdApi::OnRspError(CThostFtdcRspInfoField *error, int request_id, bool is_la
         py::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
-            py_error["ErrorMsg"] = gb2312_to_utf8(rsp_error.ErrorMsg);
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspError(py_error, request_id, is_last);
     });
@@ -837,69 +837,69 @@ void TdApi::OnRtnOrder(CThostFtdcOrderField *data) {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["InvestorID"] = gb2312_to_utf8(rsp_data.InvestorID);
-            py_data["OrderRef"] = gb2312_to_utf8(rsp_data.OrderRef);
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["OrderRef"] = gbk_to_utf8(rsp_data.OrderRef);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
             py_data["OrderPriceType"] = rsp_data.OrderPriceType;
             py_data["Direction"] = rsp_data.Direction;
-            py_data["CombOffsetFlag"] = gb2312_to_utf8(rsp_data.CombOffsetFlag);
-            py_data["CombHedgeFlag"] = gb2312_to_utf8(rsp_data.CombHedgeFlag);
+            py_data["CombOffsetFlag"] = gbk_to_utf8(rsp_data.CombOffsetFlag);
+            py_data["CombHedgeFlag"] = gbk_to_utf8(rsp_data.CombHedgeFlag);
             py_data["LimitPrice"] = rsp_data.LimitPrice;
             py_data["VolumeTotalOriginal"] = rsp_data.VolumeTotalOriginal;
             py_data["TimeCondition"] = rsp_data.TimeCondition;
-            py_data["GTDDate"] = gb2312_to_utf8(rsp_data.GTDDate);
+            py_data["GTDDate"] = gbk_to_utf8(rsp_data.GTDDate);
             py_data["VolumeCondition"] = rsp_data.VolumeCondition;
             py_data["MinVolume"] = rsp_data.MinVolume;
             py_data["ContingentCondition"] = rsp_data.ContingentCondition;
             py_data["StopPrice"] = rsp_data.StopPrice;
             py_data["ForceCloseReason"] = rsp_data.ForceCloseReason;
             py_data["IsAutoSuspend"] = rsp_data.IsAutoSuspend;
-            py_data["BusinessUnit"] = gb2312_to_utf8(rsp_data.BusinessUnit);
+            py_data["BusinessUnit"] = gbk_to_utf8(rsp_data.BusinessUnit);
             py_data["RequestID"] = rsp_data.RequestID;
-            py_data["OrderLocalID"] = gb2312_to_utf8(rsp_data.OrderLocalID);
-            py_data["ExchangeID"] = gb2312_to_utf8(rsp_data.ExchangeID);
-            py_data["ParticipantID"] = gb2312_to_utf8(rsp_data.ParticipantID);
-            py_data["ClientID"] = gb2312_to_utf8(rsp_data.ClientID);
-            py_data["TraderID"] = gb2312_to_utf8(rsp_data.TraderID);
+            py_data["OrderLocalID"] = gbk_to_utf8(rsp_data.OrderLocalID);
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["ParticipantID"] = gbk_to_utf8(rsp_data.ParticipantID);
+            py_data["ClientID"] = gbk_to_utf8(rsp_data.ClientID);
+            py_data["TraderID"] = gbk_to_utf8(rsp_data.TraderID);
             py_data["InstallID"] = rsp_data.InstallID;
             py_data["OrderSubmitStatus"] = rsp_data.OrderSubmitStatus;
             py_data["NotifySequence"] = rsp_data.NotifySequence;
-            py_data["TradingDay"] = gb2312_to_utf8(rsp_data.TradingDay);
+            py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
             py_data["SettlementID"] = rsp_data.SettlementID;
-            py_data["OrderSysID"] = gb2312_to_utf8(rsp_data.OrderSysID);
+            py_data["OrderSysID"] = gbk_to_utf8(rsp_data.OrderSysID);
             py_data["OrderSource"] = rsp_data.OrderSource;
             py_data["OrderStatus"] = rsp_data.OrderStatus;
             py_data["OrderType"] = rsp_data.OrderType;
             py_data["VolumeTraded"] = rsp_data.VolumeTraded;
             py_data["VolumeTotal"] = rsp_data.VolumeTotal;
-            py_data["InsertDate"] = gb2312_to_utf8(rsp_data.InsertDate);
-            py_data["InsertTime"] = gb2312_to_utf8(rsp_data.InsertTime);
-            py_data["ActiveTime"] = gb2312_to_utf8(rsp_data.ActiveTime);
-            py_data["SuspendTime"] = gb2312_to_utf8(rsp_data.SuspendTime);
-            py_data["UpdateTime"] = gb2312_to_utf8(rsp_data.UpdateTime);
-            py_data["CancelTime"] = gb2312_to_utf8(rsp_data.CancelTime);
-            py_data["ActiveTraderID"] = gb2312_to_utf8(rsp_data.ActiveTraderID);
-            py_data["ClearingPartID"] = gb2312_to_utf8(rsp_data.ClearingPartID);
+            py_data["InsertDate"] = gbk_to_utf8(rsp_data.InsertDate);
+            py_data["InsertTime"] = gbk_to_utf8(rsp_data.InsertTime);
+            py_data["ActiveTime"] = gbk_to_utf8(rsp_data.ActiveTime);
+            py_data["SuspendTime"] = gbk_to_utf8(rsp_data.SuspendTime);
+            py_data["UpdateTime"] = gbk_to_utf8(rsp_data.UpdateTime);
+            py_data["CancelTime"] = gbk_to_utf8(rsp_data.CancelTime);
+            py_data["ActiveTraderID"] = gbk_to_utf8(rsp_data.ActiveTraderID);
+            py_data["ClearingPartID"] = gbk_to_utf8(rsp_data.ClearingPartID);
             py_data["SequenceNo"] = rsp_data.SequenceNo;
             py_data["FrontID"] = rsp_data.FrontID;
             py_data["SessionID"] = rsp_data.SessionID;
-            py_data["UserProductInfo"] = gb2312_to_utf8(rsp_data.UserProductInfo);
-            py_data["StatusMsg"] = gb2312_to_utf8(rsp_data.StatusMsg);
+            py_data["UserProductInfo"] = gbk_to_utf8(rsp_data.UserProductInfo);
+            py_data["StatusMsg"] = gbk_to_utf8(rsp_data.StatusMsg);
             py_data["UserForceClose"] = rsp_data.UserForceClose;
-            py_data["ActiveUserID"] = gb2312_to_utf8(rsp_data.ActiveUserID);
+            py_data["ActiveUserID"] = gbk_to_utf8(rsp_data.ActiveUserID);
             py_data["BrokerOrderSeq"] = rsp_data.BrokerOrderSeq;
-            py_data["RelativeOrderSysID"] = gb2312_to_utf8(rsp_data.RelativeOrderSysID);
+            py_data["RelativeOrderSysID"] = gbk_to_utf8(rsp_data.RelativeOrderSysID);
             py_data["ZCETotalTradedVolume"] = rsp_data.ZCETotalTradedVolume;
             py_data["IsSwapOrder"] = rsp_data.IsSwapOrder;
-            py_data["BranchID"] = gb2312_to_utf8(rsp_data.BranchID);
-            py_data["InvestUnitID"] = gb2312_to_utf8(rsp_data.InvestUnitID);
-            py_data["AccountID"] = gb2312_to_utf8(rsp_data.AccountID);
-            py_data["CurrencyID"] = gb2312_to_utf8(rsp_data.CurrencyID);
-            py_data["MacAddress"] = gb2312_to_utf8(rsp_data.MacAddress);
-            py_data["InstrumentID"] = gb2312_to_utf8(rsp_data.InstrumentID);
-            py_data["ExchangeInstID"] = gb2312_to_utf8(rsp_data.ExchangeInstID);
-            py_data["IPAddress"] = gb2312_to_utf8(rsp_data.IPAddress);
+            py_data["BranchID"] = gbk_to_utf8(rsp_data.BranchID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
+            py_data["AccountID"] = gbk_to_utf8(rsp_data.AccountID);
+            py_data["CurrencyID"] = gbk_to_utf8(rsp_data.CurrencyID);
+            py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["ExchangeInstID"] = gbk_to_utf8(rsp_data.ExchangeInstID);
+            py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
         }
         PyOnRtnOrder(py_data);
     });
@@ -916,38 +916,151 @@ void TdApi::OnRtnTrade(CThostFtdcTradeField *data) {
         py::gil_scoped_acquire acquire;
         py::dict py_data;
         if (has_data) {
-            py_data["BrokerID"] = gb2312_to_utf8(rsp_data.BrokerID);
-            py_data["InvestorID"] = gb2312_to_utf8(rsp_data.InvestorID);
-            py_data["OrderRef"] = gb2312_to_utf8(rsp_data.OrderRef);
-            py_data["UserID"] = gb2312_to_utf8(rsp_data.UserID);
-            py_data["ExchangeID"] = gb2312_to_utf8(rsp_data.ExchangeID);
-            py_data["TradeID"] = gb2312_to_utf8(rsp_data.TradeID);
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["OrderRef"] = gbk_to_utf8(rsp_data.OrderRef);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["TradeID"] = gbk_to_utf8(rsp_data.TradeID);
             py_data["Direction"] = rsp_data.Direction;
-            py_data["OrderSysID"] = gb2312_to_utf8(rsp_data.OrderSysID);
-            py_data["ParticipantID"] = gb2312_to_utf8(rsp_data.ParticipantID);
-            py_data["ClientID"] = gb2312_to_utf8(rsp_data.ClientID);
+            py_data["OrderSysID"] = gbk_to_utf8(rsp_data.OrderSysID);
+            py_data["ParticipantID"] = gbk_to_utf8(rsp_data.ParticipantID);
+            py_data["ClientID"] = gbk_to_utf8(rsp_data.ClientID);
             py_data["TradingRole"] = rsp_data.TradingRole;
             py_data["OffsetFlag"] = rsp_data.OffsetFlag;
             py_data["HedgeFlag"] = rsp_data.HedgeFlag;
             py_data["Price"] = rsp_data.Price;
             py_data["Volume"] = rsp_data.Volume;
-            py_data["TradeDate"] = gb2312_to_utf8(rsp_data.TradeDate);
-            py_data["TradeTime"] = gb2312_to_utf8(rsp_data.TradeTime);
+            py_data["TradeDate"] = gbk_to_utf8(rsp_data.TradeDate);
+            py_data["TradeTime"] = gbk_to_utf8(rsp_data.TradeTime);
             py_data["TradeType"] = rsp_data.TradeType;
             py_data["PriceSource"] = rsp_data.PriceSource;
-            py_data["TraderID"] = gb2312_to_utf8(rsp_data.TraderID);
-            py_data["OrderLocalID"] = gb2312_to_utf8(rsp_data.OrderLocalID);
-            py_data["ClearingPartID"] = gb2312_to_utf8(rsp_data.ClearingPartID);
-            py_data["BusinessUnit"] = gb2312_to_utf8(rsp_data.BusinessUnit);
+            py_data["TraderID"] = gbk_to_utf8(rsp_data.TraderID);
+            py_data["OrderLocalID"] = gbk_to_utf8(rsp_data.OrderLocalID);
+            py_data["ClearingPartID"] = gbk_to_utf8(rsp_data.ClearingPartID);
+            py_data["BusinessUnit"] = gbk_to_utf8(rsp_data.BusinessUnit);
             py_data["SequenceNo"] = rsp_data.SequenceNo;
-            py_data["TradingDay"] = gb2312_to_utf8(rsp_data.TradingDay);
+            py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
             py_data["SettlementID"] = rsp_data.SettlementID;
             py_data["BrokerOrderSeq"] = rsp_data.BrokerOrderSeq;
             py_data["TradeSource"] = rsp_data.TradeSource;
-            py_data["InvestUnitID"] = gb2312_to_utf8(rsp_data.InvestUnitID);
-            py_data["InstrumentID"] = gb2312_to_utf8(rsp_data.InstrumentID);
-            py_data["ExchangeInstID"] = gb2312_to_utf8(rsp_data.ExchangeInstID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["ExchangeInstID"] = gbk_to_utf8(rsp_data.ExchangeInstID);
         }
         PyOnRtnTrade(py_data);
+    });
+}
+
+void TdApi::OnErrRtnOrderInsert(CThostFtdcInputOrderField *data, CThostFtdcRspInfoField *error) {
+    CThostFtdcInputOrderField rsp_data{};
+    bool has_data = false;
+    if (data) {
+        rsp_data = *data;
+        has_data = true;
+    }
+    CThostFtdcRspInfoField rsp_error{};
+    bool has_error = false;
+    if (error) {
+        rsp_error = *error;
+        has_error = true;
+    }
+    queue_->dispatch([=]() {
+        py::gil_scoped_acquire acquire;
+        py::dict py_data;
+        if (has_data) {
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["OrderRef"] = gbk_to_utf8(rsp_data.OrderRef);
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
+            py_data["OrderPriceType"] = rsp_data.OrderPriceType;
+            py_data["Direction"] = rsp_data.Direction;
+            py_data["CombOffsetFlag"] = gbk_to_utf8(rsp_data.CombOffsetFlag);
+            py_data["CombHedgeFlag"] = gbk_to_utf8(rsp_data.CombHedgeFlag);
+            py_data["LimitPrice"] = rsp_data.LimitPrice;
+            py_data["VolumeTotalOriginal"] = rsp_data.VolumeTotalOriginal;
+            py_data["TimeCondition"] = rsp_data.TimeCondition;
+            py_data["GTDDate"] = gbk_to_utf8(rsp_data.GTDDate);
+            py_data["VolumeCondition"] = rsp_data.VolumeCondition;
+            py_data["MinVolume"] = rsp_data.MinVolume;
+            py_data["ContingentCondition"] = rsp_data.ContingentCondition;
+            py_data["StopPrice"] = rsp_data.StopPrice;
+            py_data["ForceCloseReason"] = rsp_data.ForceCloseReason;
+            py_data["IsAutoSuspend"] = rsp_data.IsAutoSuspend;
+            py_data["BusinessUnit"] = gbk_to_utf8(rsp_data.BusinessUnit);
+            py_data["RequestID"] = rsp_data.RequestID;
+            py_data["UserForceClose"] = rsp_data.UserForceClose;
+            py_data["IsSwapOrder"] = rsp_data.IsSwapOrder;
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
+            py_data["AccountID"] = gbk_to_utf8(rsp_data.AccountID);
+            py_data["CurrencyID"] = gbk_to_utf8(rsp_data.CurrencyID);
+            py_data["ClientID"] = gbk_to_utf8(rsp_data.ClientID);
+            py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
+        }
+        py::dict py_error;
+        if (has_error) {
+            py_error["ErrorID"] = rsp_error.ErrorID;
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
+        }
+        PyOnErrRtnOrderInsert(py_data, py_error);
+    });
+}
+
+void TdApi::OnErrRtnOrderAction(CThostFtdcOrderActionField *data, CThostFtdcRspInfoField *error) {
+    CThostFtdcOrderActionField rsp_data{};
+    bool has_data = false;
+    if (data) {
+        rsp_data = *data;
+        has_data = true;
+    }
+    CThostFtdcRspInfoField rsp_error{};
+    bool has_error = false;
+    if (error) {
+        rsp_error = *error;
+        has_error = true;
+    }
+    queue_->dispatch([=]() {
+        py::gil_scoped_acquire acquire;
+        py::dict py_data;
+        if (has_data) {
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["OrderActionRef"] = rsp_data.OrderActionRef;
+            py_data["OrderRef"] = gbk_to_utf8(rsp_data.OrderRef);
+            py_data["RequestID"] = rsp_data.RequestID;
+            py_data["FrontID"] = rsp_data.FrontID;
+            py_data["SessionID"] = rsp_data.SessionID;
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["OrderSysID"] = gbk_to_utf8(rsp_data.OrderSysID);
+            py_data["ActionFlag"] = rsp_data.ActionFlag;
+            py_data["LimitPrice"] = rsp_data.LimitPrice;
+            py_data["VolumeChange"] = rsp_data.VolumeChange;
+            py_data["ActionDate"] = gbk_to_utf8(rsp_data.ActionDate);
+            py_data["ActionTime"] = gbk_to_utf8(rsp_data.ActionTime);
+            py_data["TraderID"] = gbk_to_utf8(rsp_data.TraderID);
+            py_data["InstallID"] = rsp_data.InstallID;
+            py_data["OrderLocalID"] = gbk_to_utf8(rsp_data.OrderLocalID);
+            py_data["ActionLocalID"] = gbk_to_utf8(rsp_data.ActionLocalID);
+            py_data["ParticipantID"] = gbk_to_utf8(rsp_data.ParticipantID);
+            py_data["ClientID"] = gbk_to_utf8(rsp_data.ClientID);
+            py_data["BusinessUnit"] = gbk_to_utf8(rsp_data.BusinessUnit);
+            py_data["OrderActionStatus"] = rsp_data.OrderActionStatus;
+            py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
+            py_data["StatusMsg"] = gbk_to_utf8(rsp_data.StatusMsg);
+            py_data["BranchID"] = gbk_to_utf8(rsp_data.BranchID);
+            py_data["InvestUnitID"] = gbk_to_utf8(rsp_data.InvestUnitID);
+            py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+            py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
+        }
+        py::dict py_error;
+        if (has_error) {
+            py_error["ErrorID"] = rsp_error.ErrorID;
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
+        }
+        PyOnErrRtnOrderAction(py_data, py_error);
     });
 }

@@ -42,5 +42,7 @@ void bind_td_api(py::module &m) {
             .def("OnRspError", &TdApi::PyOnRspError)
             .def("OnRtnOrder", &TdApi::PyOnRtnOrder)
             .def("OnRtnTrade", &TdApi::PyOnRtnTrade)
+            .def("OnErrRtnOrderInsert", &TdApi::PyOnErrRtnOrderInsert)
+            .def("OnErrRtnOrderAction", &TdApi::PyOnErrRtnOrderAction)
             ;
 }

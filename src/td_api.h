@@ -57,6 +57,8 @@ public:
     void OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) override;
     void OnRtnOrder(CThostFtdcOrderField *pOrder) override;
     void OnRtnTrade(CThostFtdcTradeField *pTrade) override;
+    void OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo) override;
+    void OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThostFtdcRspInfoField *pRspInfo) override;
 
     virtual void PyOnFrontConnected() = 0;
     virtual void PyOnFrontDisconnected(int reason) = 0;
@@ -75,6 +77,8 @@ public:
     virtual void PyOnRspError(const py::dict &error, int request_id, bool is_last) = 0;
     virtual void PyOnRtnOrder(const py::dict &data) = 0;
     virtual void PyOnRtnTrade(const py::dict &data) = 0;
+    virtual void PyOnErrRtnOrderInsert(const py::dict &data, const py::dict &error) = 0;
+    virtual void PyOnErrRtnOrderAction(const py::dict &data, const py::dict &error) = 0;
 };
 
 
@@ -283,6 +287,28 @@ public:
             "OnRtnTrade",
             PyOnRtnTrade,
             data
+        )
+    }
+
+    void PyOnErrRtnOrderInsert(const py::dict &data, const py::dict &error) override {
+        PYBIND11_OVERLOAD_PURE_NAME(
+            void,
+            TdApi,
+            "OnErrRtnOrderInsert",
+            PyOnErrRtnOrderInsert,
+            data,
+            error
+        )
+    }
+
+    void PyOnErrRtnOrderAction(const py::dict &data, const py::dict &error) override {
+        PYBIND11_OVERLOAD_PURE_NAME(
+            void,
+            TdApi,
+            "OnErrRtnOrderAction",
+            PyOnErrRtnOrderAction,
+            data,
+            error
         )
     }
 

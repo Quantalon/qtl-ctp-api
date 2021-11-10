@@ -23,15 +23,15 @@ struct CtpApiDeleter {
 template <class T>
 using CtpUniquePtr = std::unique_ptr<T, CtpApiDeleter>;
 
-inline std::string gb2312_to_utf8(const std::string& gb2312) {
+inline std::string gbk_to_utf8(const std::string& gbk) {
     static const std::locale loc("zh_CN.GBK");
 
-    std::vector<wchar_t> wstr(gb2312.size());
+    std::vector<wchar_t> wstr(gbk.size());
     wchar_t* wstr_end = nullptr;
     const char* gb_end = nullptr;
     mbstate_t state{};
     int res = std::use_facet<std::codecvt<wchar_t, char, mbstate_t>>(loc).in(
-            state, gb2312.data(), gb2312.data() + gb2312.size(), gb_end, wstr.data(),
+            state, gbk.data(), gbk.data() + gbk.size(), gb_end, wstr.data(),
             wstr.data() + wstr.size(), wstr_end);
 
     if (res == std::codecvt_base::ok) {

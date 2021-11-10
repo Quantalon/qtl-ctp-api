@@ -60,6 +60,8 @@ class Generator:
             'OnRspError',
             'OnRtnOrder',
             'OnRtnTrade',
+            'OnErrRtnOrderInsert',
+            'OnErrRtnOrderAction',
         ]
         self.exported_td_req_methods = [
             'ReqAuthenticate',
