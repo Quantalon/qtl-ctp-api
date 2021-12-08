@@ -787,8 +787,8 @@ void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *data, CThostFtdcRspInf
             py_data["IsTrading"] = rsp_data.IsTrading;
             py_data["PositionType"] = rsp_data.PositionType;
             py_data["PositionDateType"] = rsp_data.PositionDateType;
-            py_data["LongMarginRatio"] = rsp_data.LongMarginRatio;
-            py_data["ShortMarginRatio"] = rsp_data.ShortMarginRatio;
+            py_data["LongMarginRatio"] = adjust_number(rsp_data.LongMarginRatio);
+            py_data["ShortMarginRatio"] = adjust_number(rsp_data.ShortMarginRatio);
             py_data["MaxMarginSideAlgorithm"] = rsp_data.MaxMarginSideAlgorithm;
             py_data["StrikePrice"] = rsp_data.StrikePrice;
             py_data["OptionsType"] = rsp_data.OptionsType;

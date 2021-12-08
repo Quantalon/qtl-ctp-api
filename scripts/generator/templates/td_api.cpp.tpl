@@ -74,7 +74,7 @@ void TdApi::{{ on_method['name'] }}(
         py::dict py_data;
         if (has_data) {
             {%- for sp in structs[p['type'].strip(' *')] %}
-            py_data["{{ sp['name'] }}"] = {% if sp['type']=='str' %}gbk_to_utf8({% endif %}rsp_data.{{ sp['name'] }}{% if sp['type']=='str' %}){% endif %};
+            py_data["{{ sp['name'] }}"] = {% if sp['type']=='str' %}gbk_to_utf8({% elif sp['type']=='double' and ('MarginRatio' in sp['name']) %}adjust_number({% endif %}rsp_data.{{ sp['name'] }}{% if sp['type']=='str' or (sp['type']=='double' and ('MarginRatio' in sp['name'])) %}){% endif %};
             {%- endfor %}
         }
         {%- elif p['type'].endswith('*') and p['py_name'] == 'error' %}

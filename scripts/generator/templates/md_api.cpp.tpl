@@ -78,7 +78,7 @@ void MdApi::{{ on_method['name'] }}(
         py::dict py_data;
         if (has_data) {
             {%- for sp in structs[p['type'].strip(' *')] %}
-            py_data["{{ sp['name'] }}"] = {% if sp['type']=='str' %}gbk_to_utf8({% elif sp['type']=='double' and 'Price' in sp['name'] %}adjust_price({% endif %}rsp_data.{{ sp['name'] }}{% if sp['type']=='str' or (sp['type']=='double' and 'Price' in sp['name']) %}){% endif %};
+            py_data["{{ sp['name'] }}"] = {% if sp['type']=='str' %}gbk_to_utf8({% elif sp['type']=='double' and ('Price' in sp['name'] or 'Delta' in sp['name']) %}adjust_number({% endif %}rsp_data.{{ sp['name'] }}{% if sp['type']=='str' or (sp['type']=='double' and ('Price' in sp['name'] or 'Delta' in sp['name'])) %}){% endif %};
             {%- endfor %}
         }
         {%- elif p['type'].endswith('*') and p['py_name'] == 'error' %}

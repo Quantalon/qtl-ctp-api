@@ -42,10 +42,10 @@ inline std::string gbk_to_utf8(const std::string& gbk) {
     return "";
 }
 
-template <class PriceType>
-inline PriceType adjust_price(PriceType price) {
-    PriceType ret = price;
-    if (price >= std::numeric_limits<PriceType>::max() - PriceType(1e-6)) ret = PriceType(0);
+template <class NumberType>
+inline NumberType adjust_number(NumberType number) {
+    NumberType ret = number;
+    if (number >= std::numeric_limits<NumberType>::max() - NumberType(1e-6)) ret = NumberType(0);
     return ret;
 }
 
