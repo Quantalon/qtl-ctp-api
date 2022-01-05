@@ -62,6 +62,7 @@ class Generator:
             'OnRtnTrade',
             'OnErrRtnOrderInsert',
             'OnErrRtnOrderAction',
+            'OnRtnInstrumentStatus',
         ]
         self.exported_td_req_methods = [
             'ReqAuthenticate',
