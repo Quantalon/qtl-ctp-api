@@ -59,7 +59,6 @@ public:
     void OnRtnTrade(CThostFtdcTradeField *pTrade) override;
     void OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo) override;
     void OnErrRtnOrderAction(CThostFtdcOrderActionField *pOrderAction, CThostFtdcRspInfoField *pRspInfo) override;
-    void OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField *pInstrumentStatus) override;
 
     virtual void PyOnFrontConnected() = 0;
     virtual void PyOnFrontDisconnected(int reason) = 0;
@@ -80,7 +79,6 @@ public:
     virtual void PyOnRtnTrade(const py::dict &data) = 0;
     virtual void PyOnErrRtnOrderInsert(const py::dict &data, const py::dict &error) = 0;
     virtual void PyOnErrRtnOrderAction(const py::dict &data, const py::dict &error) = 0;
-    virtual void PyOnRtnInstrumentStatus(const py::dict &data) = 0;
 };
 
 
@@ -311,16 +309,6 @@ public:
             PyOnErrRtnOrderAction,
             data,
             error
-        )
-    }
-
-    void PyOnRtnInstrumentStatus(const py::dict &data) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
-            "OnRtnInstrumentStatus",
-            PyOnRtnInstrumentStatus,
-            data
         )
     }
 
