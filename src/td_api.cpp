@@ -1064,3 +1064,27 @@ void TdApi::OnErrRtnOrderAction(CThostFtdcOrderActionField *data, CThostFtdcRspI
         PyOnErrRtnOrderAction(py_data, py_error);
     });
 }
+
+void TdApi::OnRtnInstrumentStatus(CThostFtdcInstrumentStatusField *data) {
+    CThostFtdcInstrumentStatusField rsp_data{};
+    bool has_data = false;
+    if (data) {
+        rsp_data = *data;
+        has_data = true;
+    }
+    queue_->dispatch([=]() {
+        py::gil_scoped_acquire acquire;
+        py::dict py_data;
+        if (has_data) {
+            py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);
+            py_data["SettlementGroupID"] = gbk_to_utf8(rsp_data.SettlementGroupID);
+            py_data["InstrumentStatus"] = rsp_data.InstrumentStatus;
+            py_data["TradingSegmentSN"] = rsp_data.TradingSegmentSN;
+            py_data["EnterTime"] = gbk_to_utf8(rsp_data.EnterTime);
+            py_data["EnterReason"] = rsp_data.EnterReason;
+            py_data["ExchangeInstID"] = gbk_to_utf8(rsp_data.ExchangeInstID);
+            py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
+        }
+        PyOnRtnInstrumentStatus(py_data);
+    });
+}
