@@ -15,7 +15,7 @@ from setuptools import find_packages
 
 setup(
     name="qtl-ctp-api",
-    version="0.1.1",
+    version="0.1.2",
     packages=find_packages(where='src'),
     package_dir={"": "src"},
     cmake_install_dir="src/qtl_ctp_api",
