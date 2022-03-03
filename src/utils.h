@@ -4,6 +4,7 @@
 #include <string>
 #include <codecvt>
 #include <locale>
+#include <limits>
 #include <pybind11/pybind11.h>
 
 
