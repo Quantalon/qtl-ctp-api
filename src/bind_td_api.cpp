@@ -16,6 +16,7 @@ void bind_td_api(py::module &m) {
             .def("ReqAuthenticate", &TdApi::ReqAuthenticate)
             .def("ReqUserLogin", &TdApi::ReqUserLogin)
             .def("ReqUserLogout", &TdApi::ReqUserLogout)
+            .def("ReqUserPasswordUpdate", &TdApi::ReqUserPasswordUpdate)
             .def("ReqOrderInsert", &TdApi::ReqOrderInsert)
             .def("ReqOrderAction", &TdApi::ReqOrderAction)
             .def("ReqSettlementInfoConfirm", &TdApi::ReqSettlementInfoConfirm)
@@ -24,6 +25,7 @@ void bind_td_api(py::module &m) {
             .def("ReqQryInvestorPosition", &TdApi::ReqQryInvestorPosition)
             .def("ReqQryTradingAccount", &TdApi::ReqQryTradingAccount)
             .def("ReqQryInstrument", &TdApi::ReqQryInstrument)
+            .def("ReqQrySettlementInfo", &TdApi::ReqQrySettlementInfo)
             // On Methods
             .def("OnFrontConnected", &TdApi::PyOnFrontConnected)
             .def("OnFrontDisconnected", &TdApi::PyOnFrontDisconnected)
@@ -39,6 +41,7 @@ void bind_td_api(py::module &m) {
             .def("OnRspQryInvestorPosition", &TdApi::PyOnRspQryInvestorPosition)
             .def("OnRspQryTradingAccount", &TdApi::PyOnRspQryTradingAccount)
             .def("OnRspQryInstrument", &TdApi::PyOnRspQryInstrument)
+            .def("OnRspQrySettlementInfo", &TdApi::PyOnRspQrySettlementInfo)
             .def("OnRspError", &TdApi::PyOnRspError)
             .def("OnRtnOrder", &TdApi::PyOnRtnOrder)
             .def("OnRtnTrade", &TdApi::PyOnRtnTrade)

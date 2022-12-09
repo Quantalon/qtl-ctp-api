@@ -114,6 +114,8 @@ void MdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
             py_data["CZCETime"] = gbk_to_utf8(rsp_data.CZCETime);
             py_data["FFEXTime"] = gbk_to_utf8(rsp_data.FFEXTime);
             py_data["INETime"] = gbk_to_utf8(rsp_data.INETime);
+            py_data["SysVersion"] = gbk_to_utf8(rsp_data.SysVersion);
+            py_data["GFEXTime"] = gbk_to_utf8(rsp_data.GFEXTime);
         }
         py::dict py_error;
         if (has_error) {

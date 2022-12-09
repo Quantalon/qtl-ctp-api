@@ -31,6 +31,7 @@ public:
     int ReqAuthenticate(const py::dict &data, int request_id);
     int ReqUserLogin(const py::dict &data, int request_id);
     int ReqUserLogout(const py::dict &data, int request_id);
+    int ReqUserPasswordUpdate(const py::dict &data, int request_id);
     int ReqOrderInsert(const py::dict &data, int request_id);
     int ReqOrderAction(const py::dict &data, int request_id);
     int ReqSettlementInfoConfirm(const py::dict &data, int request_id);
@@ -39,6 +40,7 @@ public:
     int ReqQryInvestorPosition(const py::dict &data, int request_id);
     int ReqQryTradingAccount(const py::dict &data, int request_id);
     int ReqQryInstrument(const py::dict &data, int request_id);
+    int ReqQrySettlementInfo(const py::dict &data, int request_id);
 
     void OnFrontConnected() override;
     void OnFrontDisconnected(int nReason) override;
@@ -54,6 +56,7 @@ public:
     void OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *pInvestorPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) override;
     void OnRspQryTradingAccount(CThostFtdcTradingAccountField *pTradingAccount, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) override;
     void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) override;
+    void OnRspQrySettlementInfo(CThostFtdcSettlementInfoField *pSettlementInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) override;
     void OnRspError(CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) override;
     void OnRtnOrder(CThostFtdcOrderField *pOrder) override;
     void OnRtnTrade(CThostFtdcTradeField *pTrade) override;
@@ -75,6 +78,7 @@ public:
     virtual void PyOnRspQryInvestorPosition(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
     virtual void PyOnRspQryTradingAccount(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
     virtual void PyOnRspQryInstrument(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspQrySettlementInfo(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
     virtual void PyOnRspError(const py::dict &error, int request_id, bool is_last) = 0;
     virtual void PyOnRtnOrder(const py::dict &data) = 0;
     virtual void PyOnRtnTrade(const py::dict &data) = 0;
@@ -253,6 +257,19 @@ public:
             TdApi,
             "OnRspQryInstrument",
             PyOnRspQryInstrument,
+            data,
+            error,
+            request_id,
+            is_last
+        )
+    }
+
+    void PyOnRspQrySettlementInfo(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
+        PYBIND11_OVERLOAD_PURE_NAME(
+            void,
+            TdApi,
+            "OnRspQrySettlementInfo",
+            PyOnRspQrySettlementInfo,
             data,
             error,
             request_id,

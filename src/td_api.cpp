@@ -69,6 +69,15 @@ int TdApi::ReqUserLogout(const py::dict &data, int request_id) {
     return api_->ReqUserLogout(&request, request_id);
 }
 
+int TdApi::ReqUserPasswordUpdate(const py::dict &data, int request_id) {
+    CThostFtdcUserPasswordUpdateField request{};
+    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_str_field(request.OldPassword, data, "OldPassword", sizeof(request.OldPassword));
+    set_str_field(request.NewPassword, data, "NewPassword", sizeof(request.NewPassword));
+    return api_->ReqUserPasswordUpdate(&request, request_id);
+}
+
 int TdApi::ReqOrderInsert(const py::dict &data, int request_id) {
     CThostFtdcInputOrderField request{};
     set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
@@ -193,6 +202,16 @@ int TdApi::ReqQryInstrument(const py::dict &data, int request_id) {
     return api_->ReqQryInstrument(&request, request_id);
 }
 
+int TdApi::ReqQrySettlementInfo(const py::dict &data, int request_id) {
+    CThostFtdcQrySettlementInfoField request{};
+    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_str_field(request.TradingDay, data, "TradingDay", sizeof(request.TradingDay));
+    set_str_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
+    set_str_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
+    return api_->ReqQrySettlementInfo(&request, request_id);
+}
+
 void TdApi::OnFrontConnected() {
     queue_->dispatch([=]() {
         py::gil_scoped_acquire acquire;
@@ -276,6 +295,8 @@ void TdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
             py_data["CZCETime"] = gbk_to_utf8(rsp_data.CZCETime);
             py_data["FFEXTime"] = gbk_to_utf8(rsp_data.FFEXTime);
             py_data["INETime"] = gbk_to_utf8(rsp_data.INETime);
+            py_data["SysVersion"] = gbk_to_utf8(rsp_data.SysVersion);
+            py_data["GFEXTime"] = gbk_to_utf8(rsp_data.GFEXTime);
         }
         py::dict py_error;
         if (has_error) {
@@ -805,6 +826,41 @@ void TdApi::OnRspQryInstrument(CThostFtdcInstrumentField *data, CThostFtdcRspInf
             py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
         }
         PyOnRspQryInstrument(py_data, py_error, request_id, is_last);
+    });
+}
+
+void TdApi::OnRspQrySettlementInfo(CThostFtdcSettlementInfoField *data, CThostFtdcRspInfoField *error, int request_id, bool is_last) {
+    CThostFtdcSettlementInfoField rsp_data{};
+    bool has_data = false;
+    if (data) {
+        rsp_data = *data;
+        has_data = true;
+    }
+    CThostFtdcRspInfoField rsp_error{};
+    bool has_error = false;
+    if (error) {
+        rsp_error = *error;
+        has_error = true;
+    }
+    queue_->dispatch([=]() {
+        py::gil_scoped_acquire acquire;
+        py::dict py_data;
+        if (has_data) {
+            py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
+            py_data["SettlementID"] = rsp_data.SettlementID;
+            py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
+            py_data["InvestorID"] = gbk_to_utf8(rsp_data.InvestorID);
+            py_data["SequenceNo"] = rsp_data.SequenceNo;
+            py_data["Content"] = py::bytes(rsp_data.Content);
+            py_data["AccountID"] = gbk_to_utf8(rsp_data.AccountID);
+            py_data["CurrencyID"] = gbk_to_utf8(rsp_data.CurrencyID);
+        }
+        py::dict py_error;
+        if (has_error) {
+            py_error["ErrorID"] = rsp_error.ErrorID;
+            py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
+        }
+        PyOnRspQrySettlementInfo(py_data, py_error, request_id, is_last);
     });
 }
 

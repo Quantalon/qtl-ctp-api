@@ -32,6 +32,7 @@ void bind_consts(py::module &m) {
     consts.attr("THOST_FTDC_ICT_AccountsPermits") = "J";
     consts.attr("THOST_FTDC_ICT_FrgPrmtRdCard") = "K";
     consts.attr("THOST_FTDC_ICT_CptMngPrdLetter") = "L";
+    consts.attr("THOST_FTDC_ICT_HKMCTwResidencePermit") = "M";
     consts.attr("THOST_FTDC_ICT_UniformSocialCreditCode") = "N";
     consts.attr("THOST_FTDC_ICT_CorporationCertNo") = "O";
     consts.attr("THOST_FTDC_ICT_OtherCard") = "x";
@@ -227,6 +228,7 @@ void bind_consts(py::module &m) {
     consts.attr("THOST_FTDC_FCC_Violation") = "5";
     consts.attr("THOST_FTDC_FCC_Other") = "6";
     consts.attr("THOST_FTDC_FCC_PersonDeliv") = "7";
+    consts.attr("THOST_FTDC_FCC_Notverifycapital") = "8";
     consts.attr("THOST_FTDC_ORDT_Normal") = "0";
     consts.attr("THOST_FTDC_ORDT_DeriveFromQuote") = "1";
     consts.attr("THOST_FTDC_ORDT_DeriveFromCombination") = "2";
@@ -1271,5 +1273,21 @@ void bind_consts(py::module &m) {
     consts.attr("THOST_FTDC_ACD_Add") = "1";
     consts.attr("THOST_FTDC_ACD_Del") = "2";
     consts.attr("THOST_FTDC_ACD_Upd") = "3";
+    consts.attr("THOST_FTDC_OAC_Balance") = "1";
+    consts.attr("THOST_FTDC_OAC_OrigFirst") = "2";
+    consts.attr("THOST_FTDC_PLCL_None") = "0";
+    consts.attr("THOST_FTDC_PLCL_Product") = "1";
+    consts.attr("THOST_FTDC_PLCL_Inst") = "2";
+    consts.attr("THOST_FTDC_OFCL_None") = "0";
+    consts.attr("THOST_FTDC_OFCL_Product") = "1";
+    consts.attr("THOST_FTDC_OFCL_Inst") = "2";
+    consts.attr("THOST_FTDC_EBL_False") = "0";
+    consts.attr("THOST_FTDC_EBL_True") = "1";
+    consts.attr("THOST_FTDC_ETR_USUAL") = "1";
+    consts.attr("THOST_FTDC_ETR_FNSP") = "2";
+    consts.attr("THOST_FTDC_ETR_BNSP") = "3";
+    consts.attr("THOST_FTDC_ETR_SPOT") = "4";
+    consts.attr("THOST_FTDC_EPF_None") = "0";
+    consts.attr("THOST_FTDC_EPF_SPBM") = "1";
     
 }

@@ -63,11 +63,13 @@ class Generator:
             'OnErrRtnOrderInsert',
             'OnErrRtnOrderAction',
             'OnRtnInstrumentStatus',
+            'OnRspQrySettlementInfo',
         ]
         self.exported_td_req_methods = [
             'ReqAuthenticate',
             'ReqUserLogin',
             'ReqUserLogout',
+            'ReqUserPasswordUpdate',
             'ReqOrderInsert',
             'ReqOrderAction',
             'ReqSettlementInfoConfirm',
@@ -76,6 +78,7 @@ class Generator:
             'ReqQryInvestorPosition',
             'ReqQryTradingAccount',
             'ReqQryInstrument',
+            'ReqQrySettlementInfo',
         ]
 
         self.data_consts = []
@@ -106,7 +109,10 @@ class Generator:
                     tokens = line.split()
                     t1 = tokens[1]
                     t2 = tokens[2].rstrip(';')
-                    if '[' in t2:
+                    if 'TThostFtdcContentType' in t2:
+                        value = 'bytes'
+                        name = t2[:t2.index('[')]
+                    elif '[' in t2:
                         value = 'str'
                         name = t2[:t2.index('[')]
                     else:
