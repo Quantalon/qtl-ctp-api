@@ -17,6 +17,7 @@ setup(
     name="qtl-ctp-api",
     version="6.6.9",
     long_description="QTL CTP Api",
+    long_description_content_type='text/markdown',
     packages=find_packages(where='src'),
     package_dir={"": "src"},
     cmake_install_dir="src/qtl_ctp_api",
