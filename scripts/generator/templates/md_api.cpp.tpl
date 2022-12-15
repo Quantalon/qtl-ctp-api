@@ -10,6 +10,7 @@ void MdApi::CreateApi(const std::string &flow_path) {
 void MdApi::Release() {
     api_->RegisterSpi(nullptr);
     api_->Release();
+    api_ = nullptr;
     queue_ = nullptr;
 }
 

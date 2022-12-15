@@ -10,6 +10,7 @@ void TdApi::CreateApi(const std::string &flow_path) {
 void TdApi::Release() {
     api_->RegisterSpi(nullptr);
     api_->Release();
+    api_ = nullptr;
     queue_ = nullptr;
 }
 
