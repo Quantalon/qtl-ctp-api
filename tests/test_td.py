@@ -1,6 +1,6 @@
 from time import sleep
 
-from qtl_ctp_api import TdApi
+from qtl_ctp_api import TdApi, consts
 
 
 class PyTdApi(TdApi):
@@ -18,6 +18,8 @@ class PyTdApi(TdApi):
     def connect(self):
         print('PyTdApi.connect')
         self.RegisterFront(self.settings['address'])
+        self.SubscribePrivateTopic(consts.THOST_TERT_QUICK)
+        self.SubscribePublicTopic(consts.THOST_TERT_RESTART)
         self.Init()
 
     def auth(self):
