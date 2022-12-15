@@ -64,7 +64,6 @@ class PyMdApi(MdApi):
         print(f'tick:\n{data}')
 
 
-
 def test():
     print(f'version: {MdApi.GetApiVersion()}')
 

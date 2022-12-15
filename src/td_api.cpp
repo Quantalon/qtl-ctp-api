@@ -3,12 +3,14 @@
 
 void TdApi::CreateApi(const std::string &flow_path) {
     queue_ = std::make_unique<DispatchQueue>();
-    api_.reset(CThostFtdcTraderApi::CreateFtdcTraderApi(flow_path.c_str()));
+    api_ = CThostFtdcTraderApi::CreateFtdcTraderApi(flow_path.c_str());
     api_->RegisterSpi(this);
 }
 
-std::string TdApi::GetApiVersion() {
-    return CThostFtdcTraderApi::GetApiVersion();
+void TdApi::Release() {
+    api_->RegisterSpi(nullptr);
+    api_->Release();
+    queue_ = nullptr;
 }
 
 void TdApi::Init() {
@@ -17,6 +19,10 @@ void TdApi::Init() {
 
 int TdApi::Join() {
     return api_->Join();
+}
+
+std::string TdApi::GetApiVersion() {
+    return CThostFtdcTraderApi::GetApiVersion();
 }
 
 std::string TdApi::GetTradingDay() {

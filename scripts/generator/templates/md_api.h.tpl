@@ -15,14 +15,15 @@ namespace py = pybind11;
 
 class MdApi : public CThostFtdcMdSpi {
 private:
-    CtpUniquePtr<CThostFtdcMdApi> api_;
     std::unique_ptr<DispatchQueue> queue_;
+    CThostFtdcMdApi* api_;
 
 public:
     void CreateApi(const std::string &flow_path);
-    static std::string GetApiVersion();
+    void Release();
     void Init();
     int Join();
+    static std::string GetApiVersion();
     std::string GetTradingDay();
     void RegisterFront(const std::string &front_address);
     int SubscribeMarketData(const std::string &instrument_id);

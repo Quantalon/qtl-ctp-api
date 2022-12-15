@@ -3,12 +3,14 @@
 
 void MdApi::CreateApi(const std::string &flow_path) {
     queue_ = std::make_unique<DispatchQueue>();
-    api_.reset(CThostFtdcMdApi::CreateFtdcMdApi(flow_path.c_str()));
+    api_ = CThostFtdcMdApi::CreateFtdcMdApi(flow_path.c_str());
     api_->RegisterSpi(this);
 }
 
-std::string MdApi::GetApiVersion() {
-    return CThostFtdcMdApi::GetApiVersion();
+void MdApi::Release() {
+    api_->RegisterSpi(nullptr);
+    api_->Release();
+    queue_ = nullptr;
 }
 
 void MdApi::Init() {
@@ -17,6 +19,10 @@ void MdApi::Init() {
 
 int MdApi::Join() {
     return api_->Join();
+}
+
+std::string MdApi::GetApiVersion() {
+    return CThostFtdcMdApi::GetApiVersion();
 }
 
 std::string MdApi::GetTradingDay() {

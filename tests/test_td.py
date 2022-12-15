@@ -92,6 +92,10 @@ class PyTdApi(TdApi):
         print(f"error ErrorID: {error['ErrorID']}")
         print(f"error ErrorMsg: {error['ErrorMsg']}")
 
+    def OnRtnInstrumentStatus(self, data):
+        print('PyTdApi.OnRtnInstrumentStatus')
+        print(f'data: {data}')
+
 
 def test():
     print('test TdApi...')

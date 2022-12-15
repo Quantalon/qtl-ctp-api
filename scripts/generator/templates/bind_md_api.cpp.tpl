@@ -5,9 +5,10 @@ void bind_md_api(py::module &m) {
     md_api
             .def(py::init<>())
             .def("CreateApi", &MdApi::CreateApi)
-            .def_static("GetApiVersion", &MdApi::GetApiVersion)
+            .def("Release", &MdApi::Release)
             .def("Init", &MdApi::Init)
             .def("Join", &MdApi::Join)
+            .def_static("GetApiVersion", &MdApi::GetApiVersion)
             .def("GetTradingDay", &MdApi::GetTradingDay)
             .def("RegisterFront", &MdApi::RegisterFront)
             .def("SubscribeMarketData", &MdApi::SubscribeMarketData)

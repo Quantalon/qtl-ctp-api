@@ -11,19 +11,6 @@
 namespace py = pybind11;
 
 
-struct CtpApiDeleter {
-    template <class T>
-    void operator()(T* p) {
-        if (p) {
-            p->RegisterSpi(nullptr);
-            p->Release();
-        }
-    }
-};
-
-template <class T>
-using CtpUniquePtr = std::unique_ptr<T, CtpApiDeleter>;
-
 inline std::string gbk_to_utf8(const std::string& gbk) {
     static const std::locale loc("zh_CN.GBK");
 

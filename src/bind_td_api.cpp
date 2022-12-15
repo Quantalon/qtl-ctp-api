@@ -5,9 +5,10 @@ void bind_td_api(py::module &m) {
     td_api
             .def(py::init<>())
             .def("CreateApi", &TdApi::CreateApi)
-            .def_static("GetApiVersion", &TdApi::GetApiVersion)
+            .def("Release", &TdApi::Release)
             .def("Init", &TdApi::Init)
             .def("Join", &TdApi::Join)
+            .def_static("GetApiVersion", &TdApi::GetApiVersion)
             .def("GetTradingDay", &TdApi::GetTradingDay)
             .def("RegisterFront", &TdApi::RegisterFront)
             .def("SubscribePrivateTopic", &TdApi::SubscribePrivateTopic)

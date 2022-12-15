@@ -15,14 +15,15 @@ namespace py = pybind11;
 
 class TdApi : public CThostFtdcTraderSpi {
 private:
-    CtpUniquePtr<CThostFtdcTraderApi> api_;
     std::unique_ptr<DispatchQueue> queue_;
+    CThostFtdcTraderApi* api_;
 
 public:
     void CreateApi(const std::string &flow_path);
-    static std::string GetApiVersion();
+    void Release();
     void Init();
     int Join();
+    static std::string GetApiVersion();
     std::string GetTradingDay();
     void RegisterFront(const std::string &front_address);
     void SubscribePrivateTopic(int resume_type);
