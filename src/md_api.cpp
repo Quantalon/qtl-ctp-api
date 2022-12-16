@@ -34,16 +34,16 @@ void MdApi::RegisterFront(const std::string &front_address) {
     api_->RegisterFront(const_cast<char *>(front_address.c_str()));
 }
 
-int MdApi::SubscribeMarketData(const std::string &instrument_id) {
-    char *buffer = (char*)instrument_id.c_str();
-    char *req[1] = { buffer };
-    return api_->SubscribeMarketData(req, 1);
+int MdApi::SubscribeMarketData(const std::vector<std::string> &instrument_ids) {
+    std::vector<char *> instrument_ids_{};
+    for (const auto &i : instrument_ids) instrument_ids_.emplace_back(const_cast<char *>(i.c_str()));
+    return api_->SubscribeMarketData(instrument_ids_.data(), instrument_ids_.size());
 }
 
-int MdApi::UnSubscribeMarketData(const std::string &instrument_id) {
-    char *buffer = (char*)instrument_id.c_str();
-    char *req[1] = { buffer };
-    return api_->UnSubscribeMarketData(req, 1);
+int MdApi::UnSubscribeMarketData(const std::vector<std::string> &instrument_ids) {
+    std::vector<char *> instrument_ids_{};
+    for (const auto &i : instrument_ids) instrument_ids_.emplace_back(const_cast<char *>(i.c_str()));
+    return api_->UnSubscribeMarketData(instrument_ids_.data(), instrument_ids_.size());
 }
 
 int MdApi::ReqUserLogin(const py::dict &data, int request_id) {

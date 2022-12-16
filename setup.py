@@ -15,7 +15,7 @@ from setuptools import find_packages
 
 setup(
     name="qtl-ctp-api",
-    version="6.6.9.2",
+    version="6.6.9.3",
     long_description="QTL CTP Api",
     long_description_content_type='text/markdown',
     packages=find_packages(where='src'),

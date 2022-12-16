@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 
 #include "utils.h"
 #include "dispatch_queue.h"
@@ -26,8 +27,8 @@ public:
     static std::string GetApiVersion();
     std::string GetTradingDay();
     void RegisterFront(const std::string &front_address);
-    int SubscribeMarketData(const std::string &instrument_id);
-    int UnSubscribeMarketData(const std::string &instrument_id);
+    int SubscribeMarketData(const std::vector<std::string> &instrument_ids);
+    int UnSubscribeMarketData(const std::vector<std::string> &instrument_ids);
 
     int ReqUserLogin(const py::dict &data, int request_id);
     int ReqUserLogout(const py::dict &data, int request_id);

@@ -50,7 +50,7 @@ class PyMdApi(MdApi):
         print(f"request_id: {request_id}")
         print(f"is_last: {is_last}")
 
-        self.SubscribeMarketData('eb2203')
+        self.SubscribeMarketData(['eb2305'])
 
         pass
 
