@@ -1,9 +1,9 @@
 #include "bind_md_api.h"
 
-void bind_md_api(py::module &m) {
-    py::class_<MdApi, PyMdApi> md_api(m, "MdApi", py::module_local());
+void bind_md_api(nb::module_ &m) {
+    nb::class_<MdApi, PyMdApi> md_api(m, "MdApi");
     md_api
-            .def(py::init<>())
+            .def(nb::init<>())
             .def("CreateApi", &MdApi::CreateApi)
             .def("Release", &MdApi::Release)
             .def("Init", &MdApi::Init)

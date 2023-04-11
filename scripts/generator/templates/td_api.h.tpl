@@ -3,14 +3,15 @@
 
 #include <iostream>
 #include <string>
-#include <pybind11/pybind11.h>
+#include <nanobind/nanobind.h>
+#include <nanobind/trampoline.h>
 
 #include "utils.h"
 #include "dispatch_queue.h"
 #include "ThostFtdcTraderApi.h"
 
 
-namespace py = pybind11;
+namespace nb = nanobind;
 
 
 class TdApi : public CThostFtdcTraderSpi {
@@ -54,22 +55,20 @@ public:
 
 class PyTdApi final : public TdApi {
 public:
-    using TdApi::TdApi;
+    NB_TRAMPOLINE(TdApi, {{td_on_methods|length}});
 {% for on_method in td_on_methods %}
     void Py{{ on_method['name'] }}(
         {%- for p in on_method['parameters'] -%}
         {{ p['py_type'] }}{% if not p['py_type'].endswith('&') %} {% endif %}{{ p['py_name'] }}{% if not loop.last %}, {% endif %}
         {%- endfor -%}
     ) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+        NB_OVERRIDE_PURE_NAME(
             "{{ on_method['name'] }}",
             Py{{ on_method['name'] }},
             {%- for p in on_method['parameters'] %}
             {{ p['py_name'] }}{% if not loop.last %},{% endif %}
             {%- endfor %}
-        )
+        );
     }
 {% endfor %}
 };

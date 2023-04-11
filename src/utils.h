@@ -5,10 +5,12 @@
 #include <codecvt>
 #include <locale>
 #include <limits>
-#include <pybind11/pybind11.h>
+#include <vector>
+#include <nanobind/nanobind.h>
+#include <nanobind/stl/string.h>
 
 
-namespace py = pybind11;
+namespace nb = nanobind;
 
 
 inline std::string gbk_to_utf8(const std::string& gbk) {
@@ -37,27 +39,36 @@ inline NumberType adjust_number(NumberType number) {
     return ret;
 }
 
-inline void set_str_field(char *field, const py::dict &input, const char *field_name, size_t size) {
-    if (input.contains(field_name)) {
-        strncpy(field, input[field_name].cast<std::string>().c_str(), size);
+inline bool contains(const nb::dict &d, const std::string &k) {
+    for (auto i: d) {
+        if (nb::cast<std::string>(i.first) == k) {
+            return true;
+        }
+    }
+    return false;
+}
+
+inline void set_str_field(char *field, const nb::dict &input, const char *field_name, size_t size) {
+    if (contains(input, field_name)) {
+        strncpy(field, nb::cast<std::string>(input[field_name]).c_str(), size);
     }
 }
 
-inline void set_char_field(char &field, const py::dict &input, const char *field_name) {
-    if (input.contains(field_name)) {
-        field = input[field_name].cast<char>();
+inline void set_char_field(char &field, const nb::dict &input, const char *field_name) {
+    if (contains(input, field_name)) {
+        field = nb::cast<int>(input[field_name]);  // todo
     }
 }
 
-inline void set_int_field(int &field, const py::dict &input, const char *field_name) {
-    if (input.contains(field_name)) {
-        field = input[field_name].cast<int>();
+inline void set_int_field(int &field, const nb::dict &input, const char *field_name) {
+    if (contains(input, field_name)) {
+        field = nb::cast<int>(input[field_name]);
     }
 }
 
-inline void set_double_field(double &field, const py::dict &input, const char *field_name) {
-    if (input.contains(field_name)) {
-        field = input[field_name].cast<double>();
+inline void set_double_field(double &field, const nb::dict &input, const char *field_name) {
+    if (contains(input, field_name)) {
+        field = nb::cast<double>(input[field_name]);
     }
 }
 

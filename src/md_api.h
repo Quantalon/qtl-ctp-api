@@ -3,15 +3,16 @@
 
 #include <iostream>
 #include <string>
-#include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
+#include <nanobind/nanobind.h>
+#include <nanobind/stl/vector.h>
+#include <nanobind/trampoline.h>
 
 #include "utils.h"
 #include "dispatch_queue.h"
 #include "ThostFtdcMdApi.h"
 
 
-namespace py = pybind11;
+namespace nb = nanobind;
 
 
 class MdApi : public CThostFtdcMdSpi {
@@ -30,8 +31,8 @@ public:
     int SubscribeMarketData(const std::vector<std::string> &instrument_ids);
     int UnSubscribeMarketData(const std::vector<std::string> &instrument_ids);
 
-    int ReqUserLogin(const py::dict &data, int request_id);
-    int ReqUserLogout(const py::dict &data, int request_id);
+    int ReqUserLogin(const nb::dict &data, int request_id);
+    int ReqUserLogout(const nb::dict &data, int request_id);
 
     void OnFrontConnected() override;
     void OnFrontDisconnected(int nReason) override;
@@ -46,120 +47,102 @@ public:
     virtual void PyOnFrontConnected() = 0;
     virtual void PyOnFrontDisconnected(int reason) = 0;
     virtual void PyOnHeartBeatWarning(int time_lapse) = 0;
-    virtual void PyOnRspUserLogin(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspUserLogout(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspError(const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspSubMarketData(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspUnSubMarketData(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRtnDepthMarketData(const py::dict &data) = 0;
+    virtual void PyOnRspUserLogin(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspUserLogout(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspError(const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspSubMarketData(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspUnSubMarketData(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRtnDepthMarketData(const nb::dict &data) = 0;
 };
 
 
 class PyMdApi final : public MdApi {
 public:
-    using MdApi::MdApi;
+    NB_TRAMPOLINE(MdApi, 9);
 
     void PyOnFrontConnected() override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+        NB_OVERRIDE_PURE_NAME(
             "OnFrontConnected",
             PyOnFrontConnected,
-        )
+        );
     }
 
     void PyOnFrontDisconnected(int reason) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+        NB_OVERRIDE_PURE_NAME(
             "OnFrontDisconnected",
             PyOnFrontDisconnected,
             reason
-        )
+        );
     }
 
     void PyOnHeartBeatWarning(int time_lapse) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+        NB_OVERRIDE_PURE_NAME(
             "OnHeartBeatWarning",
             PyOnHeartBeatWarning,
             time_lapse
-        )
+        );
     }
 
-    void PyOnRspUserLogin(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+    void PyOnRspUserLogin(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspUserLogin",
             PyOnRspUserLogin,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspUserLogout(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+    void PyOnRspUserLogout(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspUserLogout",
             PyOnRspUserLogout,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspError(const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+    void PyOnRspError(const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspError",
             PyOnRspError,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspSubMarketData(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+    void PyOnRspSubMarketData(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspSubMarketData",
             PyOnRspSubMarketData,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspUnSubMarketData(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+    void PyOnRspUnSubMarketData(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspUnSubMarketData",
             PyOnRspUnSubMarketData,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRtnDepthMarketData(const py::dict &data) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            MdApi,
+    void PyOnRtnDepthMarketData(const nb::dict &data) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRtnDepthMarketData",
             PyOnRtnDepthMarketData,
             data
-        )
+        );
     }
 
 };

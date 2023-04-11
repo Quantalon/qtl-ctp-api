@@ -154,9 +154,9 @@ class Generator:
         if type_ == 'bool' and name == 'bIsLast':
             return 'is_last', 'bool'
         if name == 'pRspInfo':
-            return 'error', 'const py::dict &'
+            return 'error', 'const nb::dict &'
         if type_.endswith(' *'):
-            return 'data', 'const py::dict &'
+            return 'data', 'const nb::dict &'
         return '', ''
 
     def parse_methods(self, cpp_header):

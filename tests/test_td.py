@@ -105,8 +105,8 @@ def test():
     settings = {
         'address': 'tcp://180.168.146.187:10201',
         'broker_id': '9999',
-        'user_id': '',
-        'password': '',
+        'user_id': '113635',
+        'password': 'da20200925',
         'flow_path': 'flow',
         'app_id': 'simnow_client_test',
         'auth_code': '0000000000000000',

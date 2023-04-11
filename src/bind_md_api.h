@@ -1,11 +1,11 @@
 #ifndef BIND_MD_API_H
 #define BIND_MD_API_H
 
-#include <pybind11/pybind11.h>
+#include <nanobind/nanobind.h>
 #include "md_api.h"
 
-namespace py = pybind11;
+namespace nb = nanobind;
 
-void bind_md_api(py::module &);
+void bind_md_api(nb::module_ &);
 
 #endif //BIND_MD_API_H

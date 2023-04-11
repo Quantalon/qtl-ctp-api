@@ -1,9 +1,9 @@
 #include "bind_td_api.h"
 
-void bind_td_api(py::module &m) {
-    py::class_<TdApi, PyTdApi> td_api(m, "TdApi", py::module_local());
+void bind_td_api(nb::module_ &m) {
+    nb::class_<TdApi, PyTdApi> td_api(m, "TdApi");
     td_api
-            .def(py::init<>())
+            .def(nb::init<>())
             .def("CreateApi", &TdApi::CreateApi)
             .def("Release", &TdApi::Release)
             .def("Init", &TdApi::Init)

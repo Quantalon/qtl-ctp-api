@@ -46,7 +46,7 @@ int MdApi::UnSubscribeMarketData(const std::vector<std::string> &instrument_ids)
     return api_->UnSubscribeMarketData(instrument_ids_.data(), instrument_ids_.size());
 }
 
-int MdApi::ReqUserLogin(const py::dict &data, int request_id) {
+int MdApi::ReqUserLogin(const nb::dict &data, int request_id) {
     CThostFtdcReqUserLoginField request{};
     set_str_field(request.TradingDay, data, "TradingDay", sizeof(request.TradingDay));
     set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
@@ -63,7 +63,7 @@ int MdApi::ReqUserLogin(const py::dict &data, int request_id) {
     return api_->ReqUserLogin(&request, request_id);
 }
 
-int MdApi::ReqUserLogout(const py::dict &data, int request_id) {
+int MdApi::ReqUserLogout(const nb::dict &data, int request_id) {
     CThostFtdcUserLogoutField request{};
     set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
     set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
@@ -72,21 +72,21 @@ int MdApi::ReqUserLogout(const py::dict &data, int request_id) {
 
 void MdApi::OnFrontConnected() {
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
+        nb::gil_scoped_acquire acquire;
         PyOnFrontConnected();
     });
 }
 
 void MdApi::OnFrontDisconnected(int reason) {
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
+        nb::gil_scoped_acquire acquire;
         PyOnFrontDisconnected(reason);
     });
 }
 
 void MdApi::OnHeartBeatWarning(int time_lapse) {
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
+        nb::gil_scoped_acquire acquire;
         PyOnHeartBeatWarning(time_lapse);
     });
 }
@@ -105,8 +105,8 @@ void MdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
         has_error = true;
     }
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
-        py::dict py_data;
+        nb::gil_scoped_acquire acquire;
+        nb::dict py_data;
         if (has_data) {
             py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
             py_data["LoginTime"] = gbk_to_utf8(rsp_data.LoginTime);
@@ -124,7 +124,7 @@ void MdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
             py_data["SysVersion"] = gbk_to_utf8(rsp_data.SysVersion);
             py_data["GFEXTime"] = gbk_to_utf8(rsp_data.GFEXTime);
         }
-        py::dict py_error;
+        nb::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
             py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
@@ -147,13 +147,13 @@ void MdApi::OnRspUserLogout(CThostFtdcUserLogoutField *data, CThostFtdcRspInfoFi
         has_error = true;
     }
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
-        py::dict py_data;
+        nb::gil_scoped_acquire acquire;
+        nb::dict py_data;
         if (has_data) {
             py_data["BrokerID"] = gbk_to_utf8(rsp_data.BrokerID);
             py_data["UserID"] = gbk_to_utf8(rsp_data.UserID);
         }
-        py::dict py_error;
+        nb::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
             py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
@@ -170,8 +170,8 @@ void MdApi::OnRspError(CThostFtdcRspInfoField *error, int request_id, bool is_la
         has_error = true;
     }
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
-        py::dict py_error;
+        nb::gil_scoped_acquire acquire;
+        nb::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
             py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
@@ -194,12 +194,12 @@ void MdApi::OnRspSubMarketData(CThostFtdcSpecificInstrumentField *data, CThostFt
         has_error = true;
     }
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
-        py::dict py_data;
+        nb::gil_scoped_acquire acquire;
+        nb::dict py_data;
         if (has_data) {
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
         }
-        py::dict py_error;
+        nb::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
             py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
@@ -222,12 +222,12 @@ void MdApi::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *data, CThost
         has_error = true;
     }
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
-        py::dict py_data;
+        nb::gil_scoped_acquire acquire;
+        nb::dict py_data;
         if (has_data) {
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
         }
-        py::dict py_error;
+        nb::dict py_error;
         if (has_error) {
             py_error["ErrorID"] = rsp_error.ErrorID;
             py_error["ErrorMsg"] = gbk_to_utf8(rsp_error.ErrorMsg);
@@ -244,8 +244,8 @@ void MdApi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *data) {
         has_data = true;
     }
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
-        py::dict py_data;
+        nb::gil_scoped_acquire acquire;
+        nb::dict py_data;
         if (has_data) {
             py_data["TradingDay"] = gbk_to_utf8(rsp_data.TradingDay);
             py_data["ExchangeID"] = gbk_to_utf8(rsp_data.ExchangeID);

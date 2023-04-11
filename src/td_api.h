@@ -3,14 +3,15 @@
 
 #include <iostream>
 #include <string>
-#include <pybind11/pybind11.h>
+#include <nanobind/nanobind.h>
+#include <nanobind/trampoline.h>
 
 #include "utils.h"
 #include "dispatch_queue.h"
 #include "ThostFtdcTraderApi.h"
 
 
-namespace py = pybind11;
+namespace nb = nanobind;
 
 
 class TdApi : public CThostFtdcTraderSpi {
@@ -29,19 +30,19 @@ public:
     void SubscribePrivateTopic(int resume_type);
     void SubscribePublicTopic(int resume_type);
 
-    int ReqAuthenticate(const py::dict &data, int request_id);
-    int ReqUserLogin(const py::dict &data, int request_id);
-    int ReqUserLogout(const py::dict &data, int request_id);
-    int ReqUserPasswordUpdate(const py::dict &data, int request_id);
-    int ReqOrderInsert(const py::dict &data, int request_id);
-    int ReqOrderAction(const py::dict &data, int request_id);
-    int ReqSettlementInfoConfirm(const py::dict &data, int request_id);
-    int ReqQryOrder(const py::dict &data, int request_id);
-    int ReqQryTrade(const py::dict &data, int request_id);
-    int ReqQryInvestorPosition(const py::dict &data, int request_id);
-    int ReqQryTradingAccount(const py::dict &data, int request_id);
-    int ReqQryInstrument(const py::dict &data, int request_id);
-    int ReqQrySettlementInfo(const py::dict &data, int request_id);
+    int ReqAuthenticate(const nb::dict &data, int request_id);
+    int ReqUserLogin(const nb::dict &data, int request_id);
+    int ReqUserLogout(const nb::dict &data, int request_id);
+    int ReqUserPasswordUpdate(const nb::dict &data, int request_id);
+    int ReqOrderInsert(const nb::dict &data, int request_id);
+    int ReqOrderAction(const nb::dict &data, int request_id);
+    int ReqSettlementInfoConfirm(const nb::dict &data, int request_id);
+    int ReqQryOrder(const nb::dict &data, int request_id);
+    int ReqQryTrade(const nb::dict &data, int request_id);
+    int ReqQryInvestorPosition(const nb::dict &data, int request_id);
+    int ReqQryTradingAccount(const nb::dict &data, int request_id);
+    int ReqQryInstrument(const nb::dict &data, int request_id);
+    int ReqQrySettlementInfo(const nb::dict &data, int request_id);
 
     void OnFrontConnected() override;
     void OnFrontDisconnected(int nReason) override;
@@ -68,278 +69,236 @@ public:
     virtual void PyOnFrontConnected() = 0;
     virtual void PyOnFrontDisconnected(int reason) = 0;
     virtual void PyOnHeartBeatWarning(int time_lapse) = 0;
-    virtual void PyOnRspAuthenticate(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspUserLogin(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspUserLogout(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspOrderInsert(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspOrderAction(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspSettlementInfoConfirm(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspQryOrder(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspQryTrade(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspQryInvestorPosition(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspQryTradingAccount(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspQryInstrument(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspQrySettlementInfo(const py::dict &data, const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRspError(const py::dict &error, int request_id, bool is_last) = 0;
-    virtual void PyOnRtnOrder(const py::dict &data) = 0;
-    virtual void PyOnRtnTrade(const py::dict &data) = 0;
-    virtual void PyOnErrRtnOrderInsert(const py::dict &data, const py::dict &error) = 0;
-    virtual void PyOnErrRtnOrderAction(const py::dict &data, const py::dict &error) = 0;
-    virtual void PyOnRtnInstrumentStatus(const py::dict &data) = 0;
+    virtual void PyOnRspAuthenticate(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspUserLogin(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspUserLogout(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspOrderInsert(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspOrderAction(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspSettlementInfoConfirm(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspQryOrder(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspQryTrade(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspQryInvestorPosition(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspQryTradingAccount(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspQryInstrument(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspQrySettlementInfo(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRspError(const nb::dict &error, int request_id, bool is_last) = 0;
+    virtual void PyOnRtnOrder(const nb::dict &data) = 0;
+    virtual void PyOnRtnTrade(const nb::dict &data) = 0;
+    virtual void PyOnErrRtnOrderInsert(const nb::dict &data, const nb::dict &error) = 0;
+    virtual void PyOnErrRtnOrderAction(const nb::dict &data, const nb::dict &error) = 0;
+    virtual void PyOnRtnInstrumentStatus(const nb::dict &data) = 0;
 };
 
 
 class PyTdApi final : public TdApi {
 public:
-    using TdApi::TdApi;
+    NB_TRAMPOLINE(TdApi, 21);
 
     void PyOnFrontConnected() override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+        NB_OVERRIDE_PURE_NAME(
             "OnFrontConnected",
             PyOnFrontConnected,
-        )
+        );
     }
 
     void PyOnFrontDisconnected(int reason) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+        NB_OVERRIDE_PURE_NAME(
             "OnFrontDisconnected",
             PyOnFrontDisconnected,
             reason
-        )
+        );
     }
 
     void PyOnHeartBeatWarning(int time_lapse) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+        NB_OVERRIDE_PURE_NAME(
             "OnHeartBeatWarning",
             PyOnHeartBeatWarning,
             time_lapse
-        )
+        );
     }
 
-    void PyOnRspAuthenticate(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspAuthenticate(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspAuthenticate",
             PyOnRspAuthenticate,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspUserLogin(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspUserLogin(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspUserLogin",
             PyOnRspUserLogin,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspUserLogout(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspUserLogout(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspUserLogout",
             PyOnRspUserLogout,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspOrderInsert(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspOrderInsert(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspOrderInsert",
             PyOnRspOrderInsert,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspOrderAction(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspOrderAction(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspOrderAction",
             PyOnRspOrderAction,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspSettlementInfoConfirm(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspSettlementInfoConfirm(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspSettlementInfoConfirm",
             PyOnRspSettlementInfoConfirm,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspQryOrder(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspQryOrder(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspQryOrder",
             PyOnRspQryOrder,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspQryTrade(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspQryTrade(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspQryTrade",
             PyOnRspQryTrade,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspQryInvestorPosition(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspQryInvestorPosition(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspQryInvestorPosition",
             PyOnRspQryInvestorPosition,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspQryTradingAccount(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspQryTradingAccount(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspQryTradingAccount",
             PyOnRspQryTradingAccount,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspQryInstrument(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspQryInstrument(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspQryInstrument",
             PyOnRspQryInstrument,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspQrySettlementInfo(const py::dict &data, const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspQrySettlementInfo(const nb::dict &data, const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspQrySettlementInfo",
             PyOnRspQrySettlementInfo,
             data,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRspError(const py::dict &error, int request_id, bool is_last) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRspError(const nb::dict &error, int request_id, bool is_last) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRspError",
             PyOnRspError,
             error,
             request_id,
             is_last
-        )
+        );
     }
 
-    void PyOnRtnOrder(const py::dict &data) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRtnOrder(const nb::dict &data) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRtnOrder",
             PyOnRtnOrder,
             data
-        )
+        );
     }
 
-    void PyOnRtnTrade(const py::dict &data) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRtnTrade(const nb::dict &data) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRtnTrade",
             PyOnRtnTrade,
             data
-        )
+        );
     }
 
-    void PyOnErrRtnOrderInsert(const py::dict &data, const py::dict &error) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnErrRtnOrderInsert(const nb::dict &data, const nb::dict &error) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnErrRtnOrderInsert",
             PyOnErrRtnOrderInsert,
             data,
             error
-        )
+        );
     }
 
-    void PyOnErrRtnOrderAction(const py::dict &data, const py::dict &error) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnErrRtnOrderAction(const nb::dict &data, const nb::dict &error) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnErrRtnOrderAction",
             PyOnErrRtnOrderAction,
             data,
             error
-        )
+        );
     }
 
-    void PyOnRtnInstrumentStatus(const py::dict &data) override {
-        PYBIND11_OVERLOAD_PURE_NAME(
-            void,
-            TdApi,
+    void PyOnRtnInstrumentStatus(const nb::dict &data) override {
+        NB_OVERRIDE_PURE_NAME(
             "OnRtnInstrumentStatus",
             PyOnRtnInstrumentStatus,
             data
-        )
+        );
     }
 
 };

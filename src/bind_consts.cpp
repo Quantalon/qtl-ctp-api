@@ -2,8 +2,8 @@
 #include "bind_consts.h"
 
 
-void bind_consts(py::module &m) {
-    py::module consts = m.def_submodule("consts", "API Consts");
+void bind_consts(nb::module_ &m) {
+    nb::module_ consts = m.def_submodule("consts", "API Consts");
 
     consts.attr("THOST_TERT_RESTART") = 0;
     consts.attr("THOST_TERT_RESUME") = 1;

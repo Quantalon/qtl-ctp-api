@@ -1,10 +1,10 @@
 #ifndef BIND_CONSTS_H
 #define BIND_CONSTS_H
 
-#include <pybind11/pybind11.h>
+#include <nanobind/nanobind.h>
 
-namespace py = pybind11;
+namespace nb = nanobind;
 
-void bind_consts(py::module &);
+void bind_consts(nb::module_ &);
 
 #endif //BIND_CONSTS_H

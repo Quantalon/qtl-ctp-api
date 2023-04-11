@@ -1,11 +1,11 @@
 #ifndef BIND_TD_API_H
 #define BIND_TD_API_H
 
-#include <pybind11/pybind11.h>
+#include <nanobind/nanobind.h>
 #include "td_api.h"
 
-namespace py = pybind11;
+namespace nb = nanobind;
 
-void bind_td_api(py::module &);
+void bind_td_api(nb::module_ &);
 
 #endif //BIND_TD_API_H

@@ -80,16 +80,16 @@ void MdApi::{{ on_method['name'] }}(
     }
     {%- endif %}{% endfor %}
     queue_->dispatch([=]() {
-        py::gil_scoped_acquire acquire;
+        nb::gil_scoped_acquire acquire;
         {%- for p in on_method['parameters'] %}{% if p['type'].endswith('*') and p['py_name'] == 'data' %}
-        py::dict py_data;
+        nb::dict py_data;
         if (has_data) {
             {%- for sp in structs[p['type'].strip(' *')] %}
             py_data["{{ sp['name'] }}"] = {% if sp['type']=='str' %}gbk_to_utf8({% elif sp['type']=='double' and ('Price' in sp['name'] or 'Delta' in sp['name']) %}adjust_number({% endif %}rsp_data.{{ sp['name'] }}{% if sp['type']=='str' or (sp['type']=='double' and ('Price' in sp['name'] or 'Delta' in sp['name'])) %}){% endif %};
             {%- endfor %}
         }
         {%- elif p['type'].endswith('*') and p['py_name'] == 'error' %}
-        py::dict py_error;
+        nb::dict py_error;
         if (has_error) {
             {%- for sp in structs[p['type'].strip(' *')] %}
             py_error["{{ sp['name'] }}"] = {% if sp['type']=='str' %}gbk_to_utf8({% endif %}rsp_error.{{ sp['name'] }}{% if sp['type']=='str' %}){% endif %};
