@@ -56,7 +56,7 @@ inline void set_str_field(char *field, const nb::dict &input, const char *field_
 
 inline void set_char_field(char &field, const nb::dict &input, const char *field_name) {
     if (contains(input, field_name)) {
-        field = nb::cast<int>(input[field_name]);  // todo
+        field = nb::cast<char>(input[field_name]);  // todo
     }
 }
 
