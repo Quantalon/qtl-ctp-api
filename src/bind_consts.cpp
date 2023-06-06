@@ -1289,5 +1289,8 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_ETR_SPOT") = "4";
     consts.attr("THOST_FTDC_EPF_None") = "0";
     consts.attr("THOST_FTDC_EPF_SPBM") = "1";
+    consts.attr("THOST_FTDC_WDPID_CashIn") = "C";
+    consts.attr("THOST_FTDC_ITR_CloseOnly") = "1";
+    consts.attr("THOST_FTDC_ITR_Forbidden") = "2";
     
 }

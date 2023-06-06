@@ -13,7 +13,7 @@ except ImportError:
 
 setup(
     name="qtl-ctp-api",
-    version="6.6.9.4",
+    version="6.7.0",
     long_description="QTL CTP Api",
     long_description_content_type='text/markdown',
     packages=['qtl_ctp_api'],
