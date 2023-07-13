@@ -12,15 +12,11 @@ class DispatchQueue {
     typedef std::function<void(void)> fp_t;
 
 public:
-    explicit DispatchQueue(size_t thread_cnt = 1);
+    explicit DispatchQueue();
     ~DispatchQueue();
 
-    // dispatch and copy
-    void dispatch(const fp_t& op);
-    // dispatch and move
     void dispatch(fp_t&& op);
 
-    // Deleted operations
     DispatchQueue(const DispatchQueue& rhs) = delete;
     DispatchQueue(DispatchQueue&& rhs) = delete;
     DispatchQueue& operator=(const DispatchQueue& rhs) = delete;
@@ -28,7 +24,7 @@ public:
 
 private:
     std::mutex lock_;
-    std::vector<std::thread> threads_;
+    std::thread thread_;
     std::queue<fp_t> q_;
     std::condition_variable cv_;
     bool quit_ = false;
