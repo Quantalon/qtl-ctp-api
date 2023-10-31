@@ -6,6 +6,7 @@
 #include <locale>
 #include <limits>
 #include <vector>
+#include <cstring>
 #include <nanobind/nanobind.h>
 #include <nanobind/stl/string.h>
 
