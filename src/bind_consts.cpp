@@ -1289,8 +1289,27 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_ETR_SPOT") = "4";
     consts.attr("THOST_FTDC_EPF_None") = "0";
     consts.attr("THOST_FTDC_EPF_SPBM") = "1";
+    consts.attr("THOST_FTDC_EPF_RULE") = "2";
+    consts.attr("THOST_FTDC_EPF_SPMM") = "3";
+    consts.attr("THOST_FTDC_EPF_RCAMS") = "4";
     consts.attr("THOST_FTDC_WDPID_CashIn") = "C";
     consts.attr("THOST_FTDC_ITR_CloseOnly") = "1";
     consts.attr("THOST_FTDC_ITR_Forbidden") = "2";
+    consts.attr("THOST_FTDC_IMID_BothSide") = "1";
+    consts.attr("THOST_FTDC_IMID_MMSA") = "2";
+    consts.attr("THOST_FTDC_IMID_SPMM") = "3";
+    consts.attr("THOST_FTDC_ERComb_BUC") = "0";
+    consts.attr("THOST_FTDC_ERComb_BEC") = "1";
+    consts.attr("THOST_FTDC_ERComb_BEP") = "2";
+    consts.attr("THOST_FTDC_ERComb_BUP") = "3";
+    consts.attr("THOST_FTDC_ERComb_CAS") = "4";
+    consts.attr("THOST_FTDC_EET_None") = "0";
+    consts.attr("THOST_FTDC_EET_SPBM_AddOnHedge") = "1";
+    consts.attr("THOST_FTDC_EIC_Usual") = "1";
+    consts.attr("THOST_FTDC_EIC_Delivery") = "2";
+    consts.attr("THOST_FTDC_EIC_NonComb") = "3";
+    consts.attr("THOST_FTDC_PCF_None") = "0";
+    consts.attr("THOST_FTDC_PCF_OnlyFrozen") = "1";
+    consts.attr("THOST_FTDC_PCF_PositionChange") = "2";
     
 }

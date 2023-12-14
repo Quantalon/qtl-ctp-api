@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "qtl-ctp-api"
-version = "6.7.0"
+version = "6.7.2"
 description = "QTL CTP API"
 readme = "README.md"
 requires-python = ">=3.8"
