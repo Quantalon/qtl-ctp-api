@@ -32,6 +32,10 @@ find_package(Python 3.8
         REQUIRED COMPONENTS Interpreter Development.Module
         OPTIONAL_COMPONENTS Development.SABIModule)
 
+execute_process(
+        COMMAND "${Python_EXECUTABLE}" -m nanobind --cmake_dir
+        OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE nanobind_ROOT)
+
 find_package(nanobind CONFIG REQUIRED)
 
 nanobind_add_module(_ctp STABLE_ABI NB_STATIC
@@ -47,7 +51,7 @@ target_include_directories(_ctp PRIVATE libs/ctp/include)
 target_link_directories(_ctp PRIVATE libs/ctp/lib)
 target_link_libraries(_ctp PRIVATE thostmduserapi_se thosttraderapi_se)
 
-install(TARGETS _ctp DESTINATION qtl_ctp_api)
+install(TARGETS _ctp LIBRARY DESTINATION qtl_ctp_api)
 install(FILES
         libs/ctp/lib/libthostmduserapi_se.so
         libs/ctp/lib/libthosttraderapi_se.so
