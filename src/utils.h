@@ -45,12 +45,12 @@ inline void set_field(T &field, const nb::dict &input, const char *field_name) {
     }
 }
 
-// 字符串的特化版本
-template<>
-inline void set_field<char*>(char* field, const nb::dict &input, const char *field_name, size_t size) {
+// 字符串的特化版本，添加size参数
+template<typename T>
+inline void set_field(T &field, const nb::dict &input, const char *field_name, size_t size) {
     if (contains(input, field_name)) {
-        strncpy(field, nb::cast<std::string>(input[field_name]).c_str(), size);
+        std::string str = nb::cast<std::string>(input[field_name]);
+        strncpy(field, str.c_str(), size);
     }
 }
-
 #endif //UTILS_H
