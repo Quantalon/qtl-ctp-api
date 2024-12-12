@@ -74,21 +74,6 @@ class PyTdApi(TdApi):
         request['InvestorID'] = self.settings['user_id']
         self.ReqSettlementInfoConfirm(request, self.next_request_id())
 
-        sleep(2)
-
-        print('PyTdApi.ReqQryTradingAccount')
-        request = {}
-        request['BrokerID'] = self.settings['broker_id']
-        request['InvestorID'] = self.settings['user_id']
-        self.ReqQryTradingAccount(request, self.next_request_id())
-
-        sleep(2)
-
-        print('PyTdApi.ReqQryInvestorPosition')
-        request = {}
-        request['BrokerID'] = self.settings['broker_id']
-        request['InvestorID'] = self.settings['user_id']
-        self.ReqQryInvestorPosition(request, self.next_request_id())
 
     def OnRspQryTradingAccount(self, data, error, request_id, is_last):
         print('PyTdApi.OnRspQryTradingAccount')
@@ -124,8 +109,9 @@ class PyTdApi(TdApi):
     def OnRspQrySettlementInfo(self, data, error, request_id, is_last):
         print('PyTdApi.OnRspQrySettlementInfo')
         print(f'data: {data}')
-        print(f"error ErrorID: {error['ErrorID']}")
-        print(f"error ErrorMsg: {error['ErrorMsg']}")
+        if error:
+            print(f"error ErrorID: {error['ErrorID']}")
+            print(f"error ErrorMsg: {error['ErrorMsg']}")
 
         print('Content:')
         print(data['Content'])
