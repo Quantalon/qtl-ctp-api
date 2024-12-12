@@ -27,19 +27,10 @@ NumberType adjust_number(NumberType number) {
     return ret;
 }
 
-inline bool contains(const nb::dict &d, const std::string &k) {
-    for (auto i: d) {
-        if (nb::cast<std::string>(i.first) == k) {
-            return true;
-        }
-    }
-    return false;
-}
-
 // 通用模板
 template<typename T>
 void set_field(T &field, const nb::dict &input, const char *field_name) {
-    if (contains(input, field_name)) {
+    if (input.contains(field_name)) {
         field = nb::cast<T>(input[field_name]);
     }
 }
@@ -47,7 +38,7 @@ void set_field(T &field, const nb::dict &input, const char *field_name) {
 // 字符串的特化版本，添加size参数
 template<typename T>
 void set_field(T &field, const nb::dict &input, const char *field_name, size_t size) {
-    if (contains(input, field_name)) {
+    if (input.contains(field_name)) {
         std::string str = nb::cast<std::string>(input[field_name]);
         strncpy(field, str.c_str(), size);
     }
