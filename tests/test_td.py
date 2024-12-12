@@ -108,7 +108,7 @@ class PyTdApi(TdApi):
             request = {}
             request['BrokerID'] = self.settings['broker_id']
             request['InvestorID'] = self.settings['user_id']
-            self.settlement_info_content = ''
+            self.settlement_info_content = b''
             self.ReqQrySettlementInfo(request, self.next_request_id())
 
     def OnRspQrySettlementInfo(self, data, error, request_id, is_last):
