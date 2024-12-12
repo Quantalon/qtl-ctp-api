@@ -66,6 +66,8 @@ class PyTdApi(TdApi):
         print(f"request_id: {request_id}")
         print(f"is_last: {is_last}")
 
+        print(f"Trading Day: {self.GetTradingDay()}")
+
 
         print('PyTdApi.ReqQryTradingAccount')
         request = {}

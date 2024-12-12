@@ -5,6 +5,7 @@
 #include <string>
 #include <nanobind/nanobind.h>
 #include <nanobind/trampoline.h>
+#include <nanobind/stl/string.h>
 
 #include "utils.h"
 #include "dispatch_queue.h"
