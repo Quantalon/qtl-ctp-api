@@ -2,12 +2,6 @@
 
 **Only for Linux.**
 
-## prepare
-
-```
-sudo locale-gen zh_CN.GBK
-```
-
 ## install
 
 ```
@@ -16,4 +10,4 @@ pip install qtl-ctp-api
 
 ## version
 
-- CTP: v6.7.2
+- CTP: v6.7.8

@@ -69,6 +69,7 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_FC_ParkedOrderAction") = "D";
     consts.attr("THOST_FTDC_FC_SyncOTP") = "E";
     consts.attr("THOST_FTDC_FC_DeleteOrder") = "F";
+    consts.attr("THOST_FTDC_FC_ExitEmergency") = "G";
     consts.attr("THOST_FTDC_BFC_ForceUserLogout") = "1";
     consts.attr("THOST_FTDC_BFC_UserPasswordUpdate") = "2";
     consts.attr("THOST_FTDC_BFC_SyncBrokerData") = "3";
@@ -229,6 +230,9 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_FCC_Other") = "6";
     consts.attr("THOST_FTDC_FCC_PersonDeliv") = "7";
     consts.attr("THOST_FTDC_FCC_Notverifycapital") = "8";
+    consts.attr("THOST_FTDC_FCC_LocalLackDeposit") = "9";
+    consts.attr("THOST_FTDC_FCC_LocalViolationNocheck") = "a";
+    consts.attr("THOST_FTDC_FCC_LocalViolation") = "b";
     consts.attr("THOST_FTDC_ORDT_Normal") = "0";
     consts.attr("THOST_FTDC_ORDT_DeriveFromQuote") = "1";
     consts.attr("THOST_FTDC_ORDT_DeriveFromCombination") = "2";
@@ -289,6 +293,7 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_IS_AuctionBalance") = "4";
     consts.attr("THOST_FTDC_IS_AuctionMatch") = "5";
     consts.attr("THOST_FTDC_IS_Closed") = "6";
+    consts.attr("THOST_FTDC_IS_TransactionProcessing") = "7";
     consts.attr("THOST_FTDC_IER_Automatic") = "1";
     consts.attr("THOST_FTDC_IER_Manual") = "2";
     consts.attr("THOST_FTDC_IER_Fuse") = "3";
@@ -370,6 +375,8 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_TPID_MinPwdLen") = "O";
     consts.attr("THOST_FTDC_TPID_LoginFailMaxNumForIP") = "U";
     consts.attr("THOST_FTDC_TPID_PasswordPeriod") = "V";
+    consts.attr("THOST_FTDC_TPID_PwdHistoryCmp") = "X";
+    consts.attr("THOST_FTDC_TPID_TranferChkProperty") = "D";
     consts.attr("THOST_FTDC_FI_SettlementFund") = "F";
     consts.attr("THOST_FTDC_FI_Trade") = "T";
     consts.attr("THOST_FTDC_FI_InvestorPosition") = "P";
@@ -536,6 +543,7 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_UET_SubmitSysInfo") = "7";
     consts.attr("THOST_FTDC_UET_Transfer") = "8";
     consts.attr("THOST_FTDC_UET_Other") = "9";
+    consts.attr("THOST_FTDC_UET_UpdateTradingAccountPassword") = "a";
     consts.attr("THOST_FTDC_ICS_Close") = "0";
     consts.attr("THOST_FTDC_ICS_CloseToday") = "1";
     consts.attr("THOST_FTDC_SM_Non") = "0";
@@ -1311,5 +1319,17 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_PCF_None") = "0";
     consts.attr("THOST_FTDC_PCF_OnlyFrozen") = "1";
     consts.attr("THOST_FTDC_PCF_PositionChange") = "2";
+    consts.attr("THOST_FTDC_PRS_Init") = "0";
+    consts.attr("THOST_FTDC_PRS_Sync") = "1";
+    consts.attr("THOST_FTDC_PRS_UserUpd") = "2";
+    consts.attr("THOST_FTDC_PRS_SuperUserUpd") = "3";
+    consts.attr("THOST_FTDC_PRS_SecUpd") = "4";
+    consts.attr("THOST_FTDC_ASM_Trade") = "0";
+    consts.attr("THOST_FTDC_ASM_MarketData") = "1";
+    consts.attr("THOST_FTDC_ASM_Other") = "2";
+    consts.attr("THOST_FTDC_ADV_V4") = "0";
+    consts.attr("THOST_FTDC_ADV_V6") = "1";
+    consts.attr("THOST_FTDC_TGQS_QryIdle") = "1";
+    consts.attr("THOST_FTDC_TGQS_QryBusy") = "2";
     
 }

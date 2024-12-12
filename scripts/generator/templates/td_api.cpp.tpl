@@ -49,7 +49,7 @@ int TdApi::{{ req_method['name'] }}(
 ) {
     {{req_method['parameters'][0]['type'].strip(' *')}} request{};
     {%- for p in structs[req_method['parameters'][0]['type'].strip(' *')] %}
-    set_{{ p['type'] }}_field(request.{{ p['name'] }}, data, "{{ p['name'] }}"{% if p['type']=='str' %}, sizeof(request.{{ p['name'] }}){% endif %});
+    set_field(request.{{ p['name'] }}, data, "{{ p['name'] }}"{% if p['type']=='str' %}, sizeof(request.{{ p['name'] }}){% endif %});
     {%- endfor %}
     return api_->{{ req_method['name'] }}(&request, request_id);
 }

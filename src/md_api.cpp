@@ -48,25 +48,25 @@ int MdApi::UnSubscribeMarketData(const std::vector<std::string> &instrument_ids)
 
 int MdApi::ReqUserLogin(const nb::dict &data, int request_id) {
     CThostFtdcReqUserLoginField request{};
-    set_str_field(request.TradingDay, data, "TradingDay", sizeof(request.TradingDay));
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
-    set_str_field(request.Password, data, "Password", sizeof(request.Password));
-    set_str_field(request.UserProductInfo, data, "UserProductInfo", sizeof(request.UserProductInfo));
-    set_str_field(request.InterfaceProductInfo, data, "InterfaceProductInfo", sizeof(request.InterfaceProductInfo));
-    set_str_field(request.ProtocolInfo, data, "ProtocolInfo", sizeof(request.ProtocolInfo));
-    set_str_field(request.MacAddress, data, "MacAddress", sizeof(request.MacAddress));
-    set_str_field(request.OneTimePassword, data, "OneTimePassword", sizeof(request.OneTimePassword));
-    set_str_field(request.LoginRemark, data, "LoginRemark", sizeof(request.LoginRemark));
-    set_int_field(request.ClientIPPort, data, "ClientIPPort");
-    set_str_field(request.ClientIPAddress, data, "ClientIPAddress", sizeof(request.ClientIPAddress));
+    set_field(request.TradingDay, data, "TradingDay", sizeof(request.TradingDay));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_field(request.Password, data, "Password", sizeof(request.Password));
+    set_field(request.UserProductInfo, data, "UserProductInfo", sizeof(request.UserProductInfo));
+    set_field(request.InterfaceProductInfo, data, "InterfaceProductInfo", sizeof(request.InterfaceProductInfo));
+    set_field(request.ProtocolInfo, data, "ProtocolInfo", sizeof(request.ProtocolInfo));
+    set_field(request.MacAddress, data, "MacAddress", sizeof(request.MacAddress));
+    set_field(request.OneTimePassword, data, "OneTimePassword", sizeof(request.OneTimePassword));
+    set_field(request.LoginRemark, data, "LoginRemark", sizeof(request.LoginRemark));
+    set_field(request.ClientIPPort, data, "ClientIPPort");
+    set_field(request.ClientIPAddress, data, "ClientIPAddress", sizeof(request.ClientIPAddress));
     return api_->ReqUserLogin(&request, request_id);
 }
 
 int MdApi::ReqUserLogout(const nb::dict &data, int request_id) {
     CThostFtdcUserLogoutField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.UserID, data, "UserID", sizeof(request.UserID));
     return api_->ReqUserLogout(&request, request_id);
 }
 
@@ -123,6 +123,8 @@ void MdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
             py_data["INETime"] = gbk_to_utf8(rsp_data.INETime);
             py_data["SysVersion"] = gbk_to_utf8(rsp_data.SysVersion);
             py_data["GFEXTime"] = gbk_to_utf8(rsp_data.GFEXTime);
+            py_data["LoginDRIdentityID"] = rsp_data.LoginDRIdentityID;
+            py_data["UserDRIdentityID"] = rsp_data.UserDRIdentityID;
         }
         nb::dict py_error;
         if (has_error) {

@@ -44,178 +44,182 @@ void TdApi::SubscribePublicTopic(int resume_type) {
 
 int TdApi::ReqAuthenticate(const nb::dict &data, int request_id) {
     CThostFtdcReqAuthenticateField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
-    set_str_field(request.UserProductInfo, data, "UserProductInfo", sizeof(request.UserProductInfo));
-    set_str_field(request.AuthCode, data, "AuthCode", sizeof(request.AuthCode));
-    set_str_field(request.AppID, data, "AppID", sizeof(request.AppID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_field(request.UserProductInfo, data, "UserProductInfo", sizeof(request.UserProductInfo));
+    set_field(request.AuthCode, data, "AuthCode", sizeof(request.AuthCode));
+    set_field(request.AppID, data, "AppID", sizeof(request.AppID));
     return api_->ReqAuthenticate(&request, request_id);
 }
 
 int TdApi::ReqUserLogin(const nb::dict &data, int request_id) {
     CThostFtdcReqUserLoginField request{};
-    set_str_field(request.TradingDay, data, "TradingDay", sizeof(request.TradingDay));
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
-    set_str_field(request.Password, data, "Password", sizeof(request.Password));
-    set_str_field(request.UserProductInfo, data, "UserProductInfo", sizeof(request.UserProductInfo));
-    set_str_field(request.InterfaceProductInfo, data, "InterfaceProductInfo", sizeof(request.InterfaceProductInfo));
-    set_str_field(request.ProtocolInfo, data, "ProtocolInfo", sizeof(request.ProtocolInfo));
-    set_str_field(request.MacAddress, data, "MacAddress", sizeof(request.MacAddress));
-    set_str_field(request.OneTimePassword, data, "OneTimePassword", sizeof(request.OneTimePassword));
-    set_str_field(request.LoginRemark, data, "LoginRemark", sizeof(request.LoginRemark));
-    set_int_field(request.ClientIPPort, data, "ClientIPPort");
-    set_str_field(request.ClientIPAddress, data, "ClientIPAddress", sizeof(request.ClientIPAddress));
+    set_field(request.TradingDay, data, "TradingDay", sizeof(request.TradingDay));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_field(request.Password, data, "Password", sizeof(request.Password));
+    set_field(request.UserProductInfo, data, "UserProductInfo", sizeof(request.UserProductInfo));
+    set_field(request.InterfaceProductInfo, data, "InterfaceProductInfo", sizeof(request.InterfaceProductInfo));
+    set_field(request.ProtocolInfo, data, "ProtocolInfo", sizeof(request.ProtocolInfo));
+    set_field(request.MacAddress, data, "MacAddress", sizeof(request.MacAddress));
+    set_field(request.OneTimePassword, data, "OneTimePassword", sizeof(request.OneTimePassword));
+    set_field(request.LoginRemark, data, "LoginRemark", sizeof(request.LoginRemark));
+    set_field(request.ClientIPPort, data, "ClientIPPort");
+    set_field(request.ClientIPAddress, data, "ClientIPAddress", sizeof(request.ClientIPAddress));
     return api_->ReqUserLogin(&request, request_id);
 }
 
 int TdApi::ReqUserLogout(const nb::dict &data, int request_id) {
     CThostFtdcUserLogoutField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.UserID, data, "UserID", sizeof(request.UserID));
     return api_->ReqUserLogout(&request, request_id);
 }
 
 int TdApi::ReqUserPasswordUpdate(const nb::dict &data, int request_id) {
     CThostFtdcUserPasswordUpdateField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
-    set_str_field(request.OldPassword, data, "OldPassword", sizeof(request.OldPassword));
-    set_str_field(request.NewPassword, data, "NewPassword", sizeof(request.NewPassword));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_field(request.OldPassword, data, "OldPassword", sizeof(request.OldPassword));
+    set_field(request.NewPassword, data, "NewPassword", sizeof(request.NewPassword));
     return api_->ReqUserPasswordUpdate(&request, request_id);
 }
 
 int TdApi::ReqOrderInsert(const nb::dict &data, int request_id) {
     CThostFtdcInputOrderField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
-    set_str_field(request.OrderRef, data, "OrderRef", sizeof(request.OrderRef));
-    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
-    set_char_field(request.OrderPriceType, data, "OrderPriceType");
-    set_char_field(request.Direction, data, "Direction");
-    set_str_field(request.CombOffsetFlag, data, "CombOffsetFlag", sizeof(request.CombOffsetFlag));
-    set_str_field(request.CombHedgeFlag, data, "CombHedgeFlag", sizeof(request.CombHedgeFlag));
-    set_double_field(request.LimitPrice, data, "LimitPrice");
-    set_int_field(request.VolumeTotalOriginal, data, "VolumeTotalOriginal");
-    set_char_field(request.TimeCondition, data, "TimeCondition");
-    set_str_field(request.GTDDate, data, "GTDDate", sizeof(request.GTDDate));
-    set_char_field(request.VolumeCondition, data, "VolumeCondition");
-    set_int_field(request.MinVolume, data, "MinVolume");
-    set_char_field(request.ContingentCondition, data, "ContingentCondition");
-    set_double_field(request.StopPrice, data, "StopPrice");
-    set_char_field(request.ForceCloseReason, data, "ForceCloseReason");
-    set_int_field(request.IsAutoSuspend, data, "IsAutoSuspend");
-    set_str_field(request.BusinessUnit, data, "BusinessUnit", sizeof(request.BusinessUnit));
-    set_int_field(request.RequestID, data, "RequestID");
-    set_int_field(request.UserForceClose, data, "UserForceClose");
-    set_int_field(request.IsSwapOrder, data, "IsSwapOrder");
-    set_str_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
-    set_str_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
-    set_str_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
-    set_str_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
-    set_str_field(request.ClientID, data, "ClientID", sizeof(request.ClientID));
-    set_str_field(request.MacAddress, data, "MacAddress", sizeof(request.MacAddress));
-    set_str_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
-    set_str_field(request.IPAddress, data, "IPAddress", sizeof(request.IPAddress));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_field(request.OrderRef, data, "OrderRef", sizeof(request.OrderRef));
+    set_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_field(request.OrderPriceType, data, "OrderPriceType");
+    set_field(request.Direction, data, "Direction");
+    set_field(request.CombOffsetFlag, data, "CombOffsetFlag", sizeof(request.CombOffsetFlag));
+    set_field(request.CombHedgeFlag, data, "CombHedgeFlag", sizeof(request.CombHedgeFlag));
+    set_field(request.LimitPrice, data, "LimitPrice");
+    set_field(request.VolumeTotalOriginal, data, "VolumeTotalOriginal");
+    set_field(request.TimeCondition, data, "TimeCondition");
+    set_field(request.GTDDate, data, "GTDDate", sizeof(request.GTDDate));
+    set_field(request.VolumeCondition, data, "VolumeCondition");
+    set_field(request.MinVolume, data, "MinVolume");
+    set_field(request.ContingentCondition, data, "ContingentCondition");
+    set_field(request.StopPrice, data, "StopPrice");
+    set_field(request.ForceCloseReason, data, "ForceCloseReason");
+    set_field(request.IsAutoSuspend, data, "IsAutoSuspend");
+    set_field(request.BusinessUnit, data, "BusinessUnit", sizeof(request.BusinessUnit));
+    set_field(request.RequestID, data, "RequestID");
+    set_field(request.UserForceClose, data, "UserForceClose");
+    set_field(request.IsSwapOrder, data, "IsSwapOrder");
+    set_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
+    set_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
+    set_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
+    set_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
+    set_field(request.ClientID, data, "ClientID", sizeof(request.ClientID));
+    set_field(request.MacAddress, data, "MacAddress", sizeof(request.MacAddress));
+    set_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
+    set_field(request.IPAddress, data, "IPAddress", sizeof(request.IPAddress));
+    set_field(request.OrderMemo, data, "OrderMemo", sizeof(request.OrderMemo));
+    set_field(request.SessionReqSeq, data, "SessionReqSeq");
     return api_->ReqOrderInsert(&request, request_id);
 }
 
 int TdApi::ReqOrderAction(const nb::dict &data, int request_id) {
     CThostFtdcInputOrderActionField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
-    set_int_field(request.OrderActionRef, data, "OrderActionRef");
-    set_str_field(request.OrderRef, data, "OrderRef", sizeof(request.OrderRef));
-    set_int_field(request.RequestID, data, "RequestID");
-    set_int_field(request.FrontID, data, "FrontID");
-    set_int_field(request.SessionID, data, "SessionID");
-    set_str_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
-    set_str_field(request.OrderSysID, data, "OrderSysID", sizeof(request.OrderSysID));
-    set_char_field(request.ActionFlag, data, "ActionFlag");
-    set_double_field(request.LimitPrice, data, "LimitPrice");
-    set_int_field(request.VolumeChange, data, "VolumeChange");
-    set_str_field(request.UserID, data, "UserID", sizeof(request.UserID));
-    set_str_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
-    set_str_field(request.MacAddress, data, "MacAddress", sizeof(request.MacAddress));
-    set_str_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
-    set_str_field(request.IPAddress, data, "IPAddress", sizeof(request.IPAddress));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_field(request.OrderActionRef, data, "OrderActionRef");
+    set_field(request.OrderRef, data, "OrderRef", sizeof(request.OrderRef));
+    set_field(request.RequestID, data, "RequestID");
+    set_field(request.FrontID, data, "FrontID");
+    set_field(request.SessionID, data, "SessionID");
+    set_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
+    set_field(request.OrderSysID, data, "OrderSysID", sizeof(request.OrderSysID));
+    set_field(request.ActionFlag, data, "ActionFlag");
+    set_field(request.LimitPrice, data, "LimitPrice");
+    set_field(request.VolumeChange, data, "VolumeChange");
+    set_field(request.UserID, data, "UserID", sizeof(request.UserID));
+    set_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
+    set_field(request.MacAddress, data, "MacAddress", sizeof(request.MacAddress));
+    set_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
+    set_field(request.IPAddress, data, "IPAddress", sizeof(request.IPAddress));
+    set_field(request.OrderMemo, data, "OrderMemo", sizeof(request.OrderMemo));
+    set_field(request.SessionReqSeq, data, "SessionReqSeq");
     return api_->ReqOrderAction(&request, request_id);
 }
 
 int TdApi::ReqSettlementInfoConfirm(const nb::dict &data, int request_id) {
     CThostFtdcSettlementInfoConfirmField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
-    set_str_field(request.ConfirmDate, data, "ConfirmDate", sizeof(request.ConfirmDate));
-    set_str_field(request.ConfirmTime, data, "ConfirmTime", sizeof(request.ConfirmTime));
-    set_int_field(request.SettlementID, data, "SettlementID");
-    set_str_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
-    set_str_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_field(request.ConfirmDate, data, "ConfirmDate", sizeof(request.ConfirmDate));
+    set_field(request.ConfirmTime, data, "ConfirmTime", sizeof(request.ConfirmTime));
+    set_field(request.SettlementID, data, "SettlementID");
+    set_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
+    set_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
     return api_->ReqSettlementInfoConfirm(&request, request_id);
 }
 
 int TdApi::ReqQryOrder(const nb::dict &data, int request_id) {
     CThostFtdcQryOrderField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
-    set_str_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
-    set_str_field(request.OrderSysID, data, "OrderSysID", sizeof(request.OrderSysID));
-    set_str_field(request.InsertTimeStart, data, "InsertTimeStart", sizeof(request.InsertTimeStart));
-    set_str_field(request.InsertTimeEnd, data, "InsertTimeEnd", sizeof(request.InsertTimeEnd));
-    set_str_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
-    set_str_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
+    set_field(request.OrderSysID, data, "OrderSysID", sizeof(request.OrderSysID));
+    set_field(request.InsertTimeStart, data, "InsertTimeStart", sizeof(request.InsertTimeStart));
+    set_field(request.InsertTimeEnd, data, "InsertTimeEnd", sizeof(request.InsertTimeEnd));
+    set_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
+    set_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
     return api_->ReqQryOrder(&request, request_id);
 }
 
 int TdApi::ReqQryTrade(const nb::dict &data, int request_id) {
     CThostFtdcQryTradeField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
-    set_str_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
-    set_str_field(request.TradeID, data, "TradeID", sizeof(request.TradeID));
-    set_str_field(request.TradeTimeStart, data, "TradeTimeStart", sizeof(request.TradeTimeStart));
-    set_str_field(request.TradeTimeEnd, data, "TradeTimeEnd", sizeof(request.TradeTimeEnd));
-    set_str_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
-    set_str_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
+    set_field(request.TradeID, data, "TradeID", sizeof(request.TradeID));
+    set_field(request.TradeTimeStart, data, "TradeTimeStart", sizeof(request.TradeTimeStart));
+    set_field(request.TradeTimeEnd, data, "TradeTimeEnd", sizeof(request.TradeTimeEnd));
+    set_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
+    set_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
     return api_->ReqQryTrade(&request, request_id);
 }
 
 int TdApi::ReqQryInvestorPosition(const nb::dict &data, int request_id) {
     CThostFtdcQryInvestorPositionField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
-    set_str_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
-    set_str_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
-    set_str_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
+    set_field(request.InvestUnitID, data, "InvestUnitID", sizeof(request.InvestUnitID));
+    set_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
     return api_->ReqQryInvestorPosition(&request, request_id);
 }
 
 int TdApi::ReqQryTradingAccount(const nb::dict &data, int request_id) {
     CThostFtdcQryTradingAccountField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
-    set_str_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
-    set_char_field(request.BizType, data, "BizType");
-    set_str_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
+    set_field(request.BizType, data, "BizType");
+    set_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
     return api_->ReqQryTradingAccount(&request, request_id);
 }
 
 int TdApi::ReqQryInstrument(const nb::dict &data, int request_id) {
     CThostFtdcQryInstrumentField request{};
-    set_str_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
-    set_str_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
-    set_str_field(request.ExchangeInstID, data, "ExchangeInstID", sizeof(request.ExchangeInstID));
-    set_str_field(request.ProductID, data, "ProductID", sizeof(request.ProductID));
+    set_field(request.ExchangeID, data, "ExchangeID", sizeof(request.ExchangeID));
+    set_field(request.InstrumentID, data, "InstrumentID", sizeof(request.InstrumentID));
+    set_field(request.ExchangeInstID, data, "ExchangeInstID", sizeof(request.ExchangeInstID));
+    set_field(request.ProductID, data, "ProductID", sizeof(request.ProductID));
     return api_->ReqQryInstrument(&request, request_id);
 }
 
 int TdApi::ReqQrySettlementInfo(const nb::dict &data, int request_id) {
     CThostFtdcQrySettlementInfoField request{};
-    set_str_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
-    set_str_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
-    set_str_field(request.TradingDay, data, "TradingDay", sizeof(request.TradingDay));
-    set_str_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
-    set_str_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
+    set_field(request.BrokerID, data, "BrokerID", sizeof(request.BrokerID));
+    set_field(request.InvestorID, data, "InvestorID", sizeof(request.InvestorID));
+    set_field(request.TradingDay, data, "TradingDay", sizeof(request.TradingDay));
+    set_field(request.AccountID, data, "AccountID", sizeof(request.AccountID));
+    set_field(request.CurrencyID, data, "CurrencyID", sizeof(request.CurrencyID));
     return api_->ReqQrySettlementInfo(&request, request_id);
 }
 
@@ -304,6 +308,8 @@ void TdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
             py_data["INETime"] = gbk_to_utf8(rsp_data.INETime);
             py_data["SysVersion"] = gbk_to_utf8(rsp_data.SysVersion);
             py_data["GFEXTime"] = gbk_to_utf8(rsp_data.GFEXTime);
+            py_data["LoginDRIdentityID"] = rsp_data.LoginDRIdentityID;
+            py_data["UserDRIdentityID"] = rsp_data.UserDRIdentityID;
         }
         nb::dict py_error;
         if (has_error) {
@@ -390,6 +396,8 @@ void TdApi::OnRspOrderInsert(CThostFtdcInputOrderField *data, CThostFtdcRspInfoF
             py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
             py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
+            py_data["OrderMemo"] = gbk_to_utf8(rsp_data.OrderMemo);
+            py_data["SessionReqSeq"] = rsp_data.SessionReqSeq;
         }
         nb::dict py_error;
         if (has_error) {
@@ -434,6 +442,8 @@ void TdApi::OnRspOrderAction(CThostFtdcInputOrderActionField *data, CThostFtdcRs
             py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
             py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
+            py_data["OrderMemo"] = gbk_to_utf8(rsp_data.OrderMemo);
+            py_data["SessionReqSeq"] = rsp_data.SessionReqSeq;
         }
         nb::dict py_error;
         if (has_error) {
@@ -558,6 +568,8 @@ void TdApi::OnRspQryOrder(CThostFtdcOrderField *data, CThostFtdcRspInfoField *er
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
             py_data["ExchangeInstID"] = gbk_to_utf8(rsp_data.ExchangeInstID);
             py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
+            py_data["OrderMemo"] = gbk_to_utf8(rsp_data.OrderMemo);
+            py_data["SessionReqSeq"] = rsp_data.SessionReqSeq;
         }
         nb::dict py_error;
         if (has_error) {
@@ -963,6 +975,8 @@ void TdApi::OnRtnOrder(CThostFtdcOrderField *data) {
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
             py_data["ExchangeInstID"] = gbk_to_utf8(rsp_data.ExchangeInstID);
             py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
+            py_data["OrderMemo"] = gbk_to_utf8(rsp_data.OrderMemo);
+            py_data["SessionReqSeq"] = rsp_data.SessionReqSeq;
         }
         PyOnRtnOrder(py_data);
     });
@@ -1062,6 +1076,8 @@ void TdApi::OnErrRtnOrderInsert(CThostFtdcInputOrderField *data, CThostFtdcRspIn
             py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
             py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
+            py_data["OrderMemo"] = gbk_to_utf8(rsp_data.OrderMemo);
+            py_data["SessionReqSeq"] = rsp_data.SessionReqSeq;
         }
         nb::dict py_error;
         if (has_error) {
@@ -1118,6 +1134,8 @@ void TdApi::OnErrRtnOrderAction(CThostFtdcOrderActionField *data, CThostFtdcRspI
             py_data["MacAddress"] = gbk_to_utf8(rsp_data.MacAddress);
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data.InstrumentID);
             py_data["IPAddress"] = gbk_to_utf8(rsp_data.IPAddress);
+            py_data["OrderMemo"] = gbk_to_utf8(rsp_data.OrderMemo);
+            py_data["SessionReqSeq"] = rsp_data.SessionReqSeq;
         }
         nb::dict py_error;
         if (has_error) {

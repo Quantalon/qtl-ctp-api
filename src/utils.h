@@ -2,35 +2,23 @@
 #define UTILS_H
 
 #include <string>
-#include <codecvt>
 #include <locale>
 #include <limits>
-#include <vector>
 #include <cstring>
 #include <nanobind/nanobind.h>
-#include <nanobind/stl/string.h>
+#include "iconv.hpp"
 
 
 namespace nb = nanobind;
 
 
-inline std::string gbk_to_utf8(const std::string& gbk) {
-    static const std::locale loc("zh_CN.GBK");
+static const iconvpp::converter converter("UTF-8", "GBK");
 
-    std::vector<wchar_t> wstr(gbk.size());
-    wchar_t* wstr_end = nullptr;
-    const char* gb_end = nullptr;
-    mbstate_t state{};
-    int res = std::use_facet<std::codecvt<wchar_t, char, mbstate_t>>(loc).in(
-            state, gbk.data(), gbk.data() + gbk.size(), gb_end, wstr.data(),
-            wstr.data() + wstr.size(), wstr_end);
-
-    if (res == std::codecvt_base::ok) {
-        std::wstring_convert<std::codecvt_utf8<wchar_t>> cutf8;
-        return cutf8.to_bytes(std::wstring(wstr.data(), wstr_end));
-    }
-
-    return "";
+inline std::string gbk_to_utf8(const std::string& in) {
+    // iconvpp::converter converter("UTF-8", "GBK");
+    std::string result;
+    converter.convert(in, result);
+    return result;
 }
 
 template <class NumberType>
@@ -49,27 +37,19 @@ inline bool contains(const nb::dict &d, const std::string &k) {
     return false;
 }
 
-inline void set_str_field(char *field, const nb::dict &input, const char *field_name, size_t size) {
+// 通用模板
+template<typename T>
+inline void set_field(T &field, const nb::dict &input, const char *field_name) {
+    if (contains(input, field_name)) {
+        field = nb::cast<T>(input[field_name]);
+    }
+}
+
+// 字符串的特化版本
+template<>
+inline void set_field<char*>(char* field, const nb::dict &input, const char *field_name, size_t size) {
     if (contains(input, field_name)) {
         strncpy(field, nb::cast<std::string>(input[field_name]).c_str(), size);
-    }
-}
-
-inline void set_char_field(char &field, const nb::dict &input, const char *field_name) {
-    if (contains(input, field_name)) {
-        field = nb::cast<char>(input[field_name]);
-    }
-}
-
-inline void set_int_field(int &field, const nb::dict &input, const char *field_name) {
-    if (contains(input, field_name)) {
-        field = nb::cast<int>(input[field_name]);
-    }
-}
-
-inline void set_double_field(double &field, const nb::dict &input, const char *field_name) {
-    if (contains(input, field_name)) {
-        field = nb::cast<double>(input[field_name]);
     }
 }
 
