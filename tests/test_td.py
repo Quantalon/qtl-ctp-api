@@ -9,7 +9,7 @@ class PyTdApi(TdApi):
         super().__init__()
         self.settings = settings
         self.request_id = 0
-        self.settlement_info_content = ''
+        self.settlement_info_content = b''
         self.CreateApi(self.settings['flow_path'])
 
     def next_request_id(self):
