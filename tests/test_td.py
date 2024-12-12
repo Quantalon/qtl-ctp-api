@@ -123,7 +123,7 @@ class PyTdApi(TdApi):
 
         if is_last:
             print('Settlement Info:')
-            print(self.settlement_info_content.decode('utf-8'))
+            print(self.settlement_info_content.decode(encoding='gbk'))
 
             sleep(2)
 
