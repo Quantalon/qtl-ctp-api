@@ -9,6 +9,7 @@ class PyTdApi(TdApi):
         super().__init__()
         self.settings = settings
         self.request_id = 0
+        self.settlement_info_content = ''
         self.CreateApi(self.settings['flow_path'])
 
     def next_request_id(self):
@@ -52,7 +53,8 @@ class PyTdApi(TdApi):
         print(f"PyTdApi.OnRspAuthenticate")
         print(f"error ErrorID: {error['ErrorID']}")
         print(f"error ErrorMsg: {error['ErrorMsg']}")
-        self.login()
+        if is_last:
+            self.login()
 
     def OnRspUserLogin(self, data, error, request_id, is_last):
         print("PyTdApi.OnRspUserLogin")
@@ -68,12 +70,13 @@ class PyTdApi(TdApi):
 
         print(f"Trading Day: {self.GetTradingDay()}")
 
-        print('PyTdApi.ReqSettlementInfoConfirm')
-        request = {}
-        request['BrokerID'] = self.settings['broker_id']
-        request['InvestorID'] = self.settings['user_id']
-        self.ReqSettlementInfoConfirm(request, self.next_request_id())
-
+        if is_last:
+            sleep(1)
+            print('PyTdApi.ReqSettlementInfoConfirm')
+            request = {}
+            request['BrokerID'] = self.settings['broker_id']
+            request['InvestorID'] = self.settings['user_id']
+            self.ReqSettlementInfoConfirm(request, self.next_request_id())
 
     def OnRspQryTradingAccount(self, data, error, request_id, is_last):
         print('PyTdApi.OnRspQryTradingAccount')
@@ -98,39 +101,45 @@ class PyTdApi(TdApi):
         print(f"error ErrorID: {error['ErrorID']}")
         print(f"error ErrorMsg: {error['ErrorMsg']}")
 
-        sleep(2)
+        if is_last:
+            sleep(2)
 
-        print('PyTdApi.ReqQrySettlementInfo')
-        request = {}
-        request['BrokerID'] = self.settings['broker_id']
-        request['InvestorID'] = self.settings['user_id']
-        self.ReqQrySettlementInfo(request, self.next_request_id())
+            print('PyTdApi.ReqQrySettlementInfo')
+            request = {}
+            request['BrokerID'] = self.settings['broker_id']
+            request['InvestorID'] = self.settings['user_id']
+            self.settlement_info_content = ''
+            self.ReqQrySettlementInfo(request, self.next_request_id())
 
     def OnRspQrySettlementInfo(self, data, error, request_id, is_last):
         print('PyTdApi.OnRspQrySettlementInfo')
-        print(f'data: {data}')
+        # print(f'data: {data}')
         if error:
             print(f"error ErrorID: {error['ErrorID']}")
             print(f"error ErrorMsg: {error['ErrorMsg']}")
 
-        print('Content:')
-        print(data['Content'])
+        print('Get Part Content...')
+        self.settlement_info_content += data['Content']
 
-        sleep(2)
+        if is_last:
+            print('Settlement Info:')
+            print(self.settlement_info_content.decode('utf-8'))
 
-        print('PyTdApi.ReqQryTradingAccount')
-        request = {}
-        request['BrokerID'] = self.settings['broker_id']
-        request['InvestorID'] = self.settings['user_id']
-        self.ReqQryTradingAccount(request, self.next_request_id())
+            sleep(2)
 
-        sleep(2)
+            print('PyTdApi.ReqQryTradingAccount')
+            request = {}
+            request['BrokerID'] = self.settings['broker_id']
+            request['InvestorID'] = self.settings['user_id']
+            self.ReqQryTradingAccount(request, self.next_request_id())
 
-        print('PyTdApi.ReqQryInvestorPosition')
-        request = {}
-        request['BrokerID'] = self.settings['broker_id']
-        request['InvestorID'] = self.settings['user_id']
-        self.ReqQryInvestorPosition(request, self.next_request_id())
+            sleep(2)
+
+            print('PyTdApi.ReqQryInvestorPosition')
+            request = {}
+            request['BrokerID'] = self.settings['broker_id']
+            request['InvestorID'] = self.settings['user_id']
+            self.ReqQryInvestorPosition(request, self.next_request_id())
 
 
 def test():
