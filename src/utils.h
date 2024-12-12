@@ -12,17 +12,16 @@
 namespace nb = nanobind;
 
 
-static const iconvpp::converter converter("UTF-8", "GBK");
+thread_local static const iconvpp::converter converter("UTF-8", "GBK");
 
 inline std::string gbk_to_utf8(const std::string& in) {
-    // iconvpp::converter converter("UTF-8", "GBK");
     std::string result;
     converter.convert(in, result);
     return result;
 }
 
 template <class NumberType>
-inline NumberType adjust_number(NumberType number) {
+NumberType adjust_number(NumberType number) {
     NumberType ret = number;
     if (number >= std::numeric_limits<NumberType>::max() - NumberType(1e-6)) ret = NumberType(0);
     return ret;
@@ -39,7 +38,7 @@ inline bool contains(const nb::dict &d, const std::string &k) {
 
 // 通用模板
 template<typename T>
-inline void set_field(T &field, const nb::dict &input, const char *field_name) {
+void set_field(T &field, const nb::dict &input, const char *field_name) {
     if (contains(input, field_name)) {
         field = nb::cast<T>(input[field_name]);
     }
@@ -47,7 +46,7 @@ inline void set_field(T &field, const nb::dict &input, const char *field_name) {
 
 // 字符串的特化版本，添加size参数
 template<typename T>
-inline void set_field(T &field, const nb::dict &input, const char *field_name, size_t size) {
+void set_field(T &field, const nb::dict &input, const char *field_name, size_t size) {
     if (contains(input, field_name)) {
         std::string str = nb::cast<std::string>(input[field_name]);
         strncpy(field, str.c_str(), size);
