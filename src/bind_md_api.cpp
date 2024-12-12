@@ -8,7 +8,7 @@ void bind_md_api(nb::module_ &m) {
             .def("Release", &MdApi::Release)
             .def("Init", &MdApi::Init)
             .def("Join", &MdApi::Join)
-            .def_static("GetApiVersion", &MdApi::GetApiVersion)
+            .def_static("GetApiVersion", &MdApi::GetApiVersion, nb::str())
             .def("GetTradingDay", &MdApi::GetTradingDay)
             .def("RegisterFront", &MdApi::RegisterFront)
             .def("SubscribeMarketData", &MdApi::SubscribeMarketData)
