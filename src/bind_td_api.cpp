@@ -1,0 +1,53 @@
+#include "bind_td_api.h"
+
+void bind_td_api(nb::module_ &m) {
+    nb::class_<TdApi, PyTdApi> td_api(m, "TdApi");
+    td_api
+            .def(nb::init<>())
+            .def("CreateApi", &TdApi::CreateApi)
+            .def("Release", &TdApi::Release)
+            .def("Init", &TdApi::Init)
+            .def("Join", &TdApi::Join)
+            .def_static("GetApiVersion", &TdApi::GetApiVersion)
+            .def("GetTradingDay", &TdApi::GetTradingDay)
+            .def("RegisterFront", &TdApi::RegisterFront)
+            .def("SubscribePrivateTopic", &TdApi::SubscribePrivateTopic)
+            .def("SubscribePublicTopic", &TdApi::SubscribePublicTopic)
+            // Req Methods
+            .def("ReqAuthenticate", &TdApi::ReqAuthenticate)
+            .def("ReqUserLogin", &TdApi::ReqUserLogin)
+            .def("ReqUserLogout", &TdApi::ReqUserLogout)
+            .def("ReqUserPasswordUpdate", &TdApi::ReqUserPasswordUpdate)
+            .def("ReqOrderInsert", &TdApi::ReqOrderInsert)
+            .def("ReqOrderAction", &TdApi::ReqOrderAction)
+            .def("ReqSettlementInfoConfirm", &TdApi::ReqSettlementInfoConfirm)
+            .def("ReqQryOrder", &TdApi::ReqQryOrder)
+            .def("ReqQryTrade", &TdApi::ReqQryTrade)
+            .def("ReqQryInvestorPosition", &TdApi::ReqQryInvestorPosition)
+            .def("ReqQryTradingAccount", &TdApi::ReqQryTradingAccount)
+            .def("ReqQryInstrument", &TdApi::ReqQryInstrument)
+            .def("ReqQrySettlementInfo", &TdApi::ReqQrySettlementInfo)
+            // On Methods
+            .def("OnFrontConnected", &TdApi::PyOnFrontConnected)
+            .def("OnFrontDisconnected", &TdApi::PyOnFrontDisconnected)
+            .def("OnHeartBeatWarning", &TdApi::PyOnHeartBeatWarning)
+            .def("OnRspAuthenticate", &TdApi::PyOnRspAuthenticate)
+            .def("OnRspUserLogin", &TdApi::PyOnRspUserLogin)
+            .def("OnRspUserLogout", &TdApi::PyOnRspUserLogout)
+            .def("OnRspOrderInsert", &TdApi::PyOnRspOrderInsert)
+            .def("OnRspOrderAction", &TdApi::PyOnRspOrderAction)
+            .def("OnRspSettlementInfoConfirm", &TdApi::PyOnRspSettlementInfoConfirm)
+            .def("OnRspQryOrder", &TdApi::PyOnRspQryOrder)
+            .def("OnRspQryTrade", &TdApi::PyOnRspQryTrade)
+            .def("OnRspQryInvestorPosition", &TdApi::PyOnRspQryInvestorPosition)
+            .def("OnRspQryTradingAccount", &TdApi::PyOnRspQryTradingAccount)
+            .def("OnRspQryInstrument", &TdApi::PyOnRspQryInstrument)
+            .def("OnRspQrySettlementInfo", &TdApi::PyOnRspQrySettlementInfo)
+            .def("OnRspError", &TdApi::PyOnRspError)
+            .def("OnRtnOrder", &TdApi::PyOnRtnOrder)
+            .def("OnRtnTrade", &TdApi::PyOnRtnTrade)
+            .def("OnErrRtnOrderInsert", &TdApi::PyOnErrRtnOrderInsert)
+            .def("OnErrRtnOrderAction", &TdApi::PyOnErrRtnOrderAction)
+            .def("OnRtnInstrumentStatus", &TdApi::PyOnRtnInstrumentStatus)
+            ;
+}

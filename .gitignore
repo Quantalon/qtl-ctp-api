@@ -1,0 +1,10 @@
+# IDE
+.idea/
+
+# Build
+cmake-build-*/
+_cmake_test_compile/
+build/
+_skbuild/
+*.egg-info/
+
