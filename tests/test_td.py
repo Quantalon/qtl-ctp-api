@@ -41,6 +41,10 @@ class PyTdApi(TdApi):
         self.request_id += 1
         self.ReqUserLogin(request, self.request_id)
 
+    def OnHeartBeatWarning(self, time_lapse):
+        print('PyTdApi.OnHeartBeatWarning')
+        print(f'Timelapse: {time_lapse}')
+
     def OnFrontConnected(self):
         print("PyTdApi.OnFrontConnected")
         self.auth()
@@ -140,6 +144,10 @@ class PyTdApi(TdApi):
             request['BrokerID'] = self.settings['broker_id']
             request['InvestorID'] = self.settings['user_id']
             self.ReqQryInvestorPosition(request, self.next_request_id())
+
+    def OnRtnTrade(self, data):
+        print('PyTdApi.OnRtnTrade')
+        print(f'data:\n{data}')
 
 
 def test():
