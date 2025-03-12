@@ -145,6 +145,10 @@ class PyTdApi(TdApi):
             request['InvestorID'] = self.settings['user_id']
             self.ReqQryInvestorPosition(request, self.next_request_id())
 
+    def OnRtnOrder(self, data):
+        print('PyTdApi.OnRtnOrder')
+        print(f'data: {data}')
+
     def OnRtnTrade(self, data):
         print('PyTdApi.OnRtnTrade')
         print(f'data:\n{data}')
