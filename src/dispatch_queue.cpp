@@ -17,10 +17,10 @@ DispatchQueue::~DispatchQueue()
     }
 }
 
-void DispatchQueue::dispatch(fp_t&& op)
+void DispatchQueue::dispatch(Task&& op)
 {
     std::unique_lock<std::mutex> lock(lock_);
-    q_.push(std::move(op));
+    task_queue_.push(std::move(op));
     lock.unlock();
     cv_.notify_one();
 }
@@ -30,13 +30,13 @@ void DispatchQueue::dispatch_thread_handler()
     std::unique_lock<std::mutex> lock(lock_);
     do {
         cv_.wait(lock, [this]{
-            return (!q_.empty() || quit_);
+            return (!task_queue_.empty() || quit_);
         });
 
-        if(!quit_ && !q_.empty())
+        while (!quit_ && !task_queue_.empty())
         {
-            auto op = std::move(q_.front());
-            q_.pop();
+            auto op = std::move(task_queue_.front());
+            task_queue_.pop();
             lock.unlock();
             op();
             lock.lock();

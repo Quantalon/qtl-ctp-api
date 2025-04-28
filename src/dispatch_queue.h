@@ -9,13 +9,13 @@
 
 
 class DispatchQueue {
-    typedef std::function<void(void)> fp_t;
+    using Task = std::function<void()>;
 
 public:
     explicit DispatchQueue();
     ~DispatchQueue();
 
-    void dispatch(fp_t&& op);
+    void dispatch(Task&& op);
 
     DispatchQueue(const DispatchQueue& rhs) = delete;
     DispatchQueue(DispatchQueue&& rhs) = delete;
@@ -25,7 +25,7 @@ public:
 private:
     std::mutex lock_;
     std::thread thread_;
-    std::queue<fp_t> q_;
+    std::queue<Task> task_queue_;
     std::condition_variable cv_;
     bool quit_ = false;
 

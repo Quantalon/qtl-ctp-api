@@ -12466,6 +12466,10 @@ struct CThostFtdcIpAddrParamField
 	TThostFtdcBoolType	IsLocalAddr;
 	///地址补充信息
 	TThostFtdcAddrRemarkType	Remark;
+	///站点
+	TThostFtdcSiteType	Site;
+	///网络运营商
+	TThostFtdcNetOperatorType	NetOperator;
 };
 
 ///服务地址参数查询
@@ -12502,6 +12506,10 @@ struct CThostFtdcTGIpAddrParamField
 	TThostFtdcBoolType	IsLocalAddr;
 	///地址补充信息
 	TThostFtdcAddrRemarkType	Remark;
+	///站点
+	TThostFtdcSiteType	Site;
+	///网络运营商
+	TThostFtdcNetOperatorType	NetOperator;
 };
 
 ///服务地址参数查询
@@ -12511,6 +12519,8 @@ struct CThostFtdcQryTGIpAddrParamField
 	TThostFtdcBrokerIDType	BrokerID;
 	///用户代码
 	TThostFtdcUserIDType	UserID;
+	///App代码
+	TThostFtdcAppIDType	AppID;
 };
 
 ///TGate会话查询状态
@@ -13141,6 +13151,220 @@ struct CThostFtdcQryInvestorInfoCommRecField
 	TThostFtdcInvestorIDType	InvestorID;
 	///商品代码
 	TThostFtdcInstrumentIDType	InstrumentID;
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+};
+
+///组合腿信息
+struct CThostFtdcCombLegField
+{
+	///组合合约代码
+	TThostFtdcInstrumentIDType	CombInstrumentID;
+	///单腿编号
+	TThostFtdcLegIDType	LegID;
+	///单腿合约代码
+	TThostFtdcInstrumentIDType	LegInstrumentID;
+	///买卖方向
+	TThostFtdcDirectionType	Direction;
+	///单腿乘数
+	TThostFtdcLegMultipleType	LegMultiple;
+	///派生层数
+	TThostFtdcImplyLevelType	ImplyLevel;
+};
+
+///组合腿信息查询
+struct CThostFtdcQryCombLegField
+{
+	///单腿合约代码
+	TThostFtdcInstrumentIDType	LegInstrumentID;
+};
+
+///输入的对冲设置
+struct CThostFtdcInputOffsetSettingField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///合约代码
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///标的期货合约代码
+	TThostFtdcInstrumentIDType	UnderlyingInstrID;
+	///产品代码
+	TThostFtdcProductIDType	ProductID;
+	///对冲类型
+	TThostFtdcOffsetTypeType	OffsetType;
+	///申请对冲的合约数量
+	TThostFtdcVolumeType	Volume;
+	///是否对冲
+	TThostFtdcBoolType	IsOffset;
+	///请求编号
+	TThostFtdcRequestIDType	RequestID;
+	///用户代码
+	TThostFtdcUserIDType	UserID;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///IP地址
+	TThostFtdcIPAddressType	IPAddress;
+	///Mac地址
+	TThostFtdcMacAddressType	MacAddress;
+};
+
+///对冲设置
+struct CThostFtdcOffsetSettingField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///合约代码
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///标的期货合约代码
+	TThostFtdcInstrumentIDType	UnderlyingInstrID;
+	///产品代码
+	TThostFtdcProductIDType	ProductID;
+	///对冲类型
+	TThostFtdcOffsetTypeType	OffsetType;
+	///申请对冲的合约数量
+	TThostFtdcVolumeType	Volume;
+	///是否对冲
+	TThostFtdcBoolType	IsOffset;
+	///请求编号
+	TThostFtdcRequestIDType	RequestID;
+	///用户代码
+	TThostFtdcUserIDType	UserID;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///IP地址
+	TThostFtdcIPAddressType	IPAddress;
+	///Mac地址
+	TThostFtdcMacAddressType	MacAddress;
+	///交易所合约代码
+	TThostFtdcExchangeInstIDType	ExchangeInstID;
+	///交易所期权系列号
+	TThostFtdcExchangeInstIDType	ExchangeSerialNo;
+	///交易所产品代码
+	TThostFtdcProductIDType	ExchangeProductID;
+	///会员代码
+	TThostFtdcParticipantIDType	ParticipantID;
+	///客户代码
+	TThostFtdcClientIDType	ClientID;
+	///交易所交易员代码
+	TThostFtdcTraderIDType	TraderID;
+	///安装编号
+	TThostFtdcInstallIDType	InstallID;
+	///对冲提交状态
+	TThostFtdcOrderSubmitStatusType	OrderSubmitStatus;
+	///交易日
+	TThostFtdcDateType	TradingDay;
+	///结算编号
+	TThostFtdcSettlementIDType	SettlementID;
+	///报单日期
+	TThostFtdcDateType	InsertDate;
+	///插入时间
+	TThostFtdcTimeType	InsertTime;
+	///撤销时间
+	TThostFtdcTimeType	CancelTime;
+	///对冲设置结果
+	TThostFtdcExecResultType	ExecResult;
+	///序号
+	TThostFtdcSequenceNoType	SequenceNo;
+	///前置编号
+	TThostFtdcFrontIDType	FrontID;
+	///会话编号
+	TThostFtdcSessionIDType	SessionID;
+	///状态信息
+	TThostFtdcErrorMsgType	StatusMsg;
+	///操作用户代码
+	TThostFtdcUserIDType	ActiveUserID;
+	///经纪公司报单编号
+	TThostFtdcSequenceNoType	BrokerOffsetSettingSeq;
+};
+
+///撤销对冲设置
+struct CThostFtdcCancelOffsetSettingField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///合约代码
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///标的期货合约代码
+	TThostFtdcInstrumentIDType	UnderlyingInstrID;
+	///产品代码
+	TThostFtdcProductIDType	ProductID;
+	///对冲类型
+	TThostFtdcOffsetTypeType	OffsetType;
+	///申请对冲的合约数量
+	TThostFtdcVolumeType	Volume;
+	///是否对冲
+	TThostFtdcBoolType	IsOffset;
+	///请求编号
+	TThostFtdcRequestIDType	RequestID;
+	///用户代码
+	TThostFtdcUserIDType	UserID;
+	///交易所代码
+	TThostFtdcExchangeIDType	ExchangeID;
+	///IP地址
+	TThostFtdcIPAddressType	IPAddress;
+	///Mac地址
+	TThostFtdcMacAddressType	MacAddress;
+	///交易所合约代码
+	TThostFtdcExchangeInstIDType	ExchangeInstID;
+	///交易所期权系列号
+	TThostFtdcExchangeInstIDType	ExchangeSerialNo;
+	///交易所产品代码
+	TThostFtdcProductIDType	ExchangeProductID;
+	///交易所交易员代码
+	TThostFtdcTraderIDType	TraderID;
+	///安装编号
+	TThostFtdcInstallIDType	InstallID;
+	///会员代码
+	TThostFtdcParticipantIDType	ParticipantID;
+	///客户代码
+	TThostFtdcClientIDType	ClientID;
+	///报单操作状态
+	TThostFtdcOrderActionStatusType	OrderActionStatus;
+	///状态信息
+	TThostFtdcErrorMsgType	StatusMsg;
+	///操作本地编号
+	TThostFtdcOrderLocalIDType	ActionLocalID;
+	///操作日期
+	TThostFtdcDateType	ActionDate;
+	///操作时间
+	TThostFtdcTimeType	ActionTime;
+};
+
+///查询对冲设置
+struct CThostFtdcQryOffsetSettingField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///产品代码
+	TThostFtdcProductIDType	ProductID;
+	///对冲类型
+	TThostFtdcOffsetTypeType	OffsetType;
+};
+
+///服务地址和AppID的关系
+struct CThostFtdcAddrAppIDRelationField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///服务地址
+	TThostFtdcIpAddrType	Address;
+	///交易中心代码
+	TThostFtdcDRIdentityIDType	DRIdentityID;
+	///App代码
+	TThostFtdcAppIDType	AppID;
+};
+
+///服务地址和AppID的关系查询
+struct CThostFtdcQryAddrAppIDRelationField
+{
 	///经纪公司代码
 	TThostFtdcBrokerIDType	BrokerID;
 };

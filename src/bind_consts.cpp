@@ -376,7 +376,9 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_TPID_LoginFailMaxNumForIP") = "U";
     consts.attr("THOST_FTDC_TPID_PasswordPeriod") = "V";
     consts.attr("THOST_FTDC_TPID_PwdHistoryCmp") = "X";
-    consts.attr("THOST_FTDC_TPID_TranferChkProperty") = "D";
+    consts.attr("THOST_FTDC_TPID_TranferChkProperty") = "i";
+    consts.attr("THOST_FTDC_TPID_TradeChkPhase") = "j";
+    consts.attr("THOST_FTDC_TPID_TradeChkPriceVol") = "k";
     consts.attr("THOST_FTDC_FI_SettlementFund") = "F";
     consts.attr("THOST_FTDC_FI_Trade") = "T";
     consts.attr("THOST_FTDC_FI_InvestorPosition") = "P";
@@ -1331,5 +1333,9 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_ADV_V6") = "1";
     consts.attr("THOST_FTDC_TGQS_QryIdle") = "1";
     consts.attr("THOST_FTDC_TGQS_QryBusy") = "2";
+    consts.attr("THOST_FTDC_OT_OPT_OFFSET") = "0";
+    consts.attr("THOST_FTDC_OT_FUT_OFFSET") = "1";
+    consts.attr("THOST_FTDC_OT_EXEC_OFFSET") = "2";
+    consts.attr("THOST_FTDC_OT_PERFORM_OFFSET") = "3";
     
 }

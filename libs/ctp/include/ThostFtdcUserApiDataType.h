@@ -1552,7 +1552,11 @@ typedef char TThostFtdcSystemParamIDType;
 ///历史密码重复限制次数
 #define THOST_FTDC_TPID_PwdHistoryCmp 'X'
 ///转账是否验证预留银行账户
-#define THOST_FTDC_TPID_TranferChkProperty 'D'
+#define THOST_FTDC_TPID_TranferChkProperty 'i'
+///非交易时间异常报单校验参数
+#define THOST_FTDC_TPID_TradeChkPhase 'j'
+///其他异常报单校验参数（价格和手数）
+#define THOST_FTDC_TPID_TradeChkPriceVol 'k'
 
 typedef char TThostFtdcTradeParamIDType;
 
@@ -7148,5 +7152,29 @@ typedef char TThostFtdcIpAddrType[129];
 #define THOST_FTDC_TGQS_QryBusy '2'
 
 typedef char TThostFtdcTGSessionQryStatusType;
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcOffsetTypeType是一个对冲类型类型
+/////////////////////////////////////////////////////////////////////////
+///期权对冲
+#define THOST_FTDC_OT_OPT_OFFSET '0'
+///期货对冲
+#define THOST_FTDC_OT_FUT_OFFSET '1'
+///行权后期货对冲
+#define THOST_FTDC_OT_EXEC_OFFSET '2'
+///履约后期货对冲
+#define THOST_FTDC_OT_PERFORM_OFFSET '3'
+
+typedef char TThostFtdcOffsetTypeType;
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcSiteType是一个站点类型
+/////////////////////////////////////////////////////////////////////////
+typedef char TThostFtdcSiteType[51];
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcNetOperatorType是一个网络运营商类型
+/////////////////////////////////////////////////////////////////////////
+typedef char TThostFtdcNetOperatorType[9];
 
 #endif

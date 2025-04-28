@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.15...3.26)
 
 project(qtl-ctp-api LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 20)
+
 if (NOT SKBUILD)
     message(WARNING "\
   This CMake file is meant to be executed using 'scikit-build'. Running
