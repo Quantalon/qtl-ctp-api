@@ -1,9 +1,9 @@
 #include "td_api.h"
 
 
-void TdApi::CreateApi(const std::string &flow_path) {
+void TdApi::CreateApi(const std::string &flow_path, bool is_production_mode) {
     queue_ = std::make_unique<DispatchQueue>();
-    api_ = CThostFtdcTraderApi::CreateFtdcTraderApi(flow_path.c_str());
+    api_ = CThostFtdcTraderApi::CreateFtdcTraderApi(flow_path.c_str(), is_production_mode);
     api_->RegisterSpi(this);
 }
 
@@ -302,6 +302,8 @@ void TdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
             py_data["GFEXTime"] = gbk_to_utf8(rsp_data->GFEXTime);
             py_data["LoginDRIdentityID"] = rsp_data->LoginDRIdentityID;
             py_data["UserDRIdentityID"] = rsp_data->UserDRIdentityID;
+            py_data["LastLoginTime"] = gbk_to_utf8(rsp_data->LastLoginTime);
+            py_data["ReserveInfo"] = gbk_to_utf8(rsp_data->ReserveInfo);
         }
         nb::dict py_error;
         if (rsp_error) {
@@ -668,6 +670,7 @@ void TdApi::OnRspQryInvestorPosition(CThostFtdcInvestorPositionField *data, CTho
             py_data["TasPosition"] = rsp_data->TasPosition;
             py_data["TasPositionCost"] = rsp_data->TasPositionCost;
             py_data["InstrumentID"] = gbk_to_utf8(rsp_data->InstrumentID);
+            py_data["OptionValue"] = rsp_data->OptionValue;
         }
         nb::dict py_error;
         if (rsp_error) {
@@ -740,6 +743,7 @@ void TdApi::OnRspQryTradingAccount(CThostFtdcTradingAccountField *data, CThostFt
             py_data["BizType"] = rsp_data->BizType;
             py_data["FrozenSwap"] = rsp_data->FrozenSwap;
             py_data["RemainSwap"] = rsp_data->RemainSwap;
+            py_data["OptionValue"] = rsp_data->OptionValue;
         }
         nb::dict py_error;
         if (rsp_error) {

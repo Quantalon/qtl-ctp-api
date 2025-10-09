@@ -3,7 +3,7 @@
 ///@company 上海期货信息技术有限公司
 ///@file ThostFtdcUserApiDataType.h
 ///@brief 定义了客户端接口使用的业务数据类型
-///@history
+///@history 
 ///20060106	赵鸿昊		创建该文件
 /////////////////////////////////////////////////////////////////////////
 
@@ -1557,6 +1557,8 @@ typedef char TThostFtdcSystemParamIDType;
 #define THOST_FTDC_TPID_TradeChkPhase 'j'
 ///其他异常报单校验参数（价格和手数）
 #define THOST_FTDC_TPID_TradeChkPriceVol 'k'
+///卖出垂直价差组合新算法
+#define THOST_FTDC_TPID_NewBESMarginAlgo 'l'
 
 typedef char TThostFtdcTradeParamIDType;
 
@@ -7176,5 +7178,20 @@ typedef char TThostFtdcSiteType[51];
 ///TFtdcNetOperatorType是一个网络运营商类型
 /////////////////////////////////////////////////////////////////////////
 typedef char TThostFtdcNetOperatorType[9];
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcApplySrcType是一个申请来源类型
+/////////////////////////////////////////////////////////////////////////
+///交易
+#define THOST_FTDC_AS_Trade '0'
+///会服
+#define THOST_FTDC_AS_Member '1'
+
+typedef char TThostFtdcApplySrcType;
+
+/////////////////////////////////////////////////////////////////////////
+///TFtdcReserveInfoType是一个预留信息类型
+/////////////////////////////////////////////////////////////////////////
+typedef char TThostFtdcReserveInfoType[65];
 
 #endif

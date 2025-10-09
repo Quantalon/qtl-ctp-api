@@ -96,8 +96,9 @@ class PyTdApi(TdApi):
         print(f"error ErrorMsg: {error['ErrorMsg']}")
 
     def OnRtnInstrumentStatus(self, data):
-        print('PyTdApi.OnRtnInstrumentStatus')
-        print(f'data: {data}')
+        # print('PyTdApi.OnRtnInstrumentStatus')
+        # print(f'data: {data}')
+        pass
 
     def OnRspSettlementInfoConfirm(self, data, error, request_id, is_last):
         print('PyTdApi.OnRspSettlementInfoConfirm')
@@ -122,7 +123,7 @@ class PyTdApi(TdApi):
             print(f"error ErrorID: {error['ErrorID']}")
             print(f"error ErrorMsg: {error['ErrorMsg']}")
 
-        print('Get Part Content...')
+        print('Get Partial Content...')
         self.settlement_info_content += data['Content']
 
         if is_last:
@@ -158,7 +159,7 @@ def test():
     print('test TdApi...')
     print(f'version: {TdApi.GetApiVersion()}')
     settings = {
-        'address': 'tcp://180.168.146.187:10201',
+        'address': 'tcp://182.254.243.31:30001',
         'broker_id': '9999',
         'user_id': '',
         'password': '',

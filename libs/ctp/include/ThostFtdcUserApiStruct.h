@@ -3,7 +3,7 @@
 ///@company 上海期货信息技术有限公司
 ///@file ThostFtdcUserApiStruct.h
 ///@brief 定义了客户端接口使用的业务数据结构
-///@history
+///@history 
 ///20060106	赵鸿昊		创建该文件
 /////////////////////////////////////////////////////////////////////////
 
@@ -94,6 +94,10 @@ struct CThostFtdcRspUserLoginField
 	TThostFtdcDRIdentityIDType	LoginDRIdentityID;
 	///用户所属中心号
 	TThostFtdcDRIdentityIDType	UserDRIdentityID;
+	///上次登陆时间
+	TThostFtdcDateTimeType	LastLoginTime;
+	///预留信息
+	TThostFtdcReserveInfoType	ReserveInfo;
 };
 
 ///用户登出请求
@@ -754,6 +758,8 @@ struct CThostFtdcTradingAccountField
 	TThostFtdcMoneyType	FrozenSwap;
 	///剩余换汇额度
 	TThostFtdcMoneyType	RemainSwap;
+	///期权市值
+	TThostFtdcMoneyType	OptionValue;
 };
 
 ///投资者持仓
@@ -859,6 +865,8 @@ struct CThostFtdcInvestorPositionField
 	TThostFtdcMoneyType	TasPositionCost;
 	///合约代码
 	TThostFtdcInstrumentIDType	InstrumentID;
+	///期权市值
+	TThostFtdcMoneyType	OptionValue;
 };
 
 ///合约保证金率
@@ -2305,6 +2313,8 @@ struct CThostFtdcSyncingTradingAccountField
 	TThostFtdcMoneyType	FrozenSwap;
 	///剩余换汇额度
 	TThostFtdcMoneyType	RemainSwap;
+	///期权市值
+	TThostFtdcMoneyType	OptionValue;
 };
 
 ///正在同步中的投资者持仓
@@ -7413,7 +7423,7 @@ struct CThostFtdcReqOpenAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -7508,7 +7518,7 @@ struct CThostFtdcReqCancelAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -7603,7 +7613,7 @@ struct CThostFtdcReqChangeAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -7690,7 +7700,7 @@ struct CThostFtdcReqTransferField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -7783,7 +7793,7 @@ struct CThostFtdcRspTransferField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -7894,7 +7904,7 @@ struct CThostFtdcReqRepealField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8001,7 +8011,7 @@ struct CThostFtdcRspRepealField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8098,7 +8108,7 @@ struct CThostFtdcReqQueryAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8177,7 +8187,7 @@ struct CThostFtdcRspQueryAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8260,7 +8270,7 @@ struct CThostFtdcFutureSignIOField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8307,7 +8317,7 @@ struct CThostFtdcRspFutureSignInField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8362,7 +8372,7 @@ struct CThostFtdcReqFutureSignOutField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8409,7 +8419,7 @@ struct CThostFtdcRspFutureSignOutField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8460,7 +8470,7 @@ struct CThostFtdcReqQueryTradeResultBySerialField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8519,7 +8529,7 @@ struct CThostFtdcRspQueryTradeResultBySerialField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8576,7 +8586,7 @@ struct CThostFtdcReqDayEndFileReadyField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8618,7 +8628,7 @@ struct CThostFtdcVerifyFuturePasswordField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8716,7 +8726,7 @@ struct CThostFtdcReqSyncKeyField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8761,7 +8771,7 @@ struct CThostFtdcRspSyncKeyField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8810,7 +8820,7 @@ struct CThostFtdcNotifyQueryAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -8971,7 +8981,7 @@ struct CThostFtdcNotifyFutureSignInField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -9026,7 +9036,7 @@ struct CThostFtdcNotifyFutureSignOutField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -9077,7 +9087,7 @@ struct CThostFtdcNotifySyncKeyField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -9182,7 +9192,7 @@ struct CThostFtdcOpenAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -9281,7 +9291,7 @@ struct CThostFtdcCancelAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -9380,7 +9390,7 @@ struct CThostFtdcChangeAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -9614,7 +9624,7 @@ struct CThostFtdcReserveOpenAccountConfirmField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -9701,7 +9711,7 @@ struct CThostFtdcReserveOpenAccountField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -10555,6 +10565,8 @@ struct CThostFtdcSyncDeltaTradingAccountField
 	TThostFtdcMoneyType	FrozenSwap;
 	///剩余换汇额度
 	TThostFtdcMoneyType	RemainSwap;
+	///期权市值
+	TThostFtdcMoneyType	OptionValue;
 	///追平序号
 	TThostFtdcSequenceNoType	SyncDeltaSequenceNo;
 };
@@ -12573,7 +12585,7 @@ struct CThostFtdcReqQueryBankAccountBySecField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -12656,7 +12668,7 @@ struct CThostFtdcRspQueryBankAccountBySecField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -12743,7 +12755,7 @@ struct CThostFtdcReqTransferBySecField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -12840,7 +12852,7 @@ struct CThostFtdcRspTransferBySecField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -12941,7 +12953,7 @@ struct CThostFtdcNotifyQueryFutureAccountBySecField
 	TThostFtdcTradeTimeType	TradeTime;
 	///银行流水号
 	TThostFtdcBankSerialType	BankSerial;
-	///交易系统日期
+	///交易系统日期 
 	TThostFtdcTradeDateType	TradingDay;
 	///银期平台消息流水号
 	TThostFtdcSerialType	PlateSerial;
@@ -13279,6 +13291,8 @@ struct CThostFtdcOffsetSettingField
 	TThostFtdcUserIDType	ActiveUserID;
 	///经纪公司报单编号
 	TThostFtdcSequenceNoType	BrokerOffsetSettingSeq;
+	///申请来源
+	TThostFtdcApplySrcType	ApplySrc;
 };
 
 ///撤销对冲设置
@@ -13364,6 +13378,65 @@ struct CThostFtdcAddrAppIDRelationField
 
 ///服务地址和AppID的关系查询
 struct CThostFtdcQryAddrAppIDRelationField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+};
+
+///微信小程序等用户系统信息
+struct CThostFtdcWechatUserSystemInfoField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///用户代码
+	TThostFtdcUserIDType	UserID;
+	///微信小程序等用户端系统内部信息长度
+	TThostFtdcSystemInfoLenType	WechatCltSysInfoLen;
+	///微信小程序等用户端系统内部信息
+	TThostFtdcClientSystemInfoType	WechatCltSysInfo;
+	///终端IP端口
+	TThostFtdcIPPortType	ClientIPPort;
+	///登录成功时间
+	TThostFtdcTimeType	ClientLoginTime;
+	///App代码
+	TThostFtdcAppIDType	ClientAppID;
+	///用户公网IP
+	TThostFtdcIPAddressType	ClientPublicIP;
+	///客户登录备注2
+	TThostFtdcClientLoginRemarkType	ClientLoginRemark;
+};
+
+///投资者预留信息
+struct CThostFtdcInvestorReserveInfoField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///用户代码
+	TThostFtdcUserIDType	UserID;
+	///预留信息
+	TThostFtdcReserveInfoType	ReserveInfo;
+};
+
+///查询组织架构投资者对应关系
+struct CThostFtdcQryInvestorDepartmentFlatField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+};
+
+///组织架构投资者对应关系
+struct CThostFtdcInvestorDepartmentFlatField
+{
+	///经纪公司代码
+	TThostFtdcBrokerIDType	BrokerID;
+	///投资者代码
+	TThostFtdcInvestorIDType	InvestorID;
+	///组织架构代码
+	TThostFtdcInvestorIDType	DepartmentID;
+};
+
+///查询操作员组织架构关系
+struct CThostFtdcQryDepartmentUserField
 {
 	///经纪公司代码
 	TThostFtdcBrokerIDType	BrokerID;

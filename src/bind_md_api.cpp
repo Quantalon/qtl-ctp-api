@@ -4,7 +4,7 @@ void bind_md_api(nb::module_ &m) {
     nb::class_<MdApi, PyMdApi> md_api(m, "MdApi");
     md_api
             .def(nb::init<>())
-            .def("CreateApi", &MdApi::CreateApi)
+            .def("CreateApi", &MdApi::CreateApi, nb::arg("flow_path"), nb::arg("is_production_mode") = true)
             .def("Release", &MdApi::Release)
             .def("Init", &MdApi::Init)
             .def("Join", &MdApi::Join)

@@ -379,6 +379,7 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_TPID_TranferChkProperty") = "i";
     consts.attr("THOST_FTDC_TPID_TradeChkPhase") = "j";
     consts.attr("THOST_FTDC_TPID_TradeChkPriceVol") = "k";
+    consts.attr("THOST_FTDC_TPID_NewBESMarginAlgo") = "l";
     consts.attr("THOST_FTDC_FI_SettlementFund") = "F";
     consts.attr("THOST_FTDC_FI_Trade") = "T";
     consts.attr("THOST_FTDC_FI_InvestorPosition") = "P";
@@ -1337,5 +1338,7 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_OT_FUT_OFFSET") = "1";
     consts.attr("THOST_FTDC_OT_EXEC_OFFSET") = "2";
     consts.attr("THOST_FTDC_OT_PERFORM_OFFSET") = "3";
+    consts.attr("THOST_FTDC_AS_Trade") = "0";
+    consts.attr("THOST_FTDC_AS_Member") = "1";
     
 }

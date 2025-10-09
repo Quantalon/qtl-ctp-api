@@ -41,7 +41,7 @@ class converter {
  public:
   converter(const std::string& out_encode,
             const std::string& in_encode,
-            bool ignore_error = false,
+            bool ignore_error = true,
             size_t buf_size = 1024)
       : ignore_error_(ignore_error),
         buf_size_(buf_size) {

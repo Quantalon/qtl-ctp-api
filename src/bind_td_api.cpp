@@ -4,7 +4,7 @@ void bind_td_api(nb::module_ &m) {
     nb::class_<TdApi, PyTdApi> td_api(m, "TdApi");
     td_api
             .def(nb::init<>())
-            .def("CreateApi", &TdApi::CreateApi)
+            .def("CreateApi", &TdApi::CreateApi, nb::arg("flow_path"), nb::arg("is_production_mode") = true)
             .def("Release", &TdApi::Release)
             .def("Init", &TdApi::Init)
             .def("Join", &TdApi::Join)

@@ -1,9 +1,9 @@
 #include "td_api.h"
 
 
-void TdApi::CreateApi(const std::string &flow_path) {
+void TdApi::CreateApi(const std::string &flow_path, bool is_production_mode) {
     queue_ = std::make_unique<DispatchQueue>();
-    api_ = CThostFtdcTraderApi::CreateFtdcTraderApi(flow_path.c_str());
+    api_ = CThostFtdcTraderApi::CreateFtdcTraderApi(flow_path.c_str(), is_production_mode);
     api_->RegisterSpi(this);
 }
 
