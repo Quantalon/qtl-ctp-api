@@ -2,6 +2,8 @@
 
 ## Quick Start
 
+- python 3.9
+
 - 安装依赖：
   - pip install -r requirements.txt
 

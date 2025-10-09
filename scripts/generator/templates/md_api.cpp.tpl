@@ -1,9 +1,9 @@
 #include "md_api.h"
 
 
-void MdApi::CreateApi(const std::string &flow_path) {
+void MdApi::CreateApi(const std::string &flow_path, bool is_production_mode) {
     queue_ = std::make_unique<DispatchQueue>();
-    api_ = CThostFtdcMdApi::CreateFtdcMdApi(flow_path.c_str());
+    api_ = CThostFtdcMdApi::CreateFtdcMdApi(flow_path.c_str(), false, false, is_production_mode);
     api_->RegisterSpi(this);
 }
 

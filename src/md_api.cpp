@@ -1,9 +1,9 @@
 #include "md_api.h"
 
 
-void MdApi::CreateApi(const std::string &flow_path) {
+void MdApi::CreateApi(const std::string &flow_path, bool is_production_mode) {
     queue_ = std::make_unique<DispatchQueue>();
-    api_ = CThostFtdcMdApi::CreateFtdcMdApi(flow_path.c_str());
+    api_ = CThostFtdcMdApi::CreateFtdcMdApi(flow_path.c_str(), false, false, is_production_mode);
     api_->RegisterSpi(this);
 }
 
@@ -121,6 +121,8 @@ void MdApi::OnRspUserLogin(CThostFtdcRspUserLoginField *data, CThostFtdcRspInfoF
             py_data["GFEXTime"] = gbk_to_utf8(rsp_data->GFEXTime);
             py_data["LoginDRIdentityID"] = rsp_data->LoginDRIdentityID;
             py_data["UserDRIdentityID"] = rsp_data->UserDRIdentityID;
+            py_data["LastLoginTime"] = gbk_to_utf8(rsp_data->LastLoginTime);
+            py_data["ReserveInfo"] = gbk_to_utf8(rsp_data->ReserveInfo);
         }
         nb::dict py_error;
         if (rsp_error) {

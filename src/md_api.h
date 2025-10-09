@@ -23,7 +23,7 @@ private:
     CThostFtdcMdApi* api_;
 
 public:
-    void CreateApi(const std::string &flow_path);
+    void CreateApi(const std::string &flow_path, bool is_production_mode = true);
     void Release();
     void Init();
     int Join();
