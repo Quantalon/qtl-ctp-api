@@ -52,7 +52,7 @@ class PyMdApi(MdApi):
 
         print(f"Trading Day: {self.GetTradingDay()}")
 
-        self.SubscribeMarketData(['IM2512'])
+        self.SubscribeMarketData(['IM2603'])
 
         pass
 
