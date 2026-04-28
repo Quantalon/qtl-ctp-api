@@ -11,7 +11,7 @@ void bind_td_api(nb::module_ &m) {
             .def_static("GetApiVersion", &TdApi::GetApiVersion)
             .def("GetTradingDay", &TdApi::GetTradingDay)
             .def("RegisterFront", &TdApi::RegisterFront)
-            .def("SubscribePrivateTopic", &TdApi::SubscribePrivateTopic)
+            .def("SubscribePrivateTopic", &TdApi::SubscribePrivateTopic, nb::arg("resume_type"), nb::arg("seq_no") = 1)
             .def("SubscribePublicTopic", &TdApi::SubscribePublicTopic)
             // Req Methods
             .def("ReqAuthenticate", &TdApi::ReqAuthenticate)

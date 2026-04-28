@@ -29,7 +29,7 @@ public:
     static std::string GetApiVersion();
     std::string GetTradingDay();
     void RegisterFront(const std::string &front_address);
-    void SubscribePrivateTopic(int resume_type);
+    void SubscribePrivateTopic(int resume_type, int seq_no);
     void SubscribePublicTopic(int resume_type);
 
     int ReqAuthenticate(const nb::dict &data, int request_id);

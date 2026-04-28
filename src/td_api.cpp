@@ -34,8 +34,8 @@ void TdApi::RegisterFront(const std::string &front_address) {
     api_->RegisterFront(const_cast<char *>(front_address.c_str()));
 }
 
-void TdApi::SubscribePrivateTopic(int resume_type) {
-    api_->SubscribePrivateTopic((THOST_TE_RESUME_TYPE)resume_type);
+void TdApi::SubscribePrivateTopic(int resume_type, int seq_no) {
+    api_->SubscribePrivateTopic((THOST_TE_RESUME_TYPE)resume_type, seq_no);
 }
 
 void TdApi::SubscribePublicTopic(int resume_type) {
@@ -66,6 +66,7 @@ int TdApi::ReqUserLogin(const nb::dict &data, int request_id) {
     set_field(request.LoginRemark, data, "LoginRemark", sizeof(request.LoginRemark));
     set_field(request.ClientIPPort, data, "ClientIPPort");
     set_field(request.ClientIPAddress, data, "ClientIPAddress", sizeof(request.ClientIPAddress));
+    set_field(request.SMSCode, data, "SMSCode", sizeof(request.SMSCode));
     return api_->ReqUserLogin(&request, request_id);
 }
 

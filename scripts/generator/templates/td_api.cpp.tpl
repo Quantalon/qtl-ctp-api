@@ -34,8 +34,8 @@ void TdApi::RegisterFront(const std::string &front_address) {
     api_->RegisterFront(const_cast<char *>(front_address.c_str()));
 }
 
-void TdApi::SubscribePrivateTopic(int resume_type) {
-    api_->SubscribePrivateTopic((THOST_TE_RESUME_TYPE)resume_type);
+void TdApi::SubscribePrivateTopic(int resume_type, int seq_no) {
+    api_->SubscribePrivateTopic((THOST_TE_RESUME_TYPE)resume_type, seq_no);
 }
 
 void TdApi::SubscribePublicTopic(int resume_type) {

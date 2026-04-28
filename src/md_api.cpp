@@ -60,6 +60,7 @@ int MdApi::ReqUserLogin(const nb::dict &data, int request_id) {
     set_field(request.LoginRemark, data, "LoginRemark", sizeof(request.LoginRemark));
     set_field(request.ClientIPPort, data, "ClientIPPort");
     set_field(request.ClientIPAddress, data, "ClientIPAddress", sizeof(request.ClientIPAddress));
+    set_field(request.SMSCode, data, "SMSCode", sizeof(request.SMSCode));
     return api_->ReqUserLogin(&request, request_id);
 }
 

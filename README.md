@@ -40,5 +40,5 @@ pip install qtl-ctp-api
 
 ## CTP version
 
-- CTP: v6.7.11_20250617
+- CTP: v6.7.13_20260225
 

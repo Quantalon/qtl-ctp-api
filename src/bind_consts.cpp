@@ -9,6 +9,7 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_TERT_RESUME") = 1;
     consts.attr("THOST_TERT_QUICK") = 2;
     consts.attr("THOST_TERT_NONE") = 3;
+    consts.attr("THOST_TERT_RESUME_FROM_SEQ_NO") = 4;
     consts.attr("THOST_FTDC_EXP_Normal") = "0";
     consts.attr("THOST_FTDC_EXP_GenOrderByTrade") = "1";
     consts.attr("THOST_FTDC_ICT_EID") = "0";
@@ -125,6 +126,7 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_BFC_QryPosiLimit") = "V";
     consts.attr("THOST_FTDC_BFC_FBSign") = "W";
     consts.attr("THOST_FTDC_BFC_FBAccount") = "X";
+    consts.attr("THOST_FTDC_BFC_RcvSMSCode") = "Y";
     consts.attr("THOST_FTDC_OAS_Submitted") = "a";
     consts.attr("THOST_FTDC_OAS_Accepted") = "b";
     consts.attr("THOST_FTDC_OAS_Rejected") = "c";
@@ -380,6 +382,8 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_TPID_TradeChkPhase") = "j";
     consts.attr("THOST_FTDC_TPID_TradeChkPriceVol") = "k";
     consts.attr("THOST_FTDC_TPID_NewBESMarginAlgo") = "l";
+    consts.attr("THOST_FTDC_TPID_IsDceFutCloseFrozen") = "m";
+    consts.attr("THOST_FTDC_TPID_UseSMSVerify") = "n";
     consts.attr("THOST_FTDC_FI_SettlementFund") = "F";
     consts.attr("THOST_FTDC_FI_Trade") = "T";
     consts.attr("THOST_FTDC_FI_InvestorPosition") = "P";
@@ -1340,5 +1344,19 @@ void bind_consts(nb::module_ &m) {
     consts.attr("THOST_FTDC_OT_PERFORM_OFFSET") = "3";
     consts.attr("THOST_FTDC_AS_Trade") = "0";
     consts.attr("THOST_FTDC_AS_Member") = "1";
+    consts.attr("THOST_FTDC_AS2_Unknown") = "a";
+    consts.attr("THOST_FTDC_AS2_Canceled") = "0";
+    consts.attr("THOST_FTDC_AS2_Suspended") = "1";
+    consts.attr("THOST_FTDC_AS2_Accepted") = "3";
+    consts.attr("THOST_FTDC_ZCECT_SPZ") = "0";
+    consts.attr("THOST_FTDC_ZCECT_SPD") = "1";
+    consts.attr("THOST_FTDC_ZCECT_IPS") = "2";
+    consts.attr("THOST_FTDC_ZCECT_BUL") = "3";
+    consts.attr("THOST_FTDC_ZCECT_BER") = "4";
+    consts.attr("THOST_FTDC_ZCECT_BLT") = "5";
+    consts.attr("THOST_FTDC_ZCECT_BRT") = "6";
+    consts.attr("THOST_FTDC_ZCECT_STD") = "7";
+    consts.attr("THOST_FTDC_ZCECT_STG") = "8";
+    consts.attr("THOST_FTDC_ZCECT_PRT") = "9";
     
 }
