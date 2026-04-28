@@ -1,7 +1,6 @@
 #ifndef MD_API_H
 #define MD_API_H
 
-#include <iostream>
 #include <string>
 #include <optional>
 #include <nanobind/nanobind.h>
@@ -20,7 +19,7 @@ namespace nb = nanobind;
 class MdApi : public CThostFtdcMdSpi {
 private:
     std::unique_ptr<DispatchQueue> queue_;
-    CThostFtdcMdApi* api_;
+    CThostFtdcMdApi* api_ = nullptr;
 
 public:
     void CreateApi(const std::string &flow_path, bool is_production_mode = true);

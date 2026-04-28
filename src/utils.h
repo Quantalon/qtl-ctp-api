@@ -38,7 +38,7 @@ template<typename T>
 void set_field(T &field, const nb::dict &input, const char *field_name, size_t size) {
     if (input.contains(field_name)) {
         std::string str = nb::cast<std::string>(input[field_name]);
-        strncpy(field, str.c_str(), size);
+        std::snprintf(field, size, "%s", str.c_str());
     }
 }
 

@@ -4,13 +4,16 @@
 void TdApi::CreateApi(const std::string &flow_path, bool is_production_mode) {
     queue_ = std::make_unique<DispatchQueue>();
     api_ = CThostFtdcTraderApi::CreateFtdcTraderApi(flow_path.c_str(), is_production_mode);
+    if (!api_) throw std::runtime_error("Failed to Create TdApi Instance");
     api_->RegisterSpi(this);
 }
 
 void TdApi::Release() {
-    api_->RegisterSpi(nullptr);
-    api_->Release();
-    api_ = nullptr;
+    if (api_) {
+        api_->RegisterSpi(nullptr);
+        api_->Release();
+        api_ = nullptr;
+    }
     queue_ = nullptr;
 }
 
@@ -27,7 +30,8 @@ std::string TdApi::GetApiVersion() {
 }
 
 std::string TdApi::GetTradingDay() {
-    return api_->GetTradingDay();
+    const char *day = api_->GetTradingDay();
+    return day ? day : "";
 }
 
 void TdApi::RegisterFront(const std::string &front_address) {

@@ -4,13 +4,16 @@
 void MdApi::CreateApi(const std::string &flow_path, bool is_production_mode) {
     queue_ = std::make_unique<DispatchQueue>();
     api_ = CThostFtdcMdApi::CreateFtdcMdApi(flow_path.c_str(), false, false, is_production_mode);
+    if (!api_) throw std::runtime_error("Failed to Create MdApi Instance");
     api_->RegisterSpi(this);
 }
 
 void MdApi::Release() {
-    api_->RegisterSpi(nullptr);
-    api_->Release();
-    api_ = nullptr;
+    if (api_) {
+        api_->RegisterSpi(nullptr);
+        api_->Release();
+        api_ = nullptr;
+    }
     queue_ = nullptr;
 }
 
@@ -27,7 +30,8 @@ std::string MdApi::GetApiVersion() {
 }
 
 std::string MdApi::GetTradingDay() {
-    return api_->GetTradingDay();
+    const char *day = api_->GetTradingDay();
+    return day ? day : "";
 }
 
 void MdApi::RegisterFront(const std::string &front_address) {

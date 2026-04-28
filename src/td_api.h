@@ -1,7 +1,6 @@
 #ifndef TD_API_H
 #define TD_API_H
 
-#include <iostream>
 #include <string>
 #include <optional>
 #include <nanobind/nanobind.h>
@@ -19,7 +18,7 @@ namespace nb = nanobind;
 class TdApi : public CThostFtdcTraderSpi {
 private:
     std::unique_ptr<DispatchQueue> queue_;
-    CThostFtdcTraderApi* api_;
+    CThostFtdcTraderApi* api_ = nullptr;
 
 public:
     void CreateApi(const std::string &flow_path, bool is_production_mode = true);

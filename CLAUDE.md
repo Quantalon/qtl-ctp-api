@@ -4,7 +4,7 @@
 
 ## 项目概述
 
-`qtl-ctp-api` 是 CTP（综合交易平台）API 的 Python 封装库，用于连接国内期货交易所（上期所、大商所、郑商所、中金所、广期所）。
+`qtl-ctp-api` 是 CTP（综合交易平台）API 的 Python 封装库，用于连接国内期货 CTP 交易柜台。
 
 - **语言**: C++20 + Python
 - **绑定库**: nanobind（替代 pybind11）

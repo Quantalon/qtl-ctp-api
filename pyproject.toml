@@ -4,10 +4,10 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "qtl-ctp-api"
-version = "6.7.13"
+version = "6.7.13.1"
 description = "QTL CTP API"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 
 [project.urls]
 Homepage = "https://github.com/Quantalon/qtl-ctp-api"
